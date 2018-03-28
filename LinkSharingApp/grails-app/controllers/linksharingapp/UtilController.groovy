@@ -7,5 +7,6 @@ class UtilController {
         log.warn("hello this is from warn")
         log.info("hello from info")
         render "hello"
+        log.info "request params: $params"
     }
 }
