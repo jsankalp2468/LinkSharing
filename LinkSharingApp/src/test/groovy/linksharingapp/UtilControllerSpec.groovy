@@ -11,8 +11,4 @@ class UtilControllerSpec extends Specification implements ControllerUnitTest<Uti
     def cleanup() {
     }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
-    }
 }
