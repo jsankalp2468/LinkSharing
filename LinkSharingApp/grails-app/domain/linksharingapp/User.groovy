@@ -35,7 +35,7 @@ class User {
         firstName(nullable: false,blank: false)
         lastName(nullable: false,blank: false)
         userName(unique: true)
-        photo(nullable: true)
+        photo(nullable: true,sqlType: 'longBlob')
         admin(nullable: true)
         active(nullable: true)
     }
