@@ -10,5 +10,6 @@ abstract class Resource {
     //createdBy description topic already created.
 
     static constraints = {
+        description(type: 'text')
     }
 }
