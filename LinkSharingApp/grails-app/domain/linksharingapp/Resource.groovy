@@ -7,9 +7,9 @@ abstract class Resource {
     Topic topic
     Date dateCreated
     Date lastUpdated
-    //createdBy description topic already created.
+    //createdBy description topic already created
 
     static constraints = {
-        description(type: 'text')
+        description(type: "text")
     }
 }

@@ -100,11 +100,11 @@ dataSource:
 environments:
     development:
         dataSource:
-            dbCreate: create-drop
+            dbCreate: create
             url: jdbc:mysql://localhost:3306/linksharing
     test:
         dataSource:
-            dbCreate: create-drop
+            dbCreate: create
             url: jdbc:mysql://localhost:3306/linksharing
     production:
         dataSource:
