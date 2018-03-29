@@ -7,6 +7,7 @@ class Subscription {
     User user
     Date dateCreated
     Seriousness seriousness
+    Date lastUpdated
 
     Subscription(Topic topic, User user, Seriousness seriousness) {
         this.topic = topic
