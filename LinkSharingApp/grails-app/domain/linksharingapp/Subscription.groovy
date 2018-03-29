@@ -9,6 +9,7 @@ class Subscription {
     Seriousness seriousness
     Date lastUpdated
 
+    static belongsTo = [user:User,topic:Topic]
     Subscription(Topic topic, User user, Seriousness seriousness) {
         this.topic = topic
         this.user = user

@@ -8,6 +8,8 @@ class ReadingItem {
     Date dateCreated
     Date lastUpdated
 
+    static belongsTo = [user:User,resource:Resource]
+
     static constraints = {
         isRead(nullable: false)
         user(nullable: false)

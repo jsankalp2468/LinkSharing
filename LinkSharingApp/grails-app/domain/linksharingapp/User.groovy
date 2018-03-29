@@ -19,6 +19,7 @@ class User {
         return name
     }
 
+    static hasMany = [topics:Topic , subscriptions:Subscription , readingItems:ReadingItem, resources:Resource]
     User(String firstName, String lastName, String email, String userName, String password, byte photo, Boolean admin, Boolean active) {
         this.firstName = firstName
         this.lastName = lastName

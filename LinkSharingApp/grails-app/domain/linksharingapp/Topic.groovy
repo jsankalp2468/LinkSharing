@@ -10,6 +10,9 @@ class Topic {
     Date lastUpdated
     Visibility visibility
 
+    static belongsTo = [createdBy:User]
+    static hasMany = [subscriptions:Subscription,resources:Resource]
+
     Topic(String name, User createdBy, Visibility visibility) {
         this.name = name
         this.createdBy = createdBy
