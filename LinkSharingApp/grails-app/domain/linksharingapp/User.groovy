@@ -12,6 +12,12 @@ class User {
     Boolean active
     Date dateCreated
     Date lastUpdated
+    String name
+
+    String getName() {
+        this.name = this.firstName + " " + this.lastName
+        return name
+    }
 
     User(String firstName, String lastName, String email, String userName, String password, byte photo, Boolean admin, Boolean active) {
         this.firstName = firstName
@@ -33,4 +39,5 @@ class User {
         admin(nullable: true)
         active(nullable: true)
     }
+    static transients = ['name']
 }

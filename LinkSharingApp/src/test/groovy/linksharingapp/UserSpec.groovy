@@ -86,4 +86,14 @@ class UserSpec extends Specification implements DomainUnitTest<User> {
         user2.errors.allErrors.size() == 1
         user2.errors.getFieldErrorCount('userName') == 1
     }
+    void "validating getName()"(){
+        setup:
+        User user1 = new User(firstName: "sankalp",lastName: "jain",email: "sankalp.jain@TTN.com",userName: "jsank",password: "abcdef",photo: 1,admin: true,active: null)
+
+        when:
+        user1.save()
+
+        then:
+        user1.getName() == "sankalp jain"
+    }
 }
