@@ -1,4 +1,4 @@
-package User
+package user
 
 import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
