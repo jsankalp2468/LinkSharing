@@ -1,6 +1,6 @@
 package linksharingapp
 
-class DocumentResource extends Resource {
+class DocumentResource  {
 
     String filePath
     //filePath already exists

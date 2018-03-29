@@ -11,8 +11,21 @@ class DocumentResourceSpec extends Specification implements DomainUnitTest<Docum
     def cleanup() {
     }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
+    void "testing filePath field"(){
+        when:
+        DocumentResource documentResource = new DocumentResource(filePath: "/home/sankalp")
+        boolean result = documentResource.validate()
+
+        then:
+        result == true
+    }
+
+    void "testing filePath field to null"(){
+        when:
+        DocumentResource documentResource = new DocumentResource(filePath: "")
+        boolean result = documentResource.validate()
+
+        then:
+        result == false
     }
 }

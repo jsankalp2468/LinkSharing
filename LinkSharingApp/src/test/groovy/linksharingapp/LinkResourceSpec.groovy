@@ -11,8 +11,27 @@ class LinkResourceSpec extends Specification implements DomainUnitTest<LinkResou
     def cleanup() {
     }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
+    void "validating correct string form"(){
+        when:
+        LinkResource linkResource = new LinkResource(url: url1)
+        boolean result = linkResource.validate()
+
+        then:
+        result == valid
+
+        where:
+
+        url1                        | valid
+        "https://www.google.co.in"  | true
+        "http://www.google.co.in"   | true
+        "ftp://www.google.co.in"    | true
+        "http://ww.google.com"      | true
+        "https://www.google"        | true
+        "https://google.com"        | true
+        ""                          | false
+        "http//www.google.com"      | false
+        "http/www.google.com"       | false
+        "google.com"                | false
+
     }
 }
