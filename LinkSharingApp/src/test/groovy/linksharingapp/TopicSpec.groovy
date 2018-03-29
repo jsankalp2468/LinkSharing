@@ -1,9 +1,9 @@
-package topic
+package linksharingapp
 
 import enumeration.Visibility
 import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
-import user.User
+import linksharingapp.User
 
 class TopicSpec extends Specification implements DomainUnitTest<Topic> {
 
@@ -13,10 +13,7 @@ class TopicSpec extends Specification implements DomainUnitTest<Topic> {
     def cleanup() {
     }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
-    }
+
 
     void "Testing all constraints"(){
 

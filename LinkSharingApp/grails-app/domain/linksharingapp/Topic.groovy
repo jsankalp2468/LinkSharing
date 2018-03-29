@@ -1,6 +1,5 @@
-package topic
+package linksharingapp
 
-import user.User
 import enumeration.Visibility
 
 class Topic {

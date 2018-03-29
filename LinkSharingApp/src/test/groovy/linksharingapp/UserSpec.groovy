@@ -1,4 +1,4 @@
-package user
+package linksharingapp
 
 import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
@@ -11,10 +11,6 @@ class UserSpec extends Specification implements DomainUnitTest<User> {
     def cleanup() {
     }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
-    }
 
     void "validating user with every possible constraints"(){
         setup:
