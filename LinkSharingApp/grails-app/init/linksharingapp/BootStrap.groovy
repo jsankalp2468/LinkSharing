@@ -77,6 +77,7 @@ class BootStrap {
             Topic topic = it
             if(!Resource.findByTopic(topic)){
                 2.times {
+                    //creator of resource is same as creator of topic i.e., topic: topic,createdBy: topic.createdBy
                     LinkResource linkResource = new LinkResource('url': "https://www.google.co.in",topic: topic,createdBy: topic.createdBy,description: "${topic.name}")
                     DocumentResource documentResource = new DocumentResource('filePath': "Document${it}", topic: topic,createdBy: topic.createdBy,description: "${topic.name}")
                     if(linkResource.validate()){
