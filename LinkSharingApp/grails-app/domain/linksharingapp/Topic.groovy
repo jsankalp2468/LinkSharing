@@ -1,5 +1,6 @@
 package linksharingapp
 
+import enumeration.Seriousness
 import enumeration.Visibility
 
 class Topic {
@@ -22,5 +23,12 @@ class Topic {
         name(nullable: false,blank: false,unique: 'createdBy')
         visibility(nullable: false)
         createdBy(nullable: false)
+    }
+
+    def afterInsert(){
+        Topic.withNewSession {
+            Subscription subscription = new Subscription(this,this.createdBy,Seriousness.VERY_SERIOUS)
+            this.addToSubscriptions(subscription)
+        }
     }
 }

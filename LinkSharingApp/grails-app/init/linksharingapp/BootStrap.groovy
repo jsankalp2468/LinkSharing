@@ -62,7 +62,7 @@ class BootStrap {
                 5.times {
                     Topic topic = new Topic("mytopic${it}",temp,Visibility.PUBLIC)
                     temp.addToTopics(topic)
-                    temp.save(flush:true)
+                    topic.save()
                 }
             }
         }
