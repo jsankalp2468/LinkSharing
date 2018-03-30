@@ -185,6 +185,8 @@ class BootStrap {
             }
         }*/
 
+        //user of resourceRating is user of readingItems
+        //resource of userRating is resource of readingItems
         users.each {
             User user = it
             user.readingItems.each {
