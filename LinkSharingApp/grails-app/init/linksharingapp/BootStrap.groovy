@@ -9,9 +9,41 @@ class BootStrap {
     def init = { servletContext ->
         println("**************************************************")
         println(Holders.grailsApplication.config.server.contextPath)
-        demo()
+//        demo()
+        createUsers()
     }
     def destroy = {
+    }
+
+
+    void createUsers(){
+        User admin = new User()
+        admin.setFirstName("Sankalp")
+        admin.setLastName("Jain")
+        admin.setEmail("sankalp.jain@tothenew.com")
+        admin.setUserName("jsankalp")
+        admin.setPassword("abcdef")
+//        admin.setPhoto(null)
+        admin.setAdmin(true)
+        admin.setActive(true)
+
+        if(admin.validate()){
+            println(admin.save())
+        }
+
+        User user = new User()
+        user.setFirstName("Neelesh")
+        user.setLastName("Bansal")
+        user.setEmail("neelesh.bansal@tothenew.com")
+        user.setUserName("neelesh")
+        user.setPassword("12345")
+//        user.setPhoto(null)
+        user.setAdmin(false)
+        user.setActive(true)
+
+        if (user.validate()){
+            println(user.save())
+        }
     }
 
     void demo(){
