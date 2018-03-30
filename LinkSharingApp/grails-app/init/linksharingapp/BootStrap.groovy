@@ -30,6 +30,8 @@ class BootStrap {
         if(admin.validate()){
             println(admin.save(failOnError : true,flush : true))
         }
+        log.info("Admin is valid- ${admin.validate()}")
+        log.info("Admin has errors while validating- ${admin.hasErrors()}")
 
         User user = new User()
         user.setFirstName("Neelesh")
@@ -44,6 +46,10 @@ class BootStrap {
         if (user.validate()){
             println(user.save(failOnError : true , flush: true))
         }
+
+        log.info("User is valid- ${user.validate()}")
+        log.info("User has errors while validating- ${user.hasErrors()}")
+
     }
 
     void demo(){
