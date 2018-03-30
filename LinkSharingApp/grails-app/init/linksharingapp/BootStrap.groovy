@@ -3,6 +3,7 @@ package linksharingapp
 import enumeration.Seriousness
 import enumeration.Visibility
 import grails.util.Holders
+import password.ConstantPassword
 
 class BootStrap {
 
@@ -22,7 +23,7 @@ class BootStrap {
         admin.setLastName("Jain")
         admin.setEmail("sankalp.jain@tothenew.com")
         admin.setUserName("jsankalp")
-        admin.setPassword("abcdef")
+        admin.setPassword(ConstantPassword.userPassword)
 //        admin.setPhoto(null)
         admin.setAdmin(true)
         admin.setActive(true)
