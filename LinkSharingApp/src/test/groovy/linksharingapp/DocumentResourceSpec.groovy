@@ -1,6 +1,8 @@
 package linksharingapp
 
+import enumeration.Visibility
 import grails.testing.gorm.DomainUnitTest
+import password.ConstantPassword
 import spock.lang.Specification
 
 class DocumentResourceSpec extends Specification implements DomainUnitTest<DocumentResource> {
@@ -27,5 +29,20 @@ class DocumentResourceSpec extends Specification implements DomainUnitTest<Docum
 
         then:
         result == false
+    }
+
+    void "validating toString()"(){
+        setup:
+        String email = "sankal.jain@tothenew.com"
+        String password = ConstantPassword.userPassword
+        User user = new User(email: email,userName:"jsankalp",password:password, firstName: "sankalp", lastName: "jain",admin:false,active:true)
+        Topic topic = new Topic('name': "my1",'createdBy': user,'visibility': Visibility.PRIVATE)
+
+        when:
+        DocumentResource documentResource = new DocumentResource(createdBy: user,topic: topic,description: "hello",filePath: "filePath")
+        documentResource.save(deepValidate :false)
+
+        then:
+        documentResource.toString() == "DocumentResource{filePath='${documentResource.filePath}'}"
     }
 }

@@ -1,6 +1,8 @@
 package linksharingapp
 
+import enumeration.Visibility
 import grails.testing.gorm.DomainUnitTest
+import password.ConstantPassword
 import spock.lang.Specification
 
 class LinkResourceSpec extends Specification implements DomainUnitTest<LinkResource> {
@@ -33,5 +35,18 @@ class LinkResourceSpec extends Specification implements DomainUnitTest<LinkResou
         "http/www.google.com"       | false
         "google.com"                | false
 
+    }
+
+    void "validating toString()"(){
+        setup:
+        String email = "sankal.jain@tothenew.com"
+        String password = ConstantPassword.userPassword
+        User user = new User(email: email,userName:"jsankalp",password:password, firstName: "sankalp", lastName: "jain",admin:false,active:true)
+        Topic topic = new Topic('name': "my1",'createdBy': user,'visibility': Visibility.PRIVATE)
+
+        when:
+        LinkResource linkResource = new LinkResource(createdBy: user,topic: topic,url: "https://www.google.co.in")
+        then:
+        documentResource.toString() == "DocumentResource{filePath='${documentResource.filePath}'}"
     }
 }
