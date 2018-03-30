@@ -75,11 +75,15 @@ class BootStrap {
         List<Topic> myTopics = Topic.findAll()
         myTopics.each {
             Topic topic = it
-            2.times {
-                LinkResource linkResource = new LinkResource('url': "https://www.google.co.in",topic: topic,createdBy: topic.createdBy,description: "Link${it}")
-                DocumentResource documentResource = new DocumentResource('filePath': "Document${it}", topic: topic,createdBy: topic.createdBy,description: "helloDocument")
-                linkResource.save(flush:true)
-                documentResource.save(flush:true)
+            if(!Resource.count()==0){
+                2.times {
+                    LinkResource linkResource = new LinkResource('url': "https://www.google.co.in",topic: topic,createdBy: topic.createdBy,description: "Link${it}")
+                    DocumentResource documentResource = new DocumentResource('filePath': "Document${it}", topic: topic,createdBy: topic.createdBy,description: "helloDocument")
+                    topic.addToResources(linkResource)
+                    linkResource.save(flush:true)
+                    topic.addToResources(documentResource)
+                    documentResource.save(flush:true)
+                }
             }
         }
     }
