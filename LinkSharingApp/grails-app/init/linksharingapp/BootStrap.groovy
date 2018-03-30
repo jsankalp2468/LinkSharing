@@ -113,8 +113,14 @@ class BootStrap {
                     //subscriptions created only if subscription not exists for user and topic i.e., usSubscription.findByUserAndTopic(user,topic)
                     if(!Subscription.findByUserAndTopic(user,topic)){
                         Subscription subscription = new Subscription(user: user,topic: topic,seriousness: Seriousness.SERIOUS)
-                        subscription.save()
-                        topic.addToSubscriptions(subscription)
+                        if(subscription.validate()){
+                            log.info("User subscribed successfully ${subscription.save(flush : true)}")
+                            topic.addToSubscriptions(subscription)
+                            user.addToSubscriptions(subscription)
+                        }
+                        else{
+                            log.info("error occured while subscribing ${subscription.hasErrors()}")
+                        }
                     }
                 }
             }
