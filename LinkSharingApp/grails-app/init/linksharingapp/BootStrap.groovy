@@ -13,6 +13,7 @@ class BootStrap {
 //        demo()
         if(User.count()==0){createUsers()}
         createTopic()
+        createResources()
     }
     def destroy = {
     }
@@ -61,11 +62,24 @@ class BootStrap {
                 User temp = it
                 5.times {
                     Topic topic = new Topic("mytopic${it}",temp,Visibility.PUBLIC)
-                    if(topic.validate()){log.info("Topic saved successfully - ${temp.addToTopics(topic)}")}
+                    if(topic.validate()){log.info("Topic saved successfully - ${topic.save(flush:true)}")}
                     else {
                         log.info("Topic has errors while saving -${topic.hasErrors()}")
                     }
                 }
+            }
+        }
+    }
+
+    void createResources(){
+        List<Topic> myTopics = Topic.findAll()
+        myTopics.each {
+            Topic topic = it
+            2.times {
+                LinkResource linkResource = new LinkResource('url': "https://www.google.co.in",topic: topic,createdBy: topic.createdBy,description: "Link${it}")
+                DocumentResource documentResource = new DocumentResource('filePath': "Document${it}", topic: topic,createdBy: topic.createdBy,description: "helloDocument")
+                linkResource.save(flush:true)
+                documentResource.save(flush:true)
             }
         }
     }

@@ -10,6 +10,7 @@ class Topic {
     Date dateCreated
     Date lastUpdated
     Visibility visibility
+    List resources
 
     static belongsTo = [createdBy:User]
     static hasMany = [subscriptions:Subscription,resources:Resource]
@@ -26,13 +27,14 @@ class Topic {
     }
 
     def afterInsert(){
-            //seriousness was already to VERY_SERIOUS
+        Topic.withNewSession {
             Subscription subscription = new Subscription(this,this.createdBy,Seriousness.VERY_SERIOUS)
-            if (subscription.validate()){
+            if (subscription.save(flush:true)){
                 log.info("Subscription saved successfully - ${this.addToSubscriptions(subscription)}")
             }
             else {
                 log.info("Subscription has errord while saving - ${subscription.hasErrors()}")
             }
+        }
     }
 }
