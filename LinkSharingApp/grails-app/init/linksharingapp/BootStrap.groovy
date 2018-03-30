@@ -10,7 +10,7 @@ class BootStrap {
         println("**************************************************")
         println(Holders.grailsApplication.config.server.contextPath)
 //        demo()
-        createUsers()
+        if(User.count()==0){createUsers()}
     }
     def destroy = {
     }
