@@ -110,6 +110,7 @@ class BootStrap {
             topics.each {
                 Topic topic = it
                 if(topic.createdBy!=user){
+                    //subscriptions created only if subscription not exists for user and topic i.e., usSubscription.findByUserAndTopic(user,topic)
                     if(!Subscription.findByUserAndTopic(user,topic)){
                         Subscription subscription = new Subscription(user: user,topic: topic,seriousness: Seriousness.SERIOUS)
                         subscription.save()
