@@ -131,7 +131,26 @@ class BootStrap {
     }
 
     void createReadingItems(){
+        List<User> users = User.findAll()
+        List<Resource> resources = Resource.findAll()
+        users.each {
+            User user = it
+            resources.each {
+                Resource resource = it
+                ReadingItem readingItem = new ReadingItem(resource: resource,'user': user,isRead: true)
+                println(readingItem.save(flush:true))
+            }
 
+        }
+
+//        User user1 = new User(firstName: "sankalp",lastName: "jain",email: "sankalp.jain@ttn.com",userName: "jsankalp",password: "abcdef",photo: 1,admin: true,active: null)
+//        Topic topic1= new Topic(name: "mytopic1",createdBy: user1,visibility: Visibility.PRIVATE)
+//        Resource resource = new LinkResource(createdBy: user1, description: "njkasjks",topic:topic1 , url: "https://www.google.com")
+//        ReadingItem readingItem = new ReadingItem(isRead: true,resource: resource,user: user1)
+//        println(user1.save())
+//        println(topic1.save())
+//        println(resource.save())
+//        println(readingItem.save(flush:true))
     }
 
     void demo(){
