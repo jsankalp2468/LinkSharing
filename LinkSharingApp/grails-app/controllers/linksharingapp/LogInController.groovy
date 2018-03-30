@@ -25,6 +25,7 @@ class LogInController {
                 redirect(controller: "logIn", action: 'index')
             }
             else {
+                flash.error = "User is not active"
                 render("User not active")
             }
         }
