@@ -53,6 +53,10 @@ class BootStrap {
 
     }
 
+    void createTopic(){
+        
+    }
+
     void demo(){
         User user2 = new User(firstName: "neelesh",lastName: "bansal",email: "neelesh@ttn.com",userName: "neelesh",password: "abcdef",photo: 1,admin: true,active: null)
         Topic topic2= new Topic(name: "mytopic2",createdBy: user2,visibility: Visibility.PRIVATE)
