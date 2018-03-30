@@ -138,11 +138,21 @@ class BootStrap {
         List<Resource> resources = Resource.findAll()
         users.each {
             User user = it
+//            user.readingItems = []
+            //if list is not made empty it will give null pointer exception at !user.readingItems.contains(readingItem)
             resources.each {
                 Resource resource = it
                 if(!user.topics.contains(resource.topic)){
                     ReadingItem readingItem = new ReadingItem(resource: resource,'user': user,isRead: true)
-                    println(readingItem.save(flush:true))
+                    /*if(!user.readingItems.contains(readingItem)){
+                        println(readingItem.save(flush:true))
+                        user.addToReadingItems(readingItem)
+                    }*/
+                    //In above method we are changing the user.readingItems to empty list which is not a good practice as our data can be lost
+                    if(!ReadingItem.findByUserAndResource(user,resource)){
+                        println(readingItem.save(flush:true))
+                        user.addToReadingItems(readingItem)
+                    }
                 }
             }
 
