@@ -37,4 +37,12 @@ class Topic {
             }
         }
     }
+
+
+    @Override
+    public String toString() {
+        return "Topic{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
