@@ -28,7 +28,12 @@ class Topic {
     def afterInsert(){
         Topic.withNewSession {
             Subscription subscription = new Subscription(this,this.createdBy,Seriousness.VERY_SERIOUS)
-            this.addToSubscriptions(subscription)
+            if (subscription.validate()){
+                log.info("Subscription saved successfully - ${this.addToSubscriptions(subscription)}")
+            }
+            else {
+                log.info("Subscription has errord while saving - ${subscription.hasErrors()}")
+            }
         }
     }
 }

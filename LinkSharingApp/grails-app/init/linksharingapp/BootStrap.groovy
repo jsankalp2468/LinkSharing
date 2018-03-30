@@ -61,8 +61,10 @@ class BootStrap {
                 User temp = it
                 5.times {
                     Topic topic = new Topic("mytopic${it}",temp,Visibility.PUBLIC)
-                    temp.addToTopics(topic)
-                    topic.save()
+                    if(topic.validate()){log.info("Topic saved successfully - ${temp.addToTopics(topic)}")}
+                    else {
+                        log.info("Topic has errors while saving -${topic.hasErrors()}")
+                    }
                 }
             }
         }
