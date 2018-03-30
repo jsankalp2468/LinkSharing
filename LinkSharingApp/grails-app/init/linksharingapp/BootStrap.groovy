@@ -65,7 +65,10 @@ class BootStrap {
                 User temp = it
                 5.times {
                     Topic topic = new Topic("mytopic${it}",temp,Visibility.PUBLIC)
-                    if(topic.validate()){log.info("Topic saved successfully - ${topic.save(flush:true)}")}
+                    if(topic.validate()){
+                        log.info("Topic saved successfully - ${topic.save(flush:true)}")
+                        temp.addToTopics(topic)
+                    }
                     else {
                         log.info("Topic has errors while saving -${topic.hasErrors()}")
                     }
@@ -137,8 +140,10 @@ class BootStrap {
             User user = it
             resources.each {
                 Resource resource = it
-                ReadingItem readingItem = new ReadingItem(resource: resource,'user': user,isRead: true)
-                println(readingItem.save(flush:true))
+                if(!user.topics.contains(resource.topic)){
+                    ReadingItem readingItem = new ReadingItem(resource: resource,'user': user,isRead: true)
+                    println(readingItem.save(flush:true))
+                }
             }
 
         }
