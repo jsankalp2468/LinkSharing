@@ -2,6 +2,7 @@ package linksharingapp
 
 import enumeration.Visibility
 import grails.testing.gorm.DomainUnitTest
+import password.ConstantPassword
 import spock.lang.Specification
 import linksharingapp.User
 
@@ -57,6 +58,22 @@ class TopicSpec extends Specification implements DomainUnitTest<Topic> {
         topic2.errors.getFieldErrorCount('name') == 1
 
     }
+
+    def "validating toString "(){
+
+        setup:
+        String email = "sankal.jain@tothenew.com"
+        String password = ConstantPassword.userPassword
+        User user = new User(email: email,userName:"jsankalp",password:password, firstName: "sankalp", lastName: "jain",admin:false,active:true)
+        Topic topic = new Topic('name': "my1",'createdBy': user,'visibility': Visibility.PRIVATE)
+
+        when:
+        topic.save()
+
+        then:
+        topic.toString() == "Topic{name='${topic.name}'}"
+    }
+
 
 
 }

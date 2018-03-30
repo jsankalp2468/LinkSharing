@@ -1,6 +1,7 @@
 package linksharingapp
 
 import grails.testing.gorm.DomainUnitTest
+import password.ConstantPassword
 import spock.lang.Specification
 
 class UserSpec extends Specification implements DomainUnitTest<User> {
@@ -96,4 +97,27 @@ class UserSpec extends Specification implements DomainUnitTest<User> {
         then:
         user1.getName() == "sankalp jain"
     }
+
+    def "validating toString "(){
+
+        setup:
+        String email = "sankal.jain@tothenew.com"
+        String password = ConstantPassword.userPassword
+        User user = new User(email: email,userName:"jsankalp",password:password, firstName: fname, lastName: lname,admin:false,active:true)
+
+        when:
+        user.save()
+
+        then:
+        user.toString() == "User{name='${user.name}'}"
+
+        where:
+        fname       | lname
+        "sankalp"   |   "jain"
+        ""          |   'jain'
+        null        |   'jain'
+        'sankalp'   |   null
+
+    }
+
 }
