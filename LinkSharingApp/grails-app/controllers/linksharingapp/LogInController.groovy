@@ -5,7 +5,8 @@ import grails.artefact.Controller
 class LogInController {
 
     def index() {
-        if(session){
+        if(session.user){
+//            render("login index")
             forward(controller: 'user',action: 'index')
         }
         else {
@@ -15,5 +16,8 @@ class LogInController {
 
     def logInHandler() { }
 
-    def logOut() { }
+    def logOut() {
+        session.invalidate()
+        forward(controller : 'logIn', action :'index')
+    }
 }
