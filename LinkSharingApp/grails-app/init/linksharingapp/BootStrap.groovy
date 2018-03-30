@@ -16,6 +16,7 @@ class BootStrap {
         createResources()
         subscribeTopic()
         createReadingItems()
+        createResourceRatings()
 
     }
     def destroy = {
@@ -166,6 +167,24 @@ class BootStrap {
 //        println(topic1.save())
 //        println(resource.save())
 //        println(readingItem.save(flush:true))
+    }
+
+    void createResourceRatings(){
+        List<Resource> resources = Resource.findAll()
+        List<User> users = User.findAll()
+
+        resources.each {
+            Resource resource = it
+            users.each {
+                User user = it
+                ResourceRating resourceRating = new ResourceRating(resource: resource,user: user,'score': 3)
+                println(resourceRating.save(flush:true))
+//                ResourceRating resourceRating1 = new ResourceRating(resource: resource,user: user,'score': 5)
+//                println(resourceRating1.save())
+//                rating not allowed if already provided by same user, throwing duplicatekeyexception
+            }
+        }
+
     }
 
     void demo(){
