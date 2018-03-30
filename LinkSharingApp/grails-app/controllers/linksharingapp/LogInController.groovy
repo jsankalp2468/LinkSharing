@@ -17,7 +17,20 @@ class LogInController {
     def logInHandler() {
         String userName = params.userName
         String password = params.password
-        render("${userName}  ${password}")
+//        render("${userName}  ${password}")
+        User user = User.findByUserNameAndPassword(userName,password)
+        if (user){
+            if(user.active){
+                session.user = user
+                redirect(controller: "logIn", action: 'index')
+            }
+            else {
+                render("User not active")
+            }
+        }
+        else {
+            render("user not found")
+        }
     }
 
     def logOut() {
