@@ -15,6 +15,8 @@ class BootStrap {
         createTopic()
         createResources()
         subscribeTopic()
+        createReadingItems()
+
     }
     def destroy = {
     }
@@ -125,6 +127,10 @@ class BootStrap {
                 }
             }
         }
+
+    }
+
+    void createReadingItems(){
 
     }
 
