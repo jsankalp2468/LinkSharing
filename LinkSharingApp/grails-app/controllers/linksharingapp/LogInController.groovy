@@ -30,7 +30,8 @@ class LogInController {
             }
         }
         else {
-            render("user not found")
+            flash.error ="User not found"
+            render("${flash.error}")
         }
     }
 
