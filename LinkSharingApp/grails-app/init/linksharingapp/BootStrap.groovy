@@ -28,7 +28,7 @@ class BootStrap {
         admin.setActive(true)
 
         if(admin.validate()){
-            println(admin.save())
+            println(admin.save(failOnError : true,flush : true))
         }
 
         User user = new User()
@@ -42,7 +42,7 @@ class BootStrap {
         user.setActive(true)
 
         if (user.validate()){
-            println(user.save())
+            println(user.save(failOnError : true , flush: true))
         }
     }
 
