@@ -77,8 +77,8 @@ class BootStrap {
             Topic topic = it
             if(!Resource.count()==0){
                 2.times {
-                    LinkResource linkResource = new LinkResource('url': "https://www.google.co.in",topic: topic,createdBy: topic.createdBy,description: "Link${it}")
-                    DocumentResource documentResource = new DocumentResource('filePath': "Document${it}", topic: topic,createdBy: topic.createdBy,description: "helloDocument")
+                    LinkResource linkResource = new LinkResource('url': "https://www.google.co.in",topic: topic,createdBy: topic.createdBy,description: "${topic.name}")
+                    DocumentResource documentResource = new DocumentResource('filePath': "Document${it}", topic: topic,createdBy: topic.createdBy,description: "${topic.name}")
                     topic.addToResources(linkResource)
                     linkResource.save(flush:true)
                     topic.addToResources(documentResource)
