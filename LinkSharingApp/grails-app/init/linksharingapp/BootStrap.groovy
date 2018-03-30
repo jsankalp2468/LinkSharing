@@ -14,6 +14,7 @@ class BootStrap {
         if(User.count()==0){createUsers()}
         createTopic()
         createResources()
+        subscribeTopic()
     }
     def destroy = {
     }
@@ -88,8 +89,8 @@ class BootStrap {
                         log.info("Link Resource not saved ${linkResource.hasErrors()}")
                     }
                     if(documentResource.validate()){
-//                        topic.addToResources(documentResource)
                         log.info("Document Resource created successfully! ${documentResource.save(flush:true)}")
+                        topic.addToResources(documentResource)
 //                        documentResource.save(flush:true)
                     }
                     else {
@@ -99,6 +100,25 @@ class BootStrap {
                 }
             }
         }
+    }
+
+    void subscribeTopic(){
+        List<User> users = User.findAll()
+        List<Topic> topics = Topic.findAll()
+        users.each {
+            User user = it
+            topics.each {
+                Topic topic = it
+                if(topic.createdBy!=user){
+                    if(!Subscription.findByUserAndTopic(user,topic)){
+                        Subscription subscription = new Subscription(user: user,topic: topic,seriousness: Seriousness.SERIOUS)
+                        subscription.save()
+                        topic.addToSubscriptions(subscription)
+                    }
+                }
+            }
+        }
+
     }
 
     void demo(){
