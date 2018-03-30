@@ -173,7 +173,7 @@ class BootStrap {
         List<Resource> resources = Resource.findAll()
         List<User> users = User.findAll()
 
-        resources.each {
+        /*resources.each {
             Resource resource = it
             users.each {
                 User user = it
@@ -183,8 +183,17 @@ class BootStrap {
 //                println(resourceRating1.save())
 //                rating not allowed if already provided by same user, throwing duplicatekeyexception
             }
-        }
+        }*/
 
+        users.each {
+            User user = it
+            user.readingItems.each {
+                Resource resource = it.resource
+                ResourceRating resourceRating = new ResourceRating(user: user,resource: resource,'score':5)
+                println(resourceRating.save())
+            }
+
+        }
     }
 
     void demo(){
