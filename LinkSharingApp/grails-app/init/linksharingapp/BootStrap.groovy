@@ -12,6 +12,7 @@ class BootStrap {
         println(Holders.grailsApplication.config.server.contextPath)
 //        demo()
         if(User.count()==0){createUsers()}
+        createTopic()
     }
     def destroy = {
     }
@@ -54,7 +55,17 @@ class BootStrap {
     }
 
     void createTopic(){
-        
+        List<User> allUsers = User.findAll()
+        allUsers.each {
+            if(!it.topics){
+                User temp = it
+                5.times {
+                    Topic topic = new Topic("mytopic${it}",temp,Visibility.PUBLIC)
+                    temp.addToTopics(topic)
+                    temp.save(flush:true)
+                }
+            }
+        }
     }
 
     void demo(){
