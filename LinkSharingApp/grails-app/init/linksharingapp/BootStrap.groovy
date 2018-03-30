@@ -75,14 +75,26 @@ class BootStrap {
         List<Topic> myTopics = Topic.findAll()
         myTopics.each {
             Topic topic = it
-            if(!Resource.count()==0){
+            if(!Resource.findByTopic(topic)){
                 2.times {
                     LinkResource linkResource = new LinkResource('url': "https://www.google.co.in",topic: topic,createdBy: topic.createdBy,description: "${topic.name}")
                     DocumentResource documentResource = new DocumentResource('filePath': "Document${it}", topic: topic,createdBy: topic.createdBy,description: "${topic.name}")
-                    topic.addToResources(linkResource)
-                    linkResource.save(flush:true)
-                    topic.addToResources(documentResource)
-                    documentResource.save(flush:true)
+                    if(linkResource.validate()){
+                        log.info("Link Resource created successfully! ${linkResource.save(flush:true)}")
+                        topic.addToResources(linkResource)
+                    }
+                    else {
+                        log.info("Link Resource not saved ${linkResource.hasErrors()}")
+                    }
+                    if(documentResource.validate()){
+//                        topic.addToResources(documentResource)
+                        log.info("Document Resource created successfully! ${documentResource.save(flush:true)}")
+//                        documentResource.save(flush:true)
+                    }
+                    else {
+                        log.info("Document Resource not saved ${documentResource.hasErrors()}")
+                    }
+
                 }
             }
         }
