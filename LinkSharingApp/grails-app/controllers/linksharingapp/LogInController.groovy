@@ -14,7 +14,11 @@ class LogInController {
         }
     }
 
-    def logInHandler() { }
+    def logInHandler() {
+        String userName = params.userName
+        String password = params.password
+        render("${userName}  ${password}")
+    }
 
     def logOut() {
         session.invalidate()
