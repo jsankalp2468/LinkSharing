@@ -26,6 +26,7 @@ class Topic {
     }
 
     def afterInsert(){
+            //seriousness was already to VERY_SERIOUS
             Subscription subscription = new Subscription(this,this.createdBy,Seriousness.VERY_SERIOUS)
             if (subscription.validate()){
                 log.info("Subscription saved successfully - ${this.addToSubscriptions(subscription)}")
