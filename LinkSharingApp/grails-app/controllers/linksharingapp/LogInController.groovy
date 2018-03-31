@@ -2,10 +2,13 @@ package linksharingapp
 
 import grails.artefact.Controller
 
+import javax.servlet.http.HttpSession
+
 class LogInController {
 
     def index() {
-        if(session.user){
+        HttpSession session = request.getSession()
+        if(session.getAttribute('user')){
 //            render("login index")
             forward(controller: 'user',action: 'index')
         }
