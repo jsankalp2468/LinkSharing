@@ -3,6 +3,7 @@ package linksharingapp
 import enumeration.Seriousness
 import enumeration.Visibility
 
+
 class Topic {
 
     String name
@@ -24,6 +25,10 @@ class Topic {
         name(nullable: false,blank: false,unique: 'createdBy')
         visibility(nullable: false)
         createdBy(nullable: false)
+    }
+
+    static mapping = {
+        sort name: 'asc'
     }
 
     def afterInsert(){

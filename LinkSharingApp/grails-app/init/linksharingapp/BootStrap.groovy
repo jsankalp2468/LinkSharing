@@ -13,10 +13,11 @@ class BootStrap {
 //        demo()
         if(User.count()==0){createUsers()}
         createTopic()
-        createResources()
-        subscribeTopic()
-        createReadingItems()
-        createResourceRatings()
+//        createResources()
+//        subscribeTopic()
+//        createReadingItems()
+//        createResourceRatings()
+//        retrieveTopic()
     }
     def destroy = {
     }
@@ -196,6 +197,13 @@ class BootStrap {
                 println(resourceRating.save())
             }
 
+        }
+    }
+
+    void retrieveTopic(){
+        List<Topic> topics = Topic.findAll()
+        topics.each {Topic topic->
+            println(topic)
         }
     }
 
