@@ -1,10 +1,22 @@
 package linksharingapp
 
+import enumeration.Seriousness
+
 class SubscriptionController {
 
     def index() { }
 
-    def save() { }
+    def save(Long topicId) {
+        Topic topic = Topic.get(topicId)
+        Subscription subscription = new Subscription(topic: topic,user: session.user,seriousness: Seriousness.VERY_SERIOUS)
+        if(subscription.validate()){
+            subscription.save()
+            render("Subscription saved successfully")
+        }else {
+            render("Subscription not saved successfully ${subscription.errors.allErrors}")
+        }
+
+    }
 
     def update() { }
 
