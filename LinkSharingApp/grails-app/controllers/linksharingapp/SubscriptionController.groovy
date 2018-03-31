@@ -19,6 +19,20 @@ class SubscriptionController {
     }
 
     def update(Long id,String seriousness) {
+        Subscription subscription = Subscription.findByIdAndSeriousness(id,Seriousness.isSeriousness(seriousness))
+
+        if (subscription){
+            if(subscription.validate()){
+                subscription.save(flush:true)
+                render("Subscription saved successfully")
+            }
+            else {
+                render("Subscription not saved ${subscription.errors.allErrors}")
+            }
+
+        }else {
+            render("Subscription not found")
+        }
     }
 
     def delete(Long id) {
