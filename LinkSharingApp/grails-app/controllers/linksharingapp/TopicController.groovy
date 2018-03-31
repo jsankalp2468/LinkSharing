@@ -1,5 +1,7 @@
 package linksharingapp
 
+import enumeration.Visibility
+
 class TopicController {
 
     def index() { }
@@ -9,6 +11,11 @@ class TopicController {
         if (!topic) {
             flash.error = "NO SUCH TOPIC"
             redirect(controller: 'logIn', action: 'index')
+        }
+        else {
+            if(topic.visibility == Visibility.PUBLIC){
+                render("success")
+            }
         }
     }
 }
