@@ -8,5 +8,13 @@ class SubscriptionController {
 
     def update() { }
 
-    def delete() { }
+    def delete(Long id) {
+        Subscription subscription = Subscription.load(id)
+        try{
+            subscription.delete(flush:true)
+            render("Subscription deleted successfully")
+        }catch (RuntimeException ex){
+            render("Subscription with this id not found")
+        }
+    }
 }
