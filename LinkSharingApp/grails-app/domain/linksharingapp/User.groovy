@@ -7,6 +7,7 @@ class User {
     String email
     String userName
     String password
+    String confirmPassword
     byte photo
     Boolean admin
     Boolean active
@@ -32,15 +33,19 @@ class User {
     }
     static constraints = {
         email(email: true,nullable: false,blank: false,unique: true)//Nullable : Allows a property to be set to null - defaults to false.
-        password(nullable: false,blank: false,minSize: 5 )
+        password(nullable: false,blank: false,minSize: 5 ,validator: { password, obj ->
+                        def password2 = obj.confirmPassword
+                        password == password2 ? true : ['invalid.matchingpasswords']
+        })
         firstName(nullable: false,blank: false)
         lastName(nullable: false,blank: false)
         userName(unique: true)
         photo(nullable: true,sqlType: 'longBlob')
         admin(nullable: true)
         active(nullable: true)
+        confirmPassword(nullable: false, blank: false)
     }
-    static transients = ['name']
+    static transients = ['name','confirmPassword']
 
     @Override
     public String toString() {

@@ -18,7 +18,7 @@ class TopicController {
                 render("success ${topic.toString()}")
             }
             else if(topic.visibility == Visibility.PRIVATE){
-                Subscription subscription = Subscription.findByUserAndTopic()
+                Subscription subscription = Subscription.findByUserAndTopic(session.user,topic)
                 if (subscription){
                     render("succcess")
                 }
