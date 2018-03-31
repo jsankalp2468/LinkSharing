@@ -1,5 +1,6 @@
 package linksharingapp
 
+import co.ResourceSearchCO
 import enumeration.Seriousness
 import enumeration.Visibility
 
@@ -29,6 +30,12 @@ class Topic {
 
     static mapping = {
         sort name: 'asc'
+    }
+
+    static namedQueries = {
+        search{ResourceSearchCO co ->
+            eq('id',co.topicId)
+        }
     }
 
     def afterInsert(){

@@ -1,5 +1,6 @@
 package linksharingapp
 
+import co.ResourceSearchCO
 import enumeration.Visibility
 
 import javax.servlet.http.HttpSession
@@ -9,27 +10,31 @@ class TopicController {
     def index() { render("topic index")}
 
 
-    def show(Long id){
-        Topic topic = Topic.read(id)
+    def show(ResourceSearchCO co,Long id){
+        co.setTopicId(id)
+        List<Topic> topic = Topic.search(co).list()
+        log.info("${topic}")
+//        render("${topic} ${id} ${co.topicId} ${topic[0]}")
         if (!topic) {
             flash.error = "NO SUCH TOPIC"
 //            render("${params}")
             redirect(controller: 'logIn', action: 'index')
         }
         else {
-            if(topic.visibility == Visibility.PUBLIC){
-                render("success ${topic.toString()}")
-            }
-            else if(topic.visibility == Visibility.PRIVATE){
-                Subscription subscription = Subscription.findByUserAndTopic(session.user,topic)
-                if (subscription){
-                    render("succcess")
+                if(topic[0].visibility == Visibility.PUBLIC){
+                    render("success ${topic[0].toString()}")
                 }
-                else {
-                    flash.error = "fash error set"
-                    redirect(controller: 'logIn',action: 'index')
+                else if(topic[0].visibility == Visibility.PRIVATE){
+                    Subscription subscription = Subscription.findByUserAndTopic(session.user,topic1)
+                    if (subscription){
+                        render("succcess")
+                    }
+                    else {
+                        flash.error = "fash error set"
+                        redirect(controller: 'logIn',action: 'index')
+                    }
                 }
-            }
+
         }
     }
 
@@ -55,4 +60,13 @@ class TopicController {
             render("Error while saving topic ${topic1} ${topic1.errors.allErrors}")
         }
     }
+
+
+    /*def demo1(ResourceSearchCO co,Long id){
+//        ResourceSearchCO co = new ResourceSearchCO(topicId: id)
+        co.setTopicId(id)
+        List resource = Resource.search(co).list()
+        println(resource)
+        render("${resource} ${co.topicId}")
+    }*/
 }

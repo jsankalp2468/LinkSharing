@@ -13,7 +13,7 @@ class BootStrap {
 //        demo()
         if(User.count()==0){createUsers()}
         createTopic()
-//        createResources()
+        createResources()
 //        subscribeTopic()
 //        createReadingItems()
 //        createResourceRatings()

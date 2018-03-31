@@ -1,5 +1,7 @@
 package linksharingapp
 
+import co.ResourceSearchCO
+
 abstract class Resource {
 
     String description
@@ -12,5 +14,10 @@ abstract class Resource {
     static hasMany = [ratings:ResourceRating, readingItems:ReadingItem]
     static constraints = {
         description(type: "text")
+    }
+    static namedQueries = {
+        search{ ResourceSearchCO co ->
+            eq('topic.id',co.topicId)
+        }
     }
 }
