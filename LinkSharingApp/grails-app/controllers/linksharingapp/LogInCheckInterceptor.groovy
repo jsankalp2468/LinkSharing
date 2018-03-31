@@ -1,5 +1,7 @@
 package linksharingapp
 
+import javax.servlet.http.HttpSession
+
 
 class LogInCheckInterceptor {
 
@@ -8,7 +10,11 @@ class LogInCheckInterceptor {
     }
 
     boolean before() {
+        HttpSession session = request.getSession()
         log.info(" from logincheckinterceptor")
+        if(!session.getAttribute('user')){
+            redirect(controller: 'logIn', action: 'index')
+        }
         true
     }
 
