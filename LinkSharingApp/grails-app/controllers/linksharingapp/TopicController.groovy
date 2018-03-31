@@ -6,6 +6,7 @@ class TopicController {
 
     def index() { render("topic index")}
 
+    //topic save was already in TopicController 
     def show(Long id){
         Topic topic = Topic.read(id)
         if (!topic) {
