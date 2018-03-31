@@ -37,5 +37,13 @@ class TopicController {
         render("Topic Deleted Successfully")
     }
 
-    def save(){}
+    def save(Topic topic,String seriousness){
+        if(topic.validate()){
+            topic.save(flush:true)
+            render("Topic saved Successfully")
+        }
+        else {
+            render("Error while saving topic ${topic} ${topic.errors.allErrors}")
+        }
+    }
 }
