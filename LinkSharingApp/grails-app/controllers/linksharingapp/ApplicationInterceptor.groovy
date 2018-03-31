@@ -4,6 +4,8 @@ package linksharingapp
 import grails.interceptors.Matcher
 import org.springframework.context.event.ApplicationEventMulticaster
 
+import javax.servlet.http.HttpSession
+
 
 class ApplicationInterceptor {
 
@@ -13,8 +15,14 @@ class ApplicationInterceptor {
 
 
     boolean before() {
+        HttpSession session = request.getSession()
         log.info("from before of ApplicationInterceptor. Params : ${params}")
-        true
+        if(!session.getAttribute('user')){
+            false
+        }
+        else {
+            true
+        }
     }
 
     boolean after() { true }
