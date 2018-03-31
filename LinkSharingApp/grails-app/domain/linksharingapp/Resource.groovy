@@ -18,6 +18,9 @@ abstract class Resource {
     static namedQueries = {
         search{ ResourceSearchCO co ->
             eq('topic.id',co.topicId)
+            topic{
+                eq('visibility',co.visibility)
+            }
         }
     }
 }

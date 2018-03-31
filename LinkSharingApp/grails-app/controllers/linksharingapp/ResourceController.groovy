@@ -1,5 +1,9 @@
 package linksharingapp
 
+import co.ResourceSearchCO
+import co.SearchCO
+import enumeration.Visibility
+
 class ResourceController {
 
     def index() { }
@@ -16,5 +20,15 @@ class ResourceController {
         catch (RuntimeException ex){
             render("Resource not found")
         }
+    }
+
+    def search() {
+        SearchCO co = new ResourceSearchCO()
+        if(co.q){
+            co.setVisibility(Visibility.PUBLIC)
+        }
+//        ResourceSearchCO co = new ResourceSearchCO(topicId: 1,visibility: Visibility.PUBLIC)
+        List<Resource> resources = Resource.search(co).list()
+        render("${resources}")
     }
 }
