@@ -6,7 +6,7 @@ class Subscription {
     Topic topic
     User user
     Date dateCreated
-    Seriousness seriousness
+    Seriousness seriousness = Seriousness.SERIOUS
     Date lastUpdated
 
     static belongsTo = [user:User,topic:Topic]
