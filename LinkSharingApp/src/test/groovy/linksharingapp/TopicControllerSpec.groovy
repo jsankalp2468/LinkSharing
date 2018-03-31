@@ -11,8 +11,16 @@ class TopicControllerSpec extends Specification implements ControllerUnitTest<To
     def cleanup() {
     }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
-    }
+    //java.lang.IllegalStateException: Either class [linksharingapp.Topic] is not a
+    // domain class or GORM has not been initialized correctly or has already been shutdown.
+    // Ensure GORM is loaded and configured correctly before calling any methods on a
+    // GORM entity.
+
+    /*void "test case for delete"(){
+        when:
+        controller.delete(1L)
+
+        then:
+        response.text == "Topic Deleted Successfully"
+    }*/
 }

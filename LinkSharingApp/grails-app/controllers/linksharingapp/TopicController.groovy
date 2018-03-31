@@ -35,7 +35,7 @@ class TopicController {
 
     def delete(Long id){
         Topic topic = Topic.load(id)
-        println(topic.delete(flush:true))
+        topic.delete(flush:true)
         render("Topic Deleted Successfully")
     }
 
