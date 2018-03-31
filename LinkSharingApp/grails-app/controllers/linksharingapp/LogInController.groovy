@@ -48,6 +48,13 @@ class LogInController {
     def register(){
         User user = new User(firstName: params.firstName, lastName: params.lastName, email: params.email,
                     userName: params.userName , password: params.password,confirmPassword: params.confirmPassword)
-        user.save(flush:true, failOnError : true)
+        if(user.validate()){
+            log.info("User registered successfully! ${user.save(flush:true, failOnError : true)}")
+        }
+        else {
+            flash.message = "flash message is set"
+            def msg = message(code: 'usernotsaved',null)
+            render(msg)
+        }
     }
 }
