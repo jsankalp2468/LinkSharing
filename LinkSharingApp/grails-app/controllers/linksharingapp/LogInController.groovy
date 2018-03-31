@@ -18,13 +18,14 @@ class LogInController {
     }
 
     def logInHandler() {
+        HttpSession session = request.getSession()
         String userName = params.userName
         String password = params.password
 //        render("${userName}  ${password}")
         User user = User.findByUserNameAndPassword(userName,password)
         if (user){
             if(user.active){
-                session.user = user
+                session.setAttribute('user',user)
                 redirect(controller: "logIn", action: 'index')
             }
             else {
