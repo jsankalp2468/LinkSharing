@@ -39,6 +39,7 @@ class LogInController {
     }
 
     def logOut() {
+        HttpSession session = request.getSession()
         session.invalidate()
         forward(controller : 'logIn', action :'index')
     }
