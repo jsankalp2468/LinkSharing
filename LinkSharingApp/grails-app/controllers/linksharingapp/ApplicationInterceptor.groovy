@@ -18,7 +18,7 @@ class ApplicationInterceptor {
         HttpSession session = request.getSession()
         log.info("from before of ApplicationInterceptor. Params : ${params}")
         if(!session.getAttribute('user')){
-            false
+            true
         }
         else {
             true
