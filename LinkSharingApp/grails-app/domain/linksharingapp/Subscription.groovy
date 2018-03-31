@@ -21,4 +21,9 @@ class Subscription {
         seriousness(nullable: false)
     }
 
+    static mapping = {
+        user fetch: 'join'
+        topic fetch: 'join'
+    }
+
 }

@@ -21,6 +21,7 @@ class User {
     }
 
     static hasMany = [topics:Topic , subscriptions:Subscription , readingItems:ReadingItem, resources:Resource]
+
     User(String firstName, String lastName, String email, String userName, String password, byte photo, Boolean admin, Boolean active) {
         this.firstName = firstName
         this.lastName = lastName
@@ -49,6 +50,7 @@ class User {
 
     static mapping = {
         sort id: 'desc'
+//        topics batchSize: 2
     }
 
     @Override
