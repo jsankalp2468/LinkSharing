@@ -12,12 +12,13 @@ class BootStrap {
         println(Holders.grailsApplication.config.server.contextPath)
 //        demo()
         if(User.count()==0){createUsers()}
-        createTopic()
+//        createTopic()
 //        createResources()
 //        subscribeTopic()
 //        createReadingItems()
 //        createResourceRatings()
 //        retrieveTopic()
+        retrieveUser()
     }
     def destroy = {
     }
@@ -204,6 +205,13 @@ class BootStrap {
         List<Topic> topics = Topic.findAll()
         topics.each {Topic topic->
             println(topic)
+        }
+    }
+
+    void retrieveUser(){
+        List<User> users = User.findAll()
+        users.each {User user->
+            println("${user} ${user.id}")
         }
     }
 

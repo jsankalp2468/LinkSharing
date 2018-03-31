@@ -47,6 +47,10 @@ class User {
     }
     static transients = ['name','confirmPassword']
 
+    static mapping = {
+        sort id: 'desc'
+    }
+
     @Override
     public String toString() {
         return "User{" +
