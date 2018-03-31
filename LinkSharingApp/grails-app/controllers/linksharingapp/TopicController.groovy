@@ -20,7 +20,11 @@ class TopicController {
             else if(topic.visibility == Visibility.PRIVATE){
                 Subscription subscription = Subscription.findByUserAndTopic()
                 if (subscription){
-                    
+                    render("succcess")
+                }
+                else {
+                    flash.error = "fash error set"
+                    redirect(controller: 'logIn',action: 'index')
                 }
             }
         }
