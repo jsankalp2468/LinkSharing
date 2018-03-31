@@ -50,6 +50,7 @@ class LogInController {
                     userName: params.userName , password: params.password,confirmPassword: params.confirmPassword)
         if(user.validate()){
             log.info("User registered successfully! ${user.save(flush:true, failOnError : true)}")
+            render("Success")
         }
         else {
             flash.message = "flash message is set"
