@@ -2,6 +2,8 @@ package linksharingapp
 
 import enumeration.Visibility
 
+import javax.servlet.http.HttpSession
+
 class TopicController {
 
     def index() { render("topic index")}
@@ -37,13 +39,18 @@ class TopicController {
         render("Topic Deleted Successfully")
     }
 
-    def save(Topic topic,String seriousness){
-        if(topic.validate()){
-            topic.save(flush:true)
+    def save(String topic,String visibility){
+//        HttpSession session = request.getSession()
+//        User user = session.getAttribute(uname)
+//        println(params)
+//        User user =User.findByFirstName("sankalp")
+        Topic topic1 = new Topic(name: topic,createdBy: session.user,visibility: Visibility.isVisibility(visibility))
+        if(topic1.validate()){
+            topic1.save(flush:true)
             render("Topic saved Successfully")
         }
         else {
-            render("Error while saving topic ${topic} ${topic.errors.allErrors}")
+            render("Error while saving topic ${topic1} ${topic1.errors.allErrors}")
         }
     }
 }
