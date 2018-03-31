@@ -18,7 +18,8 @@ class SubscriptionController {
 
     }
 
-    def update() { }
+    def update(Long id,String seriousness) {
+    }
 
     def delete(Long id) {
         Subscription subscription = Subscription.load(id)
