@@ -51,6 +51,7 @@ class TopicController {
             render("Topic saved Successfully")
         }
         else {
+            flash.error = "topic not saved"
             render("Error while saving topic ${topic1} ${topic1.errors.allErrors}")
         }
     }
