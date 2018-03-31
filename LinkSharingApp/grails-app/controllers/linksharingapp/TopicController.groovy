@@ -7,7 +7,7 @@ class TopicController {
     def index() { render("topic index")}
 
     def show(Long id){
-        Topic topic = Topic.findById(id)
+        Topic topic = Topic.read(id)
         if (!topic) {
             flash.error = "NO SUCH TOPIC"
 //            render("${params}")
@@ -28,5 +28,11 @@ class TopicController {
                 }
             }
         }
+    }
+
+    def delete(Long id){
+        Topic topic = Topic.load(id)
+        println(topic.delete(flush:true))
+        render("Topic Deleted Successfully")
     }
 }
