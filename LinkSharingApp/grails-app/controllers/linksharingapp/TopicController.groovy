@@ -47,6 +47,7 @@ class TopicController {
         Topic topic1 = new Topic(name: topic,createdBy: session.user,visibility: Visibility.isVisibility(visibility))
         if(topic1.validate()){
             topic1.save(flush:true)
+            flash.message = "Topic is saved ${topic1}"
             render("Topic saved Successfully")
         }
         else {
