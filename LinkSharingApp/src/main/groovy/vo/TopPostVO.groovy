@@ -5,6 +5,6 @@ import linksharingapp.User
 class TopPostVO {
     Integer id
     User createdBy
-    Integer topicName
+    String topicName
     Integer count
 }
