@@ -2,6 +2,7 @@ package linksharingapp
 
 import co.ResourceSearchCO
 import vo.RatingInfoVO
+import vo.TopPostVO
 
 abstract class Resource {
 
@@ -52,6 +53,21 @@ abstract class Resource {
 
 
         return vo
+    }
+
+    static List<TopPostVO> getTopPosts(){
+        List<TopPostVO> topPostVOList = ResourceRating.createCriteria().list {
+            projections{
+                createAlias('resource','res')
+                groupProperty('res.id')
+                property('res.createdBy')
+                property('res.topic')
+                count('res.id','counts')
+            }
+            order('counts','desc')
+            maxResults(5)
+        }
+        return topPostVOList
     }
 
     Long totalVotes(){

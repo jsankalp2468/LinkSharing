@@ -1,6 +1,7 @@
 package linksharingapp
 
 import grails.artefact.Controller
+import vo.TopPostVO
 
 import javax.servlet.http.HttpSession
 
@@ -45,7 +46,7 @@ class LogInController {
         forward(controller : 'logIn', action :'index')
     }
 
-    def register(){
+    def register() {
         User user = new User(firstName: params.firstName, lastName: params.lastName, email: params.email,
                     userName: params.userName , password: params.password,confirmPassword: params.confirmPassword)
         if(user.validate()){
@@ -57,5 +58,10 @@ class LogInController {
             def msg = message(code: 'usernotsaved',null)
             render(msg)
         }
+    }
+
+    def showTopTopics() {
+        List<TopPostVO> topPostVOList = Resource.getTopPosts()
+        render("${topPostVOList}")
     }
 }
