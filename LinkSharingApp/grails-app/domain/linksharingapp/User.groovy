@@ -1,5 +1,7 @@
 package linksharingapp
 
+import co.SearchCO
+
 class User {
 
     String firstName
@@ -51,6 +53,19 @@ class User {
     static mapping = {
         sort id: 'desc'
 //        topics batchSize: 2
+    }
+
+    static List<ReadingItem> getUnReadResources(SearchCO searchCO){
+        List<ReadingItem> readingItems=[]
+        if(!searchCO.q.equals(null)){
+            readingItems = ReadingItem.createCriteria().list(max:searchCO.max,offset:searchCO.offset) {
+                resource{
+                    ilike('description',"%${searchCO.q}%")
+                }
+                eq('isRead',true)
+            }
+        }
+        return readingItems
     }
 
     @Override
