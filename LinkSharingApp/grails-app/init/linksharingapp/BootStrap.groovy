@@ -14,9 +14,9 @@ class BootStrap {
         if(User.count()==0){createUsers()}
         createTopic()
         createResources()
-//        subscribeTopic()
-//        createReadingItems()
-//        createResourceRatings()
+        subscribeTopic()
+        createReadingItems()
+        createResourceRatings()
 //        retrieveTopic()
 //        retrieveUser()
     }

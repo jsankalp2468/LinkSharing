@@ -3,6 +3,7 @@ package linksharingapp
 import co.ResourceSearchCO
 import co.SearchCO
 import enumeration.Visibility
+import vo.RatingInfoVO
 
 class ResourceController {
 
@@ -30,5 +31,12 @@ class ResourceController {
 //        ResourceSearchCO co = new ResourceSearchCO(topicId: 1,visibility: Visibility.PUBLIC)
         List<Resource> resources = Resource.search(co).list()
         render("${resources}")
+    }
+
+    def show(Long id){
+        Resource resource = Resource.findById(id)
+        RatingInfoVO ratingInfoVO = resource.method()
+        render("${ratingInfoVO.totalVotes} ${ratingInfoVO.averageScore} ${ratingInfoVO.totalScore}")
+//        render("hello")
     }
 }
