@@ -4,6 +4,7 @@ import co.ResourceSearchCO
 import co.SearchCO
 import enumeration.Visibility
 import vo.RatingInfoVO
+import vo.TopicVO
 
 class ResourceController {
 
@@ -33,10 +34,15 @@ class ResourceController {
         render("${resources}")
     }
 
-    def show(Long id){
+    def showResources(Long id){
         Resource resource = Resource.findById(id)
         RatingInfoVO ratingInfoVO = resource.method()
         render("${ratingInfoVO.totalVotes} ${ratingInfoVO.averageScore} ${ratingInfoVO.totalScore}")
 //        render("hello")
+    }
+
+    def showTrendingTopics(){
+        List<TopicVO> topicVOList = Topic.getTrendingTopics()
+        render("${topicVOList}")
     }
 }

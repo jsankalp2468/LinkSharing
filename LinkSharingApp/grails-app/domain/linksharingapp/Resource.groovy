@@ -40,6 +40,8 @@ abstract class Resource {
             eq('resource',this)
         }
         vo.averageScore = averageScore[0]
+
+
         List totalScore = ResourceRating.createCriteria().list {
             projections{
                 sum('score')
@@ -47,6 +49,8 @@ abstract class Resource {
             eq('resource',this)
         }
         vo.totalScore = totalScore[0]
+
+
         return vo
     }
 

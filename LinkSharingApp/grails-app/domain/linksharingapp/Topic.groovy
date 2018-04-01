@@ -3,6 +3,7 @@ package linksharingapp
 import co.ResourceSearchCO
 import enumeration.Seriousness
 import enumeration.Visibility
+import vo.TopicVO
 
 
 class Topic {
@@ -48,6 +49,25 @@ class Topic {
                 log.info("Subscription has errord while saving - ${subscription.hasErrors()}")
             }
         }
+    }
+
+    static List<TopicVO> getTrendingTopics(){
+        List<TopicVO> topicVOList = Resource.createCriteria().list {
+            projections{
+                createAlias('topic','t')
+                groupProperty('t.id')
+                property('t.name')
+                property('t.visibility')
+                count('t.id','count17')
+                property('t.createdBy')
+            }
+            eq('t.visibility',Visibility.PUBLIC)
+            order('count17','desc')
+            order('t.name','asc')
+            maxResults(5)
+        }
+        return topicVOList
+
     }
 
 
