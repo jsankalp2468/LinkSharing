@@ -9,6 +9,7 @@
             integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
             crossorigin="anonymous"></script>
     <title></title>
+    <g:layoutHead/>
     <style>
 
     .search {
@@ -61,6 +62,7 @@
         </span>
 
     </div>
+    <g:layoutBody/>
 
 </div>
 </body>
