@@ -69,4 +69,6 @@ class TopicController {
         println(resource)
         render("${resource} ${co.topicId}")
     }*/
+
+    def create(){}
 }

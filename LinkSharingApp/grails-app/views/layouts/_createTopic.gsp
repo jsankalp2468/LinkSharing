@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+
+<body>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">create topic</h4>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-horizontal" action="#">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name1">name</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="name1" name="name1">
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <label class="control-label col-sm-2" for="visibility">visibility:</label>
+
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
+                                id="visibility">visibility
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">private</a></li>
+                            <li><a href="#">public</a></li>
+
+                        </ul>
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">share</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <!--<div class="modal-footer">-->
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
