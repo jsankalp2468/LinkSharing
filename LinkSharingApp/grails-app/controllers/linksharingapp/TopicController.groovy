@@ -46,10 +46,10 @@ class TopicController {
 
     def save(String topic,String visibility){
 //        HttpSession session = request.getSession()
-//        User user = session.getAttribute(uname)
+//        User user1 = session.getAttribute(uname)
 //        println(params)
-//        User user =User.findByFirstName("sankalp")
-        Topic topic1 = new Topic(name: topic,createdBy: session.user,visibility: Visibility.isVisibility(visibility))
+        User user =User.findByFirstName("sankalp")
+        Topic topic1 = new Topic(name: topic,createdBy: user,visibility: Visibility.isVisibility(visibility))
         if(topic1.validate()){
             topic1.save(flush:true)
             flash.message = "Topic is saved ${topic1}"
