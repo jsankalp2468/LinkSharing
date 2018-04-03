@@ -36,8 +36,12 @@
             </div>
 
             <div class="col-lg-offset-2">
-                <a href="#" class="text-info" style="text-decoration: underline">forgot password</a>
+                %{--<a href="/views/logIn/_forgotPassword.gsp" class="hyperlink" style="text-decoration: underline">forgot password</a>--}%
+                <a href="#forgotPassord" data-toggle="modal" data-target="#forgotPassword" style="text-decoration: underline">
+                    forgot Password
+                </a>
 
+                <g:render template="forgotPassword"></g:render>
 
                 <button type="submit" class="btn btn-primary" style="float: right">Login</button>
             </div>
