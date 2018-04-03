@@ -8,7 +8,7 @@ import vo.TopicVO
 
 class ResourceController {
 
-    def index() { }
+    def index() { render(view: '_showResources') }
 
     def delete(Long id){
         Resource resource = Resource.load(id)

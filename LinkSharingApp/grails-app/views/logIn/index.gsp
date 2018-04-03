@@ -84,38 +84,7 @@
         </div>
 
         <div class="col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Login
-                </div>
-
-                <div class="panel-body">
-                    <g:form class="form-horizontal" url="[controller: 'logIn',action : 'logInHandler']">
-                        <div class="form-group">
-                            <label class="control-label col-lg-4">Name</label>
-
-                            <div class="col-lg-8">
-                                <input type="text" class="form-control" name="userName">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-lg-4">Password</label>
-
-                            <div class="col-lg-8">
-                                <input type="password" class="form-control" name="password">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-offset-2">
-                            <a href="#" class="text-info" style="text-decoration: underline">forgot password</a>
-
-
-                            <button type="submit" class="btn btn-primary" style="float: right">Login</button>
-                        </div>
-                    </g:form>
-                </div>
-            </div>
+            <g:render template="logInHandler"></g:render>
         </div>
     </div>
 
@@ -143,74 +112,7 @@
         </div>
 
         <div class="col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Sign Up
-                </div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label class="control-label col-lg-4">First Name</label>
-
-                            <div class="col-lg-8">
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-lg-4">Last Name</label>
-
-                            <div class="col-lg-8">
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-lg-4">Email</label>
-
-                            <div class="col-lg-8">
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-lg-4">Username</label>
-
-                            <div class="col-lg-8">
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-lg-4">Password</label>
-
-                            <div class="col-lg-8">
-                                <input type="password" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-lg-4">Confirm Password</label>
-
-                            <div class="col-lg-8">
-                                <input type="password" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-lg-4" for="document">Photo</label>
-
-                            <div class="col-sm-8">
-                                <input type="file" class="form-control" id="document" name="document">
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary" style="float: right">Register</button>
-
-                    </form>
-                </div>
-            </div>
+            <g:render template="register"></g:render>
         </div>
     </div>
 </div>

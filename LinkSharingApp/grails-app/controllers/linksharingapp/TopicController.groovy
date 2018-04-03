@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession
 
 class TopicController {
 
-    def index() { render("topic index")}
+    def index() { render(view: 'index')}
 
 
     def show(ResourceSearchCO co,Long id){
