@@ -26,16 +26,8 @@
                         </div>
 
                         <div class="dropdown">
-                            <label class="control-label col-sm-2" for="visibility1">visibility:</label>
-
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
-                                    id="visibility1">visibility
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">private</a></li>
-                                <li><a href="#">public</a></li>
-
-                            </ul>
+                            <label class="control-label col-sm-2" for="topicId">topic:</label>
+                            <g:select name="topicId" optionKey="id" optionValue="name"  from="${session.user.subscriptions.topic}"></g:select>
                         </div>
 
                         <br>
