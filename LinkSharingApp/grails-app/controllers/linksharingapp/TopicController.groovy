@@ -9,6 +9,11 @@ class TopicController {
 
     def index() { render(view: 'index')}
 
+    def showSubscribedUsers(){
+        Topic topic = Topic.findById(1)
+        render(topic.subscriptions.user)
+    }
+
 
     def show(ResourceSearchCO co,Long id){
         co.setTopicId(id)
@@ -30,7 +35,7 @@ class TopicController {
                         render("succcess")
                     }
                     else {
-                        flash.error = "fash error set"
+                        flash.error = "flash error set"
                         redirect(controller: 'logIn',action: 'index')
                     }
                 }
