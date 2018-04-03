@@ -7,14 +7,17 @@ import javax.servlet.http.HttpSession
 
 class LogInController {
 
+
     def index() {
         HttpSession session = request.getSession()
+//        render(view: 'index')
         if(session.getAttribute('user')){
 //            render("login index")
             forward(controller: 'user',action: 'index')
         }
         else {
-            render("User not exists")
+            List<TopPostVO> topPostVOList = Resource.getTopPosts()
+            render(view: 'index',model: [lists: topPostVOList])
         }
     }
 
@@ -25,9 +28,11 @@ class LogInController {
 //        render("${userName}  ${password}")
         User user = User.findByUserNameAndPassword(userName,password)
         if (user){
+//            session.setAttribute('user':'userName')
+//            session.getAttribute('user')
             if(user.active){
                 session.setAttribute('user',user)
-                redirect(controller: "logIn", action: 'index')
+                redirect(controller: "user", action: 'index')
             }
             else {
                 flash.error = "User is not active"
@@ -62,6 +67,7 @@ class LogInController {
 
     def showTopTopics() {
         List<TopPostVO> topPostVOList = Resource.getTopPosts()
-        render("${topPostVOList}")
+        render(view: 'showTopTopics',model: [lists:topPostVOList])
+//        render(view:  "showTopTopics")
     }
 }

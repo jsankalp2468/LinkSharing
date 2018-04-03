@@ -133,6 +133,7 @@ class BootStrap {
                     }
                 }
             }
+            println(it.subscriptions)
         }
 
     }

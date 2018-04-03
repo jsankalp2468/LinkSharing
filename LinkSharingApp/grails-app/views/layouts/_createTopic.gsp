@@ -5,7 +5,7 @@
 </head>
 
 <body>
-<g:if test="">
+<g:if test="${session.user}">
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
@@ -16,26 +16,22 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" action="#">
+                    <g:form class="form-horizontal" url="[controller: 'Topic', action: 'save']">
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="name1">name</label>
 
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name1" name="name1">
+                                <input type="text" class="form-control" id="name1" name="topic">
                             </div>
                         </div>
 
                         <div class="dropdown">
-                            <label class="control-label col-sm-2" for="visibility">visibility:</label>
+                            <label class="control-label col-sm-2" for="visibility1">visibility:</label>
 
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
-                                    id="visibility">visibility
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">private</a></li>
-                                <li><a href="#">public</a></li>
-
-                            </ul>
+                            <select class="form-select-button" id="visibility1" name="visibility">
+                                <option value="public" >public</option>
+                                <option value="private">private</option>
+                            </select>
                         </div>
 
                         <br>
@@ -47,7 +43,7 @@
 
                             </div>
                         </div>
-                    </form>
+                    </g:form>
 
                 </div>
                 <!--<div class="modal-footer">-->

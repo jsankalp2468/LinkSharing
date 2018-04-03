@@ -53,6 +53,7 @@ class User {
     static mapping = {
         sort id: 'desc'
 //        topics batchSize: 2
+        subscriptions fetch: 'join'
     }
 
     static List<ReadingItem> getUnReadResources(SearchCO searchCO){

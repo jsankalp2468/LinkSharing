@@ -5,7 +5,8 @@ import co.SearchCO
 class UserController {
 
     def index() {
-        render("User Dashboard ${session.user.userName}")
+//        render("User Dashboard ${session.user.password}")
+        render(view: 'index')
     }
 
     def show(){

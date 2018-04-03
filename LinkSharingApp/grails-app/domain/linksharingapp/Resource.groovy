@@ -67,6 +67,8 @@ abstract class Resource {
             }
             order('counts','desc')
             maxResults(5)
+        }.collect { it ->
+            new TopPostVO(id: it[0], createdBy: it[1], topicName: it[2], count: it[3])
         }
         return topPostVOList
     }

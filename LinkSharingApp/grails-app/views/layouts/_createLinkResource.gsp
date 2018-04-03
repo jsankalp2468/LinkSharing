@@ -16,13 +16,13 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" action="#">
+                    <g:form class="form-horizontal" url="[controller: 'LinkResource', action: 'save']">
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="link">link:</label>
 
                             <div class="col-sm-10">
                                 <input type="url" class="form-control" id="link" placeholder="Enter link"
-                                       name="link">
+                                       name="url">
                             </div>
                         </div>
 
@@ -30,34 +30,23 @@
                             <label class="control-label col-sm-2" for="descrip">description:</label>
 
                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="5" id="descrip"></textarea>
+                                <textarea class="form-control" rows="5" id="descrip" name="description"></textarea>
                             </div>
                         </div>
 
                         <div class="dropdown">
-                            <label class="control-label col-sm-2" for="topic">topic:</label>
-
-                            <button class="btn btn-default dropdown-toggle" type="button"
-                                    data-toggle="dropdown" id="topic">topic
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">topictype1</a></li>
-                                <li><a href="#">topictype2</a></li>
-                                <li><a href="#">topictype3</a></li>
-
-                            </ul>
+                            <label class="control-label col-sm-2" for="topicId">topic:</label>
+                            <g:select name="topicId" optionKey="id" optionValue="name"  from="${session.user.subscriptions.topic}"></g:select>
                         </div>
                         <br>
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-default">share</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close
-                                </button>
-
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
-                    </form>
+                    </g:form>
 
                 </div>
                 <!--<div class="modal-footer">-->

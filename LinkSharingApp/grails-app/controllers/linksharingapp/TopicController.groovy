@@ -45,19 +45,23 @@ class TopicController {
     }
 
     def save(String topic,String visibility){
-//        HttpSession session = request.getSession()
-//        User user1 = session.getAttribute(uname)
-//        println(params)
-        User user =User.findByFirstName("sankalp")
-        Topic topic1 = new Topic(name: topic,createdBy: user,visibility: Visibility.isVisibility(visibility))
-        if(topic1.validate()){
-            topic1.save(flush:true)
-            flash.message = "Topic is saved ${topic1}"
-            render("Topic saved Successfully")
+//        User user =User.findByFirstName("sankalp")
+        if(session.user){
+            println(visibility)
+            Topic topic1 = new Topic(name: topic,createdBy: session.user,visibility: Visibility.isVisibility(visibility))
+            if(topic1.validate()){
+                topic1.save(flush:true)
+                flash.message = "Topic is saved ${topic1}"
+                render("Topic saved Successfully")
+            }
+            else {
+                flash.error = "topic not saved"
+//            render("Error while saving topic ${topic1} ${topic1.errors.allErrors}")
+                redirect(controller: 'user',action: 'index')
+            }
         }
         else {
-            flash.error = "topic not saved"
-            render("Error while saving topic ${topic1} ${topic1.errors.allErrors}")
+            redirect(controller: 'logIn',action: 'index')
         }
     }
 
