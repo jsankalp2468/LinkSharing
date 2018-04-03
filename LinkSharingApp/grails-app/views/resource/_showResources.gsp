@@ -93,88 +93,8 @@
             Trending Topics
         </div>
 
-        <div class="panel-body">
-            <div class="row" style="padding-bottom:10px">
-                <div class="col-lg-2">
-                    <img src="Sankalp%20%202814.JPG" class="img-responsive">
-                </div>
+        <g:render template="/layouts/trendingTopics" var="trendingTopics1" collection="${trendingTopics}"></g:render>
 
-                <div class="col-lg-10">
-                    <div class="text-primary">
-                        <a class="hyperlink" href="#">Grails</a>
-                    </div>
-
-                    <div class="col-lg-4" style="padding-left: 0px">
-                        <span class="text-muted">@sankalp</span>
-                        <a href="#" class="hyperlink">Unsubscribe</a>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <span class="text-muted">Subscriptions</span>
-                        <span class="text-primary">50</span>
-                    </div>
-
-                    <div class="col-lg-2">
-                        <span class="text-muted">Topics</span>
-                        <span class="text-primary">50</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-lg-2">
-                    <img src="Sankalp%20%202814.JPG" class="img-responsive">
-                </div>
-
-                <div class="col-lg-10">
-                    <div class="text-primary">
-                        <a class="hyperlink" href="#">Grails</a>
-                    </div>
-
-                    <div class="col-lg-4" style="padding-left: 0px">
-                        <span class="text-muted">@sankalp</span>
-                        <a href="#" class="hyperlink">Unsubscribe</a>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <span class="text-muted">Subscriptions</span>
-                        <span class="text-primary">50</span>
-                    </div>
-
-                    <div class="col-lg-2">
-                        <span class="text-muted">Topics</span>
-                        <span class="text-primary">50</span>
-                    </div>
-                </div>
-
-
-                <span class="dropdown col-lg-offset-2">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Seriousness
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Very Serious</a></li>
-                        <li><a href="#">Serious</a></li>
-                        <li><a href="#">Less Serious</a></li>
-                    </ul>
-                </span>
-
-                <span class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Scope
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Private</a></li>
-                        <li><a href="#">Public</a></li>
-                    </ul>
-                </span>
-                <i class="far fa-envelope fa-2x"></i>
-                <i class="far fa-file fa-2x"></i>
-                <i class="far fa-trash-alt fa-2x"></i>
-
-            </div>
-        </div>
     </div>
 </div>
 

@@ -65,6 +65,8 @@ class Topic {
             order('count17','desc')
             order('t.name','asc')
             maxResults(5)
+        }.collect{it->
+            new TopicVO(id: it[0],name: it[1],visibility: it[2],count: it[3],createdBy: it[4])
         }
         return topicVOList
 
