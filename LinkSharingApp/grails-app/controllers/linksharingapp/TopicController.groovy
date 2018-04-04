@@ -19,11 +19,6 @@ class TopicController {
         }
     }
 
-    def showSubscribedUsers(String name){
-        Topic topic = Topic.findByName(name: name)
-        render(topic.subscriptions.user)
-    }
-
 
     def show(ResourceSearchCO co,Long id){
         co.setTopicId(id)
@@ -89,5 +84,8 @@ class TopicController {
         render("${resource} ${co.topicId}")
     }*/
 
-    def create(){}
+    def showSubscribedUsers(){
+        Topic topic = Topic.findById(1)
+        render(view: 'showSubscribedUsers' , model: [userList : topic.getSubscribedUsers()])
+    }
 }

@@ -26,6 +26,11 @@ class UserController {
     }
 
     def showSubscribedTopics() {
-        render(view: 'showSubscribedTopics',  model: [topicList : session.user.getSubscribedTopics()])
+        if(session.user){
+            render(view: 'showSubscribedTopics',  model: [topicList : session.user.getSubscribedTopics()])
+        }
+        else{
+            redirect(controller:'logIn',action:'index')
+        }
     }
 }

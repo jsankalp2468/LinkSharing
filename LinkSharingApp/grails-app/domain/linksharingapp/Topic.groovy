@@ -72,6 +72,14 @@ class Topic {
 
     }
 
+    List<User> getSubscribedUsers(){
+        List<User> userList = []
+        subscriptions.each {
+            userList.add(it.user)
+        }
+        return userList
+    }
+
 
     @Override
     public String toString() {
