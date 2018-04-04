@@ -9,7 +9,7 @@
 <div class="col-lg-5">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <span class="text-primary">Topic "${subscribedUsers1[0].topic.name}"</span>
+            <span class="text-primary">Topic "${resources1[0].topic.name}"</span>
         </div>
 
         <div class="panel-body">
@@ -20,11 +20,11 @@
 
                 <div class="col-lg-10">
                     <div class="text-primary">
-                        <a class="hyperlink" href="#">${subscribedUsers1[0].topic.name}</a>
+                        <a class="hyperlink" href="#">${resources1[0].topic.name}</a>
                     </div>
 
                     <div class="col-lg-5" style="padding-left: 0px">
-                        <div class="text-muted">@${subscribedUsers1[0].topic.createdBy.userName}</div>
+                        <div class="text-muted">@${resources1[0].topic.createdBy.firstName}</div>
                         <a href="#" class="hyperlink">Unsubscribe</a>
                     </div>
 
@@ -68,11 +68,11 @@
 
                     <div class="col-lg-9">
                         <div class="text">
-                            <h4>${subscriptions.user.firstName}</h4>
+                            <h4>${subscriptions.firstName}</h4>
                         </div>
 
                         <div class="text-muted">
-                            @${subscriptions.user.userName}
+                            @${subscriptions.userName}
                         </div>
 
                         <div class="col-lg-4">
@@ -96,11 +96,11 @@
 <div class="col-lg-7">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <span class="text-primary">Posts : "${subscribedUsers1[0].topic.name}"</span>
+            <span class="text-primary">Posts : "${resources1[0].topic.name}"</span>
         </div>
 
         <div class="panel-body">
-            <g:each in="${resources1}">
+            <g:each in="${resources1}" var="resource">
                 <div class="row" style="padding-bottom: 10px">
                     <div class="col-lg-2">
                         <img class="img-responsive" src="#" alt="sankalp">
@@ -109,7 +109,7 @@
                     <div class="col-lg-10">
                         <div class="text">
                             <p>
-                                ${resources1[0].description}
+                                ${resource.description}
                             </p>
                         </div>
 

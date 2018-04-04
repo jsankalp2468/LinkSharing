@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="text-primary">
-                    <a class="hyperlink" href="${createLink(controller: 'topic',action: 'index',params: [id1:trendingTopics1.id])}">${trendingTopics1.name}</a>
+                    <a class="hyperlink" href="${createLink(controller: 'topic',action: 'show',params: [id:trendingTopics1.id])}">${trendingTopics1.name}</a>
                 </div>
                 <div class="col-lg-7" style="padding-left: 0px">
                     <div class="text-muted">@${trendingTopics1.createdBy.userName}</div>

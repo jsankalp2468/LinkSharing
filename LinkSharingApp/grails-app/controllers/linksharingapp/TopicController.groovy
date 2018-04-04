@@ -9,18 +9,15 @@ import javax.servlet.http.HttpSession
 class TopicController {
 
     def index() {
-        if(params.id1){Topic topic = Topic.findById(params.id1)
-        render(view: 'index',model: [subscribedUsers:topic.subscriptions,resources:topic.resources])
-        }
-        else {
             Resource resource = Resource.findById(params.id)
             Topic topic = Topic.findById(resource.topic.id)
-            render(view: 'index',model: [subscribedUsers:topic.subscriptions,resources:topic.resources])
-        }
+            println("id")
+            render(view: 'index',model: [subscribedUsers:topic.getSubscribedUsers(),resources:topic.resources])
     }
 
 
-    def show(ResourceSearchCO co,Long id){
+    def show(Long id){
+        ResourceSearchCO co = new ResourceSearchCO()
         co.setTopicId(id)
         List<Topic> topic = Topic.search(co).list()
         log.info("${topic}")
@@ -32,10 +29,10 @@ class TopicController {
         }
         else {
                 if(topic[0].visibility == Visibility.PUBLIC){
-                    render("success ${topic[0].toString()}")
+                    render(view: 'index',model: [subscribedUsers:topic[0].getSubscribedUsers(),resources:topic[0].resources])
                 }
                 else if(topic[0].visibility == Visibility.PRIVATE){
-                    Subscription subscription = Subscription.findByUserAndTopic(session.user,topic1)
+                    Subscription subscription = Subscription.findByUserAndTopic(session.user,topic)
                     if (subscription){
                         render("succcess")
                     }
