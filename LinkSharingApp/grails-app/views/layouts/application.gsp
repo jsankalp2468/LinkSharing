@@ -98,7 +98,7 @@
                     <li><a href="#">users</a></li>
                     <li><a href="#">Topic</a></li>
                     <li><a href="#">post</a></li>
-                    <li><a href="#">logout</a></li>
+                    <li><a href="${createLink(controller: 'logIn', action: 'logOut')}">logout</a></li>
                 </ul>
             </span>
 
