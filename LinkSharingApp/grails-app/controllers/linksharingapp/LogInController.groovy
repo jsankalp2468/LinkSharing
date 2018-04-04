@@ -27,8 +27,11 @@ class LogInController {
         String password = params.password
 //        render("${userName}  ${password}")
         User user = User.findByUserNameAndPassword(userName,password)
+        println(user)
+        println(userName)
+        println(password)
         if (user){
-//            session.setAttribute('user':'userName')
+            session.user = user
 //            session.getAttribute('user')
             if(user.active){
                 session.setAttribute('user',user)

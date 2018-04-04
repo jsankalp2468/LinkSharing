@@ -26,7 +26,7 @@
                 <div class="panel-body">
                     <div class="row" style="padding-bottom: 10px">
                         <div class="col-lg-2">
-                            <img class="img-responsive" src="Sankalp%20%202814.JPG" alt="sankalp">
+                            <img class="img-responsive" src="#" alt="sankalp">
                         </div>
 
                         <div class="col-lg-10">
@@ -54,7 +54,7 @@
 
                     <div class="row">
                         <div class="col-lg-2">
-                            <img class="img-responsive" src="Sankalp%20%202814.JPG" alt="sankalp">
+                            <img class="img-responsive" src="#" alt="sankalp">
                         </div>
 
                         <div class="col-lg-10">

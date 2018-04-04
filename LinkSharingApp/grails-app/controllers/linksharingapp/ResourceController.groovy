@@ -8,9 +8,10 @@ import vo.TopicVO
 
 class ResourceController {
 
-    def index() {
+    def index(Long id) {
+        Resource resource = Resource.findById(id)
         List<TopicVO> topicVOList = Topic.getTrendingTopics()
-        render(view: '_showResources', model: [trendingTopics:topicVOList])
+        render(view: 'showResources',model: [resource:resource,trendingTopics:topicVOList])
     }
 
     def delete(Long id){
@@ -40,8 +41,8 @@ class ResourceController {
     def showResources(Long id){
         Resource resource = Resource.findById(id)
         RatingInfoVO ratingInfoVO = resource.method()
-        render("${ratingInfoVO.totalVotes} ${ratingInfoVO.averageScore} ${ratingInfoVO.totalScore}")
-//        render("hello")
+//        render("${ratingInfoVO.totalVotes} ${ratingInfoVO.averageScore} ${ratingInfoVO.totalScore}")
+        render("hello")
     }
 
     def showTrendingTopics(){

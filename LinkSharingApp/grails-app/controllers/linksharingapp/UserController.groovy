@@ -8,10 +8,10 @@ class UserController {
     def index() {
 //        render("User Dashboard ${session.user.password}")
         List<TopicVO> topicVOList = Topic.getTrendingTopics()
-        render(view: 'index',model: [trendingTopics:topicVOList])
+        render(view: 'index', model: [trendingTopics: topicVOList])
     }
 
-    def show(){
+    def show() {
         SearchCO searchCO = new SearchCO()
         searchCO.setQ("topic")
         searchCO.setMax(5)
@@ -20,8 +20,12 @@ class UserController {
 
     }
 
-    def showTrendingTopics(){
+    def showTrendingTopics() {
         List<TopicVO> topicVOList = Topic.getTrendingTopics()
         render("${topicVOList}")
+    }
+
+    def showSubscribedTopics() {
+        render(view: 'showSubscribedTopics',  model: [topicList : session.user.getSubscribedTopics()])
     }
 }

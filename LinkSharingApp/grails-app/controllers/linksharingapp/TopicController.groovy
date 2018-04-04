@@ -5,12 +5,22 @@ import enumeration.Visibility
 
 import javax.servlet.http.HttpSession
 
+
 class TopicController {
 
-    def index() { render(view: 'index')}
+    def index() {
+        if(params.id1){Topic topic = Topic.findById(params.id1)
+        render(view: 'index',model: [subscribedUsers:topic.subscriptions,resources:topic.resources])
+        }
+        else {
+            Resource resource = Resource.findById(params.id)
+            Topic topic = Topic.findById(resource.topic.id)
+            render(view: 'index',model: [subscribedUsers:topic.subscriptions,resources:topic.resources])
+        }
+    }
 
-    def showSubscribedUsers(){
-        Topic topic = Topic.findById(1)
+    def showSubscribedUsers(String name){
+        Topic topic = Topic.findByName(name: name)
         render(topic.subscriptions.user)
     }
 

@@ -9,28 +9,28 @@
 <div class="col-lg-5">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <span class="text-primary">Topic "TopicName"</span>
+            <span class="text-primary">Topic "${subscribedUsers1[0].topic.name}"</span>
         </div>
 
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-2">
-                    <img src="Sankalp%20%202814.JPG" class="img-responsive">
+                    <img src="#" class="img-responsive">
                 </div>
 
                 <div class="col-lg-10">
                     <div class="text-primary">
-                        <a class="hyperlink" href="#">Grails</a>
+                        <a class="hyperlink" href="#">${subscribedUsers1[0].topic.name}</a>
                     </div>
 
-                    <div class="col-lg-4" style="padding-left: 0px">
-                        <span class="text-muted">@sankalp</span>
+                    <div class="col-lg-5" style="padding-left: 0px">
+                        <div class="text-muted">@${subscribedUsers1[0].topic.createdBy.userName}</div>
                         <a href="#" class="hyperlink">Unsubscribe</a>
                     </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <span class="text-muted">Subscriptions</span>
-                        <span class="text-primary">50</span>
+                        <span class="text-primary">${subscribedUsers1.size()}</span>
                     </div>
 
                     <div class="col-lg-2">
@@ -60,59 +60,34 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <div class="row">
-                <div class="col-lg-3">
-                    <img src="Sankalp%20%202814.JPG" class="img-responsive">
-                </div>
-
-                <div class="col-lg-9">
-                    <div class="text">
-                        <h4>Sankalp Jain</h4>
-                    </div>
-
-                    <div class="text-muted">
-                        @sankalp
-                    </div>
-
-                    <div class="col-lg-4">
-                        <span class="text-muted">Subscriptions</span>
-                        <span class="text-primary">50</span>
-                    </div>
-
+            <g:each in="${subscribedUsers1}" var="subscriptions">
+                <div class="row">
                     <div class="col-lg-3">
-                        <span class="text-muted">Topics</span>
-                        <span class="text-primary">50</span>
+                        <img src="#" class="img-responsive">
                     </div>
 
+                    <div class="col-lg-9">
+                        <div class="text">
+                            <h4>${subscriptions.user.firstName}</h4>
+                        </div>
+
+                        <div class="text-muted">
+                            @${subscriptions.user.userName}
+                        </div>
+
+                        <div class="col-lg-4">
+                            <span class="text-muted">Subscriptions</span>
+                            <span class="text-primary">50</span>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <span class="text-muted">Topics</span>
+                            <span class="text-primary">50</span>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-3">
-                    <img src="Sankalp%20%202814.JPG" class="img-responsive">
-                </div>
-
-                <div class="col-lg-9">
-                    <div class="text">
-                        <h4>Sankalp Jain</h4>
-                    </div>
-
-                    <div class="text-muted">
-                        @sankalp
-                    </div>
-
-                    <div class="col-lg-4">
-                        <span class="text-muted">Subscriptions</span>
-                        <span class="text-primary">50</span>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <span class="text-muted">Topics</span>
-                        <span class="text-primary">50</span>
-                    </div>
-
-                </div>
-            </div>
+            </g:each>
         </div>
     </div>
 
@@ -121,97 +96,49 @@
 <div class="col-lg-7">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Posts "Topic Name"
+            <span class="text-primary">Posts : "${subscribedUsers1[0].topic.name}"</span>
         </div>
 
         <div class="panel-body">
-            <div class="row" style="padding-bottom: 10px">
-                <div class="col-lg-2">
-                    <img class="img-responsive" src="Sankalp%20%202814.JPG" alt="sankalp">
-                </div>
-
-                <div class="col-lg-10">
-                    <span class="text">Sankalp Jain</span>
-                    <span class="text-muted">@sankalp 5min</span>
-                    <span class="text-primary" style="float: right">Grails</span>
-
-                    <div class="text">
-                        <p>
-                            Wikiversity Free course materials · Wikiquote Free quote compendium ·
-                            MediaWiki Free & open wiki application · Wikisource Free library ·
-                            Wikispecies Free species directory · Meta-Wiki Community coordination & documentation.
-                        </p>
+            <g:each in="${resources1}">
+                <div class="row" style="padding-bottom: 10px">
+                    <div class="col-lg-2">
+                        <img class="img-responsive" src="#" alt="sankalp">
                     </div>
 
-                    <div>
-                        <div class="col-lg-2" style="padding-left: 0px;padding-right: 0px">
-                            <i class="fab fa-facebook fa-2x"></i>
-                            <i class="fab fa-tumblr fa-2x"></i>
-                            <i class="fab fa-google-plus-g fa-2x"></i>
+                    <div class="col-lg-10">
+                        <div class="text">
+                            <p>
+                                ${resources1[0].description}
+                            </p>
                         </div>
 
-                        <div class="col-lg-2">
-                            <a href="#" class="text-primary" style="text-decoration: underline;">Download</a>
-                        </div>
+                        <div>
+                            <div class="col-lg-2" style="padding-left: 0px;padding-right: 0px">
+                                <i class="fab fa-facebook fa-2x"></i>
+                                <i class="fab fa-tumblr fa-2x"></i>
+                                <i class="fab fa-google-plus-g fa-2x"></i>
+                            </div>
 
-                        <div class="col-lg-3">
-                            <a href="#" class="text-primary" style="text-decoration: underline;">View Full Size</a>
-                        </div>
+                            <div class="col-lg-2">
+                                <a href="#" class="text-primary" style="text-decoration: underline;">Download</a>
+                            </div>
 
-                        <div class="col-lg-3">
-                            <a href="#" class="text-primary" style="text-decoration: underline;">Mark As Read</a>
-                        </div>
+                            <div class="col-lg-3">
+                                <a href="#" class="text-primary" style="text-decoration: underline;">View Full Size</a>
+                            </div>
 
-                        <div class="col-lg-2">
-                            <a href="#" class="text-primary" style="text-decoration: underline;">View Post</a>
+                            <div class="col-lg-3">
+                                <a href="#" class="text-primary" style="text-decoration: underline;">Mark As Read</a>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <a href="#" class="text-primary" style="text-decoration: underline;">View Post</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-2">
-                    <img class="img-responsive" src="Sankalp%20%202814.JPG" alt="sankalp">
-                </div>
-
-                <div class="col-lg-10">
-                    <span class="text">Sankalp Jain</span>
-                    <span class="text-muted">@sankalp 5min</span>
-                    <span class="text-primary" style="float: right">Grails</span>
-
-                    <div class="text">
-                        <p>
-                            Wikiversity Free course materials · Wikiquote Free quote compendium ·
-                            MediaWiki Free & open wiki application · Wikisource Free library ·
-                            Wikispecies Free species directory · Meta-Wiki Community coordination & documentation.
-                        </p>
-                    </div>
-
-                    <div>
-                        <div class="col-lg-2" style="padding-left: 0px;padding-right: 0px">
-                            <i class="fab fa-facebook fa-2x"></i>
-                            <i class="fab fa-tumblr fa-2x"></i>
-                            <i class="fab fa-google-plus-g fa-2x"></i>
-                        </div>
-
-                        <div class="col-lg-2">
-                            <a href="#" class="text-primary" style="text-decoration: underline;">Download</a>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <a href="#" class="text-primary" style="text-decoration: underline;">View Full Size</a>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <a href="#" class="text-primary" style="text-decoration: underline;">Mark As Read</a>
-                        </div>
-
-                        <div class="col-lg-2">
-                            <a href="#" class="text-primary" style="text-decoration: underline;">View Post</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </g:each>
         </div>
     </div>
 </div>

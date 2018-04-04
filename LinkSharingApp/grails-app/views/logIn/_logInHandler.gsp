@@ -23,7 +23,7 @@
                 <label class="control-label col-lg-4">Name</label>
 
                 <div class="col-lg-8">
-                    <input type="text" class="form-control" name="userName">
+                    <input type="text" class="form-control" name="userName"/>
                 </div>
             </div>
 
@@ -43,7 +43,7 @@
 
                 <g:render template="forgotPassword"></g:render>
 
-                <button type="submit" class="btn btn-primary" style="float: right">Login</button>
+                <button type="submit" class="btn btn-primary pull-right">Login</button>
             </div>
         </g:form>
     </div>

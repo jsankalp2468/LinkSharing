@@ -15,12 +15,12 @@
             </div>
 
             <div class="modal-body">
-                <form class="form-horizontal" action="#">
+                <form class="form-horizontal">
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="userName">UserName :</label>
+                        <label class="control-label col-sm-4" for="userName1">UserName :</label>
 
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="userName" name="userName">
+                            <input type="email" class="form-control" id="userName1" name="userName1">
                         </div>
                     </div>
 

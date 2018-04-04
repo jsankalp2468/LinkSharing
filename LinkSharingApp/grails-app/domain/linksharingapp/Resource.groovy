@@ -18,6 +18,10 @@ abstract class Resource {
         description(type: "text")
     }
 
+    static mapping = {
+        topic fetch: 'join'
+    }
+
     static transients = ['ratingInfo']
     static namedQueries = {
         search{ ResourceSearchCO co ->

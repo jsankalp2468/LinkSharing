@@ -69,6 +69,14 @@ class User {
         return readingItems
     }
 
+    List<Topic> getSubscribedTopics(){
+        List<Topic> topicList = []
+        subscriptions.each {
+            topicList.add(it.topic)
+        }
+        return topicList
+    }
+
     @Override
     public String toString() {
         return "User{" +

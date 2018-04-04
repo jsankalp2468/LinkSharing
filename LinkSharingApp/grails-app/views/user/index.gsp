@@ -17,7 +17,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="col-lg-3">
-                <img src="Sankalp%20%202814.JPG" class="img-responsive">
+                <img src="#" class="img-responsive">
             </div>
 
             <div class="col-lg-9">
@@ -55,7 +55,7 @@
             <div class="row">
 
                 <div class="col-lg-2">
-                    <img src="Sankalp%20%202814.JPG" class="img-responsive">
+                    <img src="#" class="img-responsive">
                 </div>
 
                 <div class="col-lg-10">
@@ -108,7 +108,7 @@
 
             <div class="row">
                 <div class="col-lg-2">
-                    <img src="Sankalp%20%202814.JPG" class="img-responsive">
+                    <img src="#" class="img-responsive">
                 </div>
 
                 <div class="col-lg-10">
@@ -168,7 +168,7 @@
         <div class="panel-body">
             <div class="row" style="padding-bottom: 10px">
                 <div class="col-lg-2">
-                    <img class="img-responsive" src="Sankalp%20%202814.JPG" alt="sankalp">
+                    <img class="img-responsive" src="#" alt="sankalp">
                 </div>
 
                 <div class="col-lg-10">
@@ -204,7 +204,7 @@
                         </div>
 
                         <div class="col-lg-2">
-                            <a href="#" class="text-primary" style="text-decoration: underline;">View Post</a>
+                            <a href="${createLink(controller: 'resource',action: 'index',id: 1)}" class="text-primary" style="text-decoration: underline;">View Post</a>
                         </div>
                     </div>
                 </div>
