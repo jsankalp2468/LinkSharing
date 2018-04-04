@@ -155,8 +155,8 @@
         <div class="panel-heading">
             Trending Topics
         </div>
-        <g:render template="/layouts/trendingTopics" var="trendingTopics1" collection="${trendingTopics}"></g:render>
-    </div>
+        <g:render template="/layouts/trendingTopics" var="subscribedTrendingTopics1" collection="${subscribedTopicsList}"></g:render>
+        <g:render template="/layouts/trendingTopics" var="unSubscribedTrendingTopics1" collection="${unSubscribedTopicsList}"></g:render>    </div>
 </div>
 
 <div class="col-lg-7">
@@ -212,7 +212,7 @@
 
             <div class="row">
                 <div class="col-lg-2">
-                    <img class="img-responsive" src="Sankalp%20%202814.JPG" alt="sankalp">
+                    <img class="img-responsive" src="#" alt="sankalp">
                 </div>
 
                 <div class="col-lg-10">

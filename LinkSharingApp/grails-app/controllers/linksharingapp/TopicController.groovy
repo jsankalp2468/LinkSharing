@@ -19,7 +19,8 @@ class TopicController {
     def show(){
         ResourceSearchCO co = new ResourceSearchCO()
         if(params.id){
-            co.setTopicId(params.id)
+            println(params.id)
+            co.setTopicId((Long)params.id)
         }
         else if(params.name){
             List<Topic> topic1 = Topic.findByName(params.name) as List

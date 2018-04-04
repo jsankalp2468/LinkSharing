@@ -11,7 +11,25 @@ class ResourceController {
     def index(Long id) {
         Resource resource = Resource.findById(id)
         List<TopicVO> topicVOList = Topic.getTrendingTopics()
-        render(view: 'showResources',model: [resource:resource,trendingTopics:topicVOList])
+        List<TopicVO> subscribedTopicsList = []
+        List<TopicVO> unSubscribedTopicsList = []
+        if(session.user && !session.user.subscriptions.topic.name.contains(topicVOList.name)){
+            topicVOList.each {
+                if (session.user.subscriptions.topic.name.contains(it.name)){
+                    subscribedTopicsList.add(it)
+                }
+                else {
+                    unSubscribedTopicsList.add(it)
+                }
+            }
+        }else {
+            topicVOList.each {
+                unSubscribedTopicsList.add(it)
+            }
+        }
+        println(subscribedTopicsList.id + " "+ subscribedTopicsList.name)
+        println(unSubscribedTopicsList.id)
+        render(view: 'showResources',model: [resource:resource,subscribedTopicsList:subscribedTopicsList,unSubscribedTopicsList:unSubscribedTopicsList])
     }
 
     def delete(Long id){

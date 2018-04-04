@@ -94,8 +94,9 @@
             Trending Topics
         </div>
 
-        <g:render template="/layouts/trendingTopics" var="trendingTopics1" collection="${trendingTopics}"></g:render>
-
+        %{--<g:render template="/layouts/trendingTopics" var="trendingTopics1" collection="${trendingTopics}"></g:render>--}%
+        <g:render template="/layouts/trendingTopics" var="subscribedTrendingTopics1" collection="${subscribedTopicsList}"></g:render>
+        <g:render template="/layouts/trendingTopics" var="unSubscribedTrendingTopics1" collection="${unSubscribedTopicsList}"></g:render>
     </div>
 </div>
 

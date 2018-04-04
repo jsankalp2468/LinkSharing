@@ -6,7 +6,7 @@
 
 <body>
 <div class="panel-body">
-    <g:if test="${session.user && !session.user.subscriptions.topic.name.contains(trendingTopics1.name)}">
+    <g:if test="${unSubscribedTrendingTopics1}">
         <div class="row" style="padding-bottom:10px">
             <div class="col-lg-2">
                 <img src="#" class="img-responsive">
@@ -14,17 +14,18 @@
 
             <div class="col-lg-10">
                 <div class="text-primary">
-                    <a class="hyperlink" href="${createLink(controller: 'topic',action: 'index',params: [id1:trendingTopics1.id])}">${trendingTopics1.name}</a>
+                    <a class="hyperlink"
+                       href="${createLink(controller: 'topic', action: 'show', id: unSubscribedTrendingTopics1.id)}">${unSubscribedTrendingTopics1.name}</a>
                 </div>
 
                 <div class="col-lg-4" style="padding-left: 0px">
-                    <span class="text-muted">@${trendingTopics1.createdBy.userName}</span>
+                    <span class="text-muted">@${unSubscribedTrendingTopics1.createdBy.userName}</span>
                     <a href="#" class="hyperlink">Subscribe</a>
                 </div>
 
                 <div class="col-lg-4">
                     <span class="text-muted">Subscriptions</span>
-                    <span class="text-primary">${trendingTopics1.count}</span>
+                    <span class="text-primary">${unSubscribedTrendingTopics1.count}</span>
                 </div>
 
                 <div class="col-lg-2">
@@ -35,7 +36,7 @@
         </div>
     </g:if>
 
-    <g:else>
+    <g:if test="${subscribedTrendingTopics1}">
         <div class="row">
 
             <div class="col-lg-2">
@@ -43,7 +44,7 @@
             </div>
 
             <div class="col-lg-10">
-                <g:form url="[controller: 'topic',action: 'show']">
+                <g:form url="[controller: 'topic', action: 'show']">
                     <div class="col-lg-6" style="padding-left: 0px">
                         <input type="text" placeholder="Grails" name="name">
                     </div>
@@ -58,20 +59,24 @@
                 </g:form>
 
                 <div class="text-primary">
-                    <a class="hyperlink" href="${createLink(controller: 'topic',action: 'show',params: [id:trendingTopics1.id])}">${trendingTopics1.name}</a>
+                    <a class="hyperlink"
+                       href="${createLink(controller: 'topic', action: 'show', id: subscribedTrendingTopics1.id)}">${subscribedTrendingTopics1.name}</a>
                 </div>
+
                 <div class="col-lg-7" style="padding-left: 0px">
-                    <div class="text-muted">@${trendingTopics1.createdBy.userName}</div>
+                    <div class="text-muted">@${subscribedTrendingTopics1.createdBy.userName}</div>
                     <a href="#" class="hyperlink">Unsubscribe</a>
                 </div>
 
                 <div class="col-lg-3">
                     <div class="text-muted">Subscriptions</div>
-                    <div class="text-primary">${trendingTopics1.count}</div>
+
+                    <div class="text-primary">${subscribedTrendingTopics1.count}</div>
                 </div>
 
                 <div class="col-lg-2">
                     <div class="text-muted">Topics</div>
+
                     <div class="text-primary">50</div>
                 </div>
             </div>
@@ -107,7 +112,7 @@
                 <i class="far fa-trash-alt fa-2x"></i>
             </a>
         </div>
-    </g:else>
+    </g:if>
 </div>
 </body>
 </html>
