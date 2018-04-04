@@ -43,17 +43,19 @@
             </div>
 
             <div class="col-lg-10">
-                <div class="col-lg-6" style="padding-left: 0px">
-                    <input type="text" placeholder="Grails">
-                </div>
+                <g:form url="[controller: 'topic',action: 'show']">
+                    <div class="col-lg-6" style="padding-left: 0px">
+                        <input type="text" placeholder="Grails" name="name">
+                    </div>
 
-                <div class="col-lg-3">
-                    <button type="submit">save</button>
-                </div>
+                    <div class="col-lg-3">
+                        <button type="submit">show</button>
+                    </div>
 
-                <div class="col-lg-3">
-                    <button type="reset">cancel</button>
-                </div>
+                    <div class="col-lg-3">
+                        <button type="reset">cancel</button>
+                    </div>
+                </g:form>
 
                 <div class="text-primary">
                     <a class="hyperlink" href="${createLink(controller: 'topic',action: 'show',params: [id:trendingTopics1.id])}">${trendingTopics1.name}</a>
