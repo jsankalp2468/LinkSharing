@@ -5,7 +5,7 @@ import javax.servlet.http.HttpSession
 
 class LogInCheckInterceptor {
 
-    public LogInController(){
+    public LogInCheckInterceptor(){
         matchAll().excludes(controller : 'logIn')
     }
 
