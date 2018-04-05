@@ -28,8 +28,8 @@ class ResourceController {
                 unSubscribedTopicsList.add(it)
             }
         }
-        println(subscribedTopicsList.id + " "+ subscribedTopicsList.name)
-        println(unSubscribedTopicsList.id)
+//        println(subscribedTopicsList.id + " "+ subscribedTopicsList.name)
+//        println(unSubscribedTopicsList.id)
         render(view: 'showResources',model: [resource:resource,subscribedTopicsList:subscribedTopicsList,unSubscribedTopicsList:unSubscribedTopicsList])
     }
 

@@ -21,9 +21,9 @@
 
             </span>
             <form class="search" url="[controller:'resource',action:'searchResource']">
-                <a id="aLink" for="inputSearch" href="${createLink(controller: 'resource',action: 'searchResource',params: [name:"${topicName}"])}"><i class="fa fa-search"></i></a>
-                <input id="inputSearch" placeholder="Search term" name="topicName" for="aLink">
 
+                <span><i class="fa fa-search"></i></span>
+                <input id="inputSearch" placeholder="Search term" name="searchKey" for="aLink">
                 <span><i class=" fa fa-times"></i></span>
             </form>
 

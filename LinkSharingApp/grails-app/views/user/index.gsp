@@ -200,7 +200,9 @@
                         </div>
 
                         <div class="col-lg-3">
-                            <a href="#" class="text-primary" style="text-decoration: underline;">Mark As Read</a>
+                            <a href="#" class="text-primary" style="text-decoration: underline;">
+                                <ls:checkRead isRead="false"></ls:checkRead>
+                            </a>
                         </div>
 
                         <div class="col-lg-2">
