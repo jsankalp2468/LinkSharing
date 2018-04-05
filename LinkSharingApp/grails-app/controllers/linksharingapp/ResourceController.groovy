@@ -66,12 +66,17 @@ class ResourceController {
             }
         }
         List<TopPostVO> topPostVOList = Resource.getTopPosts()
-        ResourceSearchCO co = new ResourceSearchCO(topicId: 1,visibility: Visibility.PUBLIC,q: 'mytopic0')
-//        SearchCO co = new ResourceSearchCO()
+        Topic topic = Topic.findByName(params.searchKey)
+//        ResourceSearchCO co = new ResourceSearchCO(topicId: topic.id,visibility: topic.visibility,q: 'mytopic0')
+        SearchCO co = new ResourceSearchCO()
+        co.topicId=topic.id
+        co.q = topic.visibility
         if(co.q){
-            co.setVisibility(Visibility.PUBLIC)
+            co.setVisibility(topic.visibility)
         }
+        println(co.topicId)
         List<Resource> resources = Resource.search(co).list()
+        println(resources)
         render(view: 'searchResource',model: [resourceList:resources,topPostLists:topPostVOList,subscribedTopicsList:subscribedTopicsList,unSubscribedTopicsList:unSubscribedTopicsList])
     }
 

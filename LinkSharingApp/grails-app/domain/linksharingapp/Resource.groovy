@@ -19,16 +19,17 @@ abstract class Resource {
     }
 
     static mapping = {
-        topic fetch: 'join'
+//        topic fetch: 'join'
+        topic lazy: false
     }
 
     static transients = ['ratingInfo']
     static namedQueries = {
         search{ ResourceSearchCO co ->
-            eq('topic.id',co.topicId)
-            topic{
+            'topic'{
                 eq('visibility',co.visibility)
             }
+            eq('topic.id',co.topicId)
         }
     }
 

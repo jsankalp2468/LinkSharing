@@ -20,12 +20,12 @@
                 <a class="text-primary" href="#" style="text-decoration: underline">Link Sharing</a>
 
             </span>
-            <form class="search" url="[controller:'resource',action:'searchResource']">
+            <g:form class="search" url="[controller:'resource',action:'searchResource']">
 
                 <span><i class="fa fa-search"></i></span>
                 <input id="inputSearch" placeholder="Search term" name="searchKey" for="aLink">
                 <span><i class=" fa fa-times"></i></span>
-            </form>
+            </g:form>
 
         </div>
     </div>

@@ -10,9 +10,9 @@ class LinkSharingTagLib {
         Boolean aBoolean = new Boolean(attrs.isRead)
         if(session.user){
             if(aBoolean){
-                value = "Mark as Read"
+                value = "Mark as UnRead"
             }else {
-                value = "Mark as Unread"
+                value = "Mark as Read"
             }
         }
         else {

@@ -23,7 +23,7 @@ class TopicController {
             co.setTopicId((Long)params.id)
         }
         else if(params.name){
-            List<Topic> topic1 = Topic.findByName(params.name) as List
+            Topic topic1 = Topic.findByName(params.name)
             co.setTopicId(topic1.id)
             println(topic1)
         }
