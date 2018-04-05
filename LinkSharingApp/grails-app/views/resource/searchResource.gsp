@@ -1,0 +1,89 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: sankalp
+  Date: 5/4/18
+  Time: 10:38 AM
+--%>
+
+<%@ page contentType="text/html;charset=UTF-8" %>
+<html>
+<head>
+    <title></title>
+</head>
+
+<body>
+<div class="col-lg-5">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="text-primary">Trending Topics</span>
+        </div>
+
+        <g:render template="/layouts/trendingTopics" var="subscribedTrendingTopics1"
+                  collection="${subscribedTopicsList}"></g:render>
+        <g:render template="/layouts/trendingTopics" var="unSubscribedTrendingTopics1"
+                  collection="${unSubscribedTopicsList}"></g:render>
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="text-primary">Top Posts</span>
+        </div>
+
+        <div class="panel-body">
+            <g:render template="/logIn/topPosts" var="demo" collection="${topPostLists}"></g:render>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-lg-7">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="text-primary">Search for : ${resourceList[0].topic.name}</span>
+        </div>
+        <div class="panel-body">
+            <g:each in="${resourceList}" var="resource">
+                <div class="row" style="padding-bottom: 10px">
+                    <div class="col-lg-2">
+                        <img class="img-responsive" src="#" alt="sankalp">
+                    </div>
+                    <div class="col-lg-10">
+                        <span class="text">${resource.createdBy.firstName}</span>
+                        <span class="text-muted">@${resource.createdBy.userName} ${resource.lastUpdated}</span>
+                        <span class="text-primary" style="float: right">${resource.topic.name}</span>
+                        <div class="text">
+                            <p>
+                                Wikiversity Free course materials · Wikiquote Free quote compendium ·
+                                MediaWiki Free & open wiki application · Wikisource Free library ·
+                                Wikispecies Free species directory · Meta-Wiki Community coordination & documentation.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="col-lg-2" style="padding-left: 0px;padding-right: 0px">
+                                <i class="fab fa-facebook fa-2x"> </i>
+                                <i class="fab fa-tumblr fa-2x"> </i>
+                                <i class="fab fa-google-plus-g fa-2x"> </i>
+                            </div>
+                            <div class="col-lg-2">
+                                <a href="#" class="text-primary" style="text-decoration: underline;">Download</a>
+                            </div>
+                            <div class="col-lg-3">
+                                <a href="#" class="text-primary" style="text-decoration: underline;">View Full Size</a>
+                            </div>
+                            <div class="col-lg-3">
+                                <a href="#" class="text-primary" style="text-decoration: underline;">Mark As Read</a>
+                            </div>
+                            <div class="col-lg-2">
+                                <a href="#" class="text-primary" style="text-decoration: underline;">View Post</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </g:each>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

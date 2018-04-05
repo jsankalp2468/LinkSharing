@@ -20,13 +20,12 @@
                 <a class="text-primary" href="#" style="text-decoration: underline">Link Sharing</a>
 
             </span>
-            <span class="search">
-                <span class="fa fa-search"></span>
-                <input placeholder="Search term">
-                <span>
-                    <i class=" fa fa-times"></i>
-                </span>
-            </span>
+            <form class="search" url="[controller:'resource',action:'searchResource']">
+                <a id="aLink" for="inputSearch" href="${createLink(controller: 'resource',action: 'searchResource',params: [name:"${topicName}"])}"><i class="fa fa-search"></i></a>
+                <input id="inputSearch" placeholder="Search term" name="topicName" for="aLink">
+
+                <span><i class=" fa fa-times"></i></span>
+            </form>
 
         </div>
     </div>
@@ -44,12 +43,9 @@
         <div class="col-lg-8">
             <div class="col-lg-5">
                 <span class="search">
-                    <span>
-                        <i class=" fa fa-times"></i>
-                    </span>
-                    <span class="fa fa-search"></span>
+                    <span><i class=" fa fa-times"></i></span>
                     <input placeholder="Search term">
-
+                    <span class="fa fa-search"></span>
                 </span>
 
             </div>

@@ -4,6 +4,7 @@ import co.ResourceSearchCO
 import co.SearchCO
 import enumeration.Visibility
 import vo.RatingInfoVO
+import vo.TopPostVO
 import vo.TopicVO
 
 class ResourceController {
@@ -46,14 +47,32 @@ class ResourceController {
         }
     }
 
-    def search() {
-        SearchCO co = new ResourceSearchCO()
+    def searchResource() {
+        List<TopicVO> topicVOList = Topic.getTrendingTopics()
+        List<TopicVO> subscribedTopicsList = []
+        List<TopicVO> unSubscribedTopicsList = []
+        if(session.user && !session.user.subscriptions.topic.name.contains(topicVOList.name)){
+            topicVOList.each {
+                if (session.user.subscriptions.topic.name.contains(it.name)){
+                    subscribedTopicsList.add(it)
+                }
+                else {
+                    unSubscribedTopicsList.add(it)
+                }
+            }
+        }else {
+            topicVOList.each {
+                unSubscribedTopicsList.add(it)
+            }
+        }
+        List<TopPostVO> topPostVOList = Resource.getTopPosts()
+        ResourceSearchCO co = new ResourceSearchCO(topicId: 1,visibility: Visibility.PUBLIC,q: 'mytopic0')
+//        SearchCO co = new ResourceSearchCO()
         if(co.q){
             co.setVisibility(Visibility.PUBLIC)
         }
-//        ResourceSearchCO co = new ResourceSearchCO(topicId: 1,visibility: Visibility.PUBLIC)
         List<Resource> resources = Resource.search(co).list()
-        render("${resources}")
+        render(view: 'searchResource',model: [resourceList:resources,topPostLists:topPostVOList,subscribedTopicsList:subscribedTopicsList,unSubscribedTopicsList:unSubscribedTopicsList])
     }
 
     def showResources(Long id){
