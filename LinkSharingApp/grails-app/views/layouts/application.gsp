@@ -4,8 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <asset:stylesheet href="application.css"></asset:stylesheet>
     <asset:javascript src="application.js"></asset:javascript>
-    <asset:stylesheet src="menu.css"></asset:stylesheet>
-
     <title></title>
     <g:layoutHead/>
 </head>

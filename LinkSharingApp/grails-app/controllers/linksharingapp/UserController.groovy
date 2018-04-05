@@ -7,8 +7,13 @@ class UserController {
 
     def index() {
 //        render("User Dashboard ${session.user.password}")
-        List<TopicVO> topicVOList = Topic.getTrendingTopics()
-        render(view: 'index', model: [trendingTopics: topicVOList])
+        if (session.user){
+            List<TopicVO> topicVOList = Topic.getTrendingTopics()
+            render(view: 'index', model: [trendingTopics: topicVOList])
+        }
+        else {
+            redirect(controller: 'logIn',action: 'index')
+        }
     }
 
     def show() {

@@ -12,10 +12,10 @@ class LogInCheckInterceptor {
     boolean before() {
         HttpSession session = request.getSession()
         log.info(" from logincheckinterceptor")
-        if(!session.getAttribute('user')){
+        if(!session.user){
             redirect(controller: 'logIn', action: 'index')
         }
-        true
+        false
     }
 
     boolean after() { true }

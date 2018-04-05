@@ -11,7 +11,7 @@ class LogInController {
     def index() {
         HttpSession session = request.getSession()
 //        render(view: 'index')
-        if(session.getAttribute('user')){
+        if(session.user){
 //            render("login index")
             forward(controller: 'user',action: 'index')
         }
