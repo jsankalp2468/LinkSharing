@@ -17,11 +17,8 @@
         <div class="panel-heading">
             <span class="text-primary">Trending Topics</span>
         </div>
-
-        <g:render template="/layouts/trendingTopics" var="subscribedTrendingTopics1"
-                  collection="${subscribedTopicsList}"></g:render>
-        <g:render template="/layouts/trendingTopics" var="unSubscribedTrendingTopics1"
-                  collection="${unSubscribedTopicsList}"></g:render>
+        <ls:getSubscribedTrendingTopics></ls:getSubscribedTrendingTopics>
+        <ls:getUnsubscribedTrendingTopics></ls:getUnsubscribedTrendingTopics>
     </div>
 
 
@@ -31,7 +28,7 @@
         </div>
 
         <div class="panel-body">
-            <g:render template="/logIn/topPosts" var="demo" collection="${topPostLists}"></g:render>
+            <ls:getTopPosts/>
         </div>
     </div>
 </div>

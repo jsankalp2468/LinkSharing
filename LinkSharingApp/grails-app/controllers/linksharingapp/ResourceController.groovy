@@ -11,26 +11,7 @@ class ResourceController {
 
     def index(Long id) {
         Resource resource = Resource.findById(id)
-        List<TopicVO> topicVOList = Topic.getTrendingTopics()
-        List<TopicVO> subscribedTopicsList = []
-        List<TopicVO> unSubscribedTopicsList = []
-        if(session.user && !session.user.subscriptions.topic.name.contains(topicVOList.name)){
-            topicVOList.each {
-                if (session.user.subscriptions.topic.name.contains(it.name)){
-                    subscribedTopicsList.add(it)
-                }
-                else {
-                    unSubscribedTopicsList.add(it)
-                }
-            }
-        }else {
-            topicVOList.each {
-                unSubscribedTopicsList.add(it)
-            }
-        }
-//        println(subscribedTopicsList.id + " "+ subscribedTopicsList.name)
-//        println(unSubscribedTopicsList.id)
-        render(view: 'showResources',model: [resource:resource,subscribedTopicsList:subscribedTopicsList,unSubscribedTopicsList:unSubscribedTopicsList])
+        render(view: 'showResources',model: [resource:resource])
     }
 
     def delete(Long id){
@@ -48,24 +29,6 @@ class ResourceController {
     }
 
     def searchResource() {
-        List<TopicVO> topicVOList = Topic.getTrendingTopics()
-        List<TopicVO> subscribedTopicsList = []
-        List<TopicVO> unSubscribedTopicsList = []
-        if(session.user && !session.user.subscriptions.topic.name.contains(topicVOList.name)){
-            topicVOList.each {
-                if (session.user.subscriptions.topic.name.contains(it.name)){
-                    subscribedTopicsList.add(it)
-                }
-                else {
-                    unSubscribedTopicsList.add(it)
-                }
-            }
-        }else {
-            topicVOList.each {
-                unSubscribedTopicsList.add(it)
-            }
-        }
-        List<TopPostVO> topPostVOList = Resource.getTopPosts()
         Topic topic = Topic.findByName(params.searchKey)
 //        ResourceSearchCO co = new ResourceSearchCO(topicId: topic.id,visibility: topic.visibility,q: 'mytopic0')
         SearchCO co = new ResourceSearchCO()
@@ -77,7 +40,7 @@ class ResourceController {
         println(co.topicId)
         List<Resource> resources = Resource.search(co).list()
         println(resources)
-        render(view: 'searchResource',model: [resourceList:resources,topPostLists:topPostVOList,subscribedTopicsList:subscribedTopicsList,unSubscribedTopicsList:unSubscribedTopicsList])
+        render(view: 'searchResource',model: [resourceList:resources])
     }
 
     def showResources(Long id){

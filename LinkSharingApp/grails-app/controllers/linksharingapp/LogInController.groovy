@@ -10,14 +10,11 @@ class LogInController {
 
     def index() {
         HttpSession session = request.getSession()
-//        render(view: 'index')
         if(session.getAttribute('user')){
-//            render("login index")
             forward(controller: 'user',action: 'index')
         }
         else {
-            List<TopPostVO> topPostVOList = Resource.getTopPosts()
-            render(view: 'index',model: [lists: topPostVOList])
+            render(view: 'index')
         }
     }
 
@@ -25,7 +22,6 @@ class LogInController {
         HttpSession session = request.getSession()
         String userName = params.userName
         String password = params.password
-//        render("${userName}  ${password}")
         User user = User.findByUserNameAndPassword(userName,password)
         println(user)
         println(userName)
@@ -70,6 +66,5 @@ class LogInController {
     def showTopTopics() {
         List<TopPostVO> topPostVOList = Resource.getTopPosts()
         render(view: 'showTopTopics',model: [lists:topPostVOList])
-//        render(view:  "showTopTopics")
     }
 }

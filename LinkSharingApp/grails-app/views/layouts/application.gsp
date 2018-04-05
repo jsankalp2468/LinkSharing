@@ -42,12 +42,12 @@
 
         <div class="col-lg-8">
             <div class="col-lg-5">
-                <span class="search">
-                    <span><i class=" fa fa-times"></i></span>
-                    <input placeholder="Search term">
-                    <span class="fa fa-search"></span>
-                </span>
+                <g:form class="search" url="[controller:'resource',action:'searchResource']">
 
+                    <span><i class="fa fa-search"></i></span>
+                    <input id="inputSearch" placeholder="Search term" name="searchKey" for="aLink">
+                    <span><i class=" fa fa-times"></i></span>
+                </g:form>
             </div>
             <span class="col-lg-1">
                 <a href="#myModal" data-toggle="modal" data-target="#myModal">

@@ -19,8 +19,8 @@ class TopicController {
     def show(){
         ResourceSearchCO co = new ResourceSearchCO()
         if(params.id){
-            println(params.id)
-            co.setTopicId((Long)params.id)
+            Long l = new Long(params.id)
+            co.setTopicId(l)
         }
         else if(params.name){
             Topic topic1 = Topic.findByName(params.name)
@@ -29,7 +29,6 @@ class TopicController {
         }
         List<Topic> topic = Topic.search(co).list()
         log.info("${topic}")
-//        render("${topic} ${id} ${co.topicId} ${topic[0]}")
         if (!topic) {
             flash.error = "NO SUCH TOPIC"
 //            render("${params}")

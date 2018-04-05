@@ -106,7 +106,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <g:render template="topPosts" var="demo" collection="${lists}"></g:render>
+                    <ls:getTopPosts></ls:getTopPosts>
                 </div>
             </div>
         </div>
