@@ -21,6 +21,7 @@ abstract class Resource {
     static mapping = {
 //        topic fetch: 'join'
         topic lazy: false
+        createdBy lazy: false
     }
 
     static transients = ['ratingInfo']

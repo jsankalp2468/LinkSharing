@@ -6,7 +6,8 @@ import vo.TopicVO
 class UserController {
 
     def index() {
-        render(view: 'index')
+        Set<ReadingItem> unReadItems = session.user.readingItems
+        render(view: 'index',model: [unReadItems:unReadItems])
     }
 
     def show() {

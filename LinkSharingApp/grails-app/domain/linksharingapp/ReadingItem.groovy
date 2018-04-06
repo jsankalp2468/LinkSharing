@@ -16,5 +16,7 @@ class ReadingItem {
         resource(unique: 'user')
     }
 
-
+    static mapping = {
+        resource fetch: 'join'
+    }
 }
