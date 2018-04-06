@@ -22,6 +22,7 @@ abstract class Resource {
 //        topic fetch: 'join'
         topic lazy: false
         createdBy lazy: false
+        readingItems lazy: false
     }
 
     static transients = ['ratingInfo']
