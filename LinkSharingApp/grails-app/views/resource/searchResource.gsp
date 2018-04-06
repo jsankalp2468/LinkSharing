@@ -51,9 +51,7 @@
                         <span class="text-primary" style="float: right">${resource.topic.name}</span>
                         <div class="text">
                             <p>
-                                Wikiversity Free course materials · Wikiquote Free quote compendium ·
-                                MediaWiki Free & open wiki application · Wikisource Free library ·
-                                Wikispecies Free species directory · Meta-Wiki Community coordination & documentation.
+                                ${resource.description}
                             </p>
                         </div>
                         <div>
@@ -66,10 +64,10 @@
                                 <a href="#" class="text-primary" style="text-decoration: underline;">Download</a>
                             </div>
                             <div class="col-lg-3">
-                                <a href="#" class="text-primary" style="text-decoration: underline;">View Full Size</a>
+                                <a href="" class="text-primary" style="text-decoration: underline;">View Full Size</a>
                             </div>
                             <div class="col-lg-3">
-                                <a href="#" class="text-primary" style="text-decoration: underline;">Mark As Read</a>
+                                <a href="#" class="text-primary" style="text-decoration: underline;"><ls:checkRead isRead="true"></ls:checkRead></a>
                             </div>
                             <div class="col-lg-2">
                                 <a href="#" class="text-primary" style="text-decoration: underline;">View Post</a>
