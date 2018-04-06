@@ -80,6 +80,16 @@ class Topic {
         return userList
     }
 
+    static Boolean isPublic(Long id){
+        Topic topic = Topic.findById(id)
+        if(topic.visibility == Visibility.PUBLIC){
+            return true
+        }
+        else {
+            return false
+        }
+    }
+
 
     @Override
     public String toString() {
