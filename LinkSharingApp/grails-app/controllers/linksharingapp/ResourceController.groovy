@@ -30,17 +30,21 @@ class ResourceController {
 
     def searchResource() {
         Topic topic = Topic.findByName(params.searchKey)
-//        ResourceSearchCO co = new ResourceSearchCO(topicId: topic.id,visibility: topic.visibility,q: 'mytopic0')
-        SearchCO co = new ResourceSearchCO()
-        co.topicId=topic.id
-        co.q = topic.visibility
-        if(co.q){
-            co.setVisibility(topic.visibility)
+        if (!topic){
+            flash.error = "Search not found"
+            redirect(controller : 'logIn' , action : 'index')
         }
-        println(co.topicId)
-        List<Resource> resources = Resource.search(co).list()
-        println(resources)
-        render(view: 'searchResource',model: [resourceList:resources])
+        else {
+            SearchCO co = new ResourceSearchCO()
+            co.topicId=topic.id
+            co.q = topic.visibility
+            if(co.q){
+                co.setVisibility(topic.visibility)
+            }
+            println(co.topicId)
+            List<Resource> resources = Resource.search(co).list()
+            render(view: 'searchResource',model: [resourceList:resources])
+        }
     }
 
     def showResources(Long id){
