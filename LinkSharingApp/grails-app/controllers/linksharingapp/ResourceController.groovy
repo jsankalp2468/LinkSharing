@@ -11,7 +11,7 @@ class ResourceController {
 
     def index(Long id) {
         Resource resource = Resource.findById(id)
-        String resourceType = Resource.findTypeOfResource(2)
+        String resourceType = Resource.findTypeOfResource(id)
         render(view: 'showResources',model: [resource:resource,resourceType : resourceType])
     }
 

@@ -78,15 +78,15 @@
                         <a href="#" class="text-primary" style="text-decoration: underline;"><ls:checkRead resource="${resource}"></ls:checkRead></a>
                     </div>
 
-                    <g:if test="${resourceType.equals("LinkResource")}">
+                    <g:if test="${resourceType.equals("DocumentResource")}">
                         <div class="col-lg-2">
                             <a href="#" class="text-primary" style="text-decoration: underline;">Download</a>
                         </div>
                     </g:if>
 
-                    <g:if test="${resourceType.equals("DocumentResource")}">
+                    <g:if test="${resourceType.equals("LinkResource")}">
                         <div class="col-lg-2">
-                            <a href="#" class="text-primary" style="text-decoration: underline;">View Full Site</a>
+                            <a href="${resource.url}" class="text-primary" target="_blank" style="text-decoration: underline;">View Full Site</a>
                         </div>
                     </g:if>
                 </div>
