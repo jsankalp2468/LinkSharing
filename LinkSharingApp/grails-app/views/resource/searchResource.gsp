@@ -67,7 +67,7 @@
                                 <a href="" class="text-primary" style="text-decoration: underline;">View Full Size</a>
                             </div>
                             <div class="col-lg-3">
-                                <a href="#" class="text-primary" style="text-decoration: underline;"><ls:checkRead isRead="true"></ls:checkRead></a>
+                                <a href="#" class="text-primary" style="text-decoration: underline;"><ls:checkRead resource="${resource}"></ls:checkRead></a>
                             </div>
                             <div class="col-lg-2">
                                 <a href="#" class="text-primary" style="text-decoration: underline;">View Post</a>

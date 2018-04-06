@@ -88,7 +88,7 @@ class BootStrap {
             if(!Resource.findByTopic(topic)){
                 2.times {
                     //creator of resource is same as creator of topic i.e., topic: topic,createdBy: topic.createdBy
-                    LinkResource linkResource = new LinkResource('url': "https://www.${topic.name}.${topic.id}.co.in",topic: topic,createdBy: topic.createdBy,description: "This resource is of Topic : ${topic.name} created by : ${topic.createdBy} on ${topic.dateCreated}")
+                    LinkResource linkResource = new LinkResource('url': "https://www.${topic.name}.${topic.id}.co.in",topic: topic,createdBy: topic.createdBy,description: "This resource is of Topic : ${topic.name} created by : ${topic.createdBy} on ${topic.dateCreated} with topic id : ${topic.id}")
                     DocumentResource documentResource = new DocumentResource('filePath': "Document${it}", topic: topic,createdBy: topic.createdBy,description: "This resource is of Topic : ${topic.name} created by : ${topic.createdBy} on ${topic.dateCreated}")
                     if(linkResource.validate()){
                         linkResource.save(flush:true)

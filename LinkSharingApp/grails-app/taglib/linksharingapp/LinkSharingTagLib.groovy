@@ -10,13 +10,18 @@ class LinkSharingTagLib {
     static namespace = "ls"
 
     def checkRead = { attrs,body ->
-        def value;
-        Boolean aBoolean = new Boolean(attrs.isRead)
-        if(session.user && session.user.readingItems){
-            if(aBoolean){
-                value = "Mark as UnRead"
-            }else {
-                value = "Mark as Read"
+        def value
+        if(session.user){
+            ReadingItem readingItem = ReadingItem.findByUserAndResource(session.user,attrs.resource)
+            if (readingItem){
+                if(readingItem.isRead){
+                    value = "Mark as Read"
+                }else {
+                    value = "Mark as UnRead"
+                }
+            }
+            else {
+                value = null
             }
         }
         else {

@@ -31,7 +31,7 @@
 
             <div class="col-lg-3">
                 <a href="#" class="text-primary" style="text-decoration: underline;">
-                    <ls:checkRead isRead="${unReadResource.isRead}"></ls:checkRead>
+                    <ls:checkRead resource="${unReadResource.resource}"></ls:checkRead>
                 </a>
             </div>
 
