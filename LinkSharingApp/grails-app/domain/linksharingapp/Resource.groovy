@@ -23,6 +23,8 @@ abstract class Resource {
         topic lazy: false
         createdBy lazy: false
         readingItems lazy: false
+        readingItems cascade: 'delete'
+        ratings cascade: 'delete'
     }
 
     static transients = ['ratingInfo']
@@ -85,6 +87,17 @@ abstract class Resource {
             eq('resource',this)
         }
         return vote
+    }
+
+    static String findTypeOfResource(Long id){
+//        LinkResource linkResource = Resource.findById(id)
+        Resource resource = Resource.findById(id)
+        if(resource.class == LinkResource.class){
+            return "LinkResource"
+        }
+        else if(resource.class == DocumentResource.class){
+            return "DocumentResource"
+        }
     }
 
 

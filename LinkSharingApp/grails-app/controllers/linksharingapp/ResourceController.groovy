@@ -11,20 +11,32 @@ class ResourceController {
 
     def index(Long id) {
         Resource resource = Resource.findById(id)
-        render(view: 'showResources',model: [resource:resource])
+        String resourceType = Resource.findTypeOfResource(2)
+        render(view: 'showResources',model: [resource:resource,resourceType : resourceType])
     }
 
-    def delete(Long id){
+    def delete(){
+        Long id = new Long(params.id)
+        println(id)
         Resource resource = Resource.load(id)
-        //if println(resource.id) it throw error at resource.delete wali line
-        //but if we assign a value to it then it thrown exception at prsource.id=50
-        println(resource.id)
-        try{
-            println(resource.delete(flush:true))//returns null
-            render("Resource deleted successfully")
-        }
-        catch (RuntimeException ex){
-            render("Resource not found")
+        def listOfReadingItems = ReadingItem.findAllByResource(resource)
+        def listOfResourceRating = ResourceRating.findAllByResource(resource)
+        println(resource)
+        if (session.user && (session.user.admin || session.user == resource.createdBy)){
+//            try{
+                println(resource.delete(flush:true))//returns null
+//            listOfReadingItems*.delete(flush: true)
+//            listOfResourceRating*.delete(flush: true)
+                flash.message = "Resource deleted successfully"
+                redirect(controller: 'logIn',action: 'index')
+//            }
+//            catch (RuntimeException ex){
+//                flash.error = "Resource not deleted"
+//                redirect(controller: 'logIn',action: 'index')
+//            }
+        }else{
+            flash.error = "Deletion of the Resource : ${resource} is not allowed"
+            redirect(controller: 'logIn',action: 'index')
         }
     }
 
@@ -57,5 +69,10 @@ class ResourceController {
     def showTrendingTopics(){
         List<TopicVO> topicVOList = Topic.getTrendingTopics()
         render("${topicVOList}")
+    }
+
+    def findTypeOfResource(){
+        Resource.findTypeOfResource(2)
+        render("sucess")
     }
 }

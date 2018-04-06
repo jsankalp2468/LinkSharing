@@ -67,20 +67,28 @@
                     </div>
 
                     <div class="col-lg-2">
-                        <a href="#" class="text-primary" style="text-decoration: underline;">Download</a>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <a href="#" class="text-primary" style="text-decoration: underline;">View Full Size</a>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <a href="#" class="text-primary" style="text-decoration: underline;"><ls:checkRead resource="${resource}"></ls:checkRead></a>
+                        <a href="${createLink(controller: 'resource',action: 'delete', id: resource.id)}" class="text-primary" style="text-decoration: underline;">Delete</a>
                     </div>
 
                     <div class="col-lg-2">
-                        <a href="#" class="text-primary" style="text-decoration: underline;">View Post</a>
+                        <a href="#" class="text-primary" style="text-decoration: underline;">Edit</a>
                     </div>
+
+                    <div class="col-lg-2">
+                        <a href="#" class="text-primary" style="text-decoration: underline;"><ls:checkRead resource="${resource}"></ls:checkRead></a>
+                    </div>
+
+                    <g:if test="${resourceType.equals("LinkResource")}">
+                        <div class="col-lg-2">
+                            <a href="#" class="text-primary" style="text-decoration: underline;">Download</a>
+                        </div>
+                    </g:if>
+
+                    <g:if test="${resourceType.equals("DocumentResource")}">
+                        <div class="col-lg-2">
+                            <a href="#" class="text-primary" style="text-decoration: underline;">View Full Site</a>
+                        </div>
+                    </g:if>
                 </div>
             </div>
         </div>
