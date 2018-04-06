@@ -54,6 +54,8 @@ class User {
         sort id: 'desc'
 //        topics batchSize: 2
         subscriptions fetch: 'join'
+        readingItems fetch: 'join'
+        topics fetch: 'join'
     }
 
     static List<ReadingItem> getUnReadResources(SearchCO searchCO){

@@ -15,4 +15,6 @@ class ReadingItem {
         user(nullable: false)
         resource(unique: 'user')
     }
+
+
 }

@@ -22,21 +22,21 @@
 
             <div class="col-lg-9">
                 <div class="text">
-                    <h4>Sankalp Jain</h4>
+                    <h4>${session.user.name}</h4>
                 </div>
 
                 <div class="text-muted">
-                    @sankalp
+                    @${session.user.userName}
                 </div>
 
                 <div class="col-lg-4">
                     <span class="text-muted">Subscriptions</span>
-                    <span class="text-primary">50</span>
+                    <span class="text-primary">${session.user.subscriptions.size()}</span>
                 </div>
 
                 <div class="col-lg-3">
                     <span class="text-muted">Topics</span>
-                    <span class="text-primary">50</span>
+                    <span class="text-primary">${session.user.topics.size()}</span>
                 </div>
 
             </div>
