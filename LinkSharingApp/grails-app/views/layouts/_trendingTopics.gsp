@@ -20,7 +20,9 @@
 
                 <div class="col-lg-4" style="padding-left: 0px">
                     <span class="text-muted">@${unSubscribedTrendingTopics1.createdBy.userName}</span>
-                    <a href="#" class="hyperlink">Subscribe</a>
+                    %{--<g:if test="${session.user.isSubscribed(unSubscribedTrendingTopics1.id)}">--}%
+                        <a href="#" class="hyperlink">Subscribe</a>
+                    %{--</g:if>--}%
                 </div>
 
                 <div class="col-lg-4">
@@ -65,7 +67,9 @@
 
                 <div class="col-lg-7" style="padding-left: 0px">
                     <div class="text-muted">@${subscribedTrendingTopics1.createdBy.userName}</div>
-                    <a href="#" class="hyperlink">Unsubscribe</a>
+                    <g:if test="${session.user.isSubscribed(subscribedTrendingTopics1.id)}">
+                        <a href="#" class="hyperlink">UnSubscribe</a>
+                    </g:if>
                 </div>
 
                 <div class="col-lg-3">
