@@ -69,5 +69,15 @@ class LinkSharingTagLib {
         out << g.render(template: "/layouts/trendingTopics", var: "unSubscribedTrendingTopics1", collection: unSubscribedTopicsList)
     }
 
+    def showSubscribe = {attrs,body ->
+        def value
+        if (attrs.topicId && session.user){
+            value = "delete"
+        }else {
+            value = "save"
+        }
+        out << body() << value
+    }
+
 }
 

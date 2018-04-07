@@ -103,6 +103,7 @@
                 </ul>
             </span>
             <a href="#">
+                <ls:showSubscribe></ls:showSubscribe>
                 <i class="far fa-envelope fa-2x"></i>
             </a>
             <a href="#">
