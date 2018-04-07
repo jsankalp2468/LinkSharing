@@ -50,14 +50,9 @@
                     <div class="col-lg-6" style="padding-left: 0px">
                         <input type="text" placeholder="Grails" name="name">
                     </div>
-
-                    <div class="col-lg-3">
-                        <button type="submit">show</button>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <button type="reset">cancel</button>
-                    </div>
+                </g:form>
+                <g:form url="[controller: 'subscription', action: 'save', id: subscribedTrendingTopics1.id]">
+                    <button type="submit">save</button>
                 </g:form>
 
                 <div class="text-primary">
@@ -107,13 +102,12 @@
                 </ul>
             </span>
             <a href="#">
-                <ls:showSubscribe></ls:showSubscribe>
                 <i class="far fa-envelope fa-2x"></i>
             </a>
             <a href="#">
                 <i class="far fa-file fa-2x"></i>
             </a>
-            <a href="#">
+            <a href="${createLink(controller: 'subscription',action: 'delete', id: subscribedTrendingTopics1.id)}">
                 <i class="far fa-trash-alt fa-2x"></i>
             </a>
         </div>

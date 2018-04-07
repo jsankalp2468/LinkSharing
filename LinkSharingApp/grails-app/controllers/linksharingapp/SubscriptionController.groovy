@@ -6,14 +6,16 @@ class SubscriptionController {
 
     def index() { }
 
-    def save(Long topicId) {
-        Topic topic = Topic.get(topicId)
+    def save() {
+        Topic topic = Topic.get(params.id.toLong())
         Subscription subscription = new Subscription(topic: topic,user: session.user,seriousness: Seriousness.VERY_SERIOUS)
         if(subscription.validate()){
             subscription.save()
-            render("Subscription saved successfully")
+            redirect(controller : 'logIn',action: 'index')
         }else {
-            render("Subscription not saved successfully ${subscription.errors.allErrors}")
+            flash.error = "Subscription not saved."
+//            render("${subscription.errors.allErrors}")
+            redirect(controller : 'logIn',action: 'index')
         }
 
     }
@@ -35,13 +37,17 @@ class SubscriptionController {
         }
     }
 
-    def delete(Long id) {
-        Subscription subscription = Subscription.load(id)
-        try{
+    def delete() {
+        Topic topic = Topic.findById(params.id.toLong())
+        Subscription subscription = Subscription.findByUserAndTopic(session.user,topic)
+//        try{
             subscription.delete(flush:true)
-            render("Subscription deleted successfully")
-        }catch (RuntimeException ex){
-            render("Subscription with this id not found")
-        }
+//            flash.message = "subscription deleted successfully"
+//            redirect(controller : 'logIn',action: 'index')
+//        }catch (RuntimeException ex){
+            flash.error = "error while deleting subscription ${subscription.errors.allErrors} ${subscription}"
+            render("error while deleting subscription ${subscription.errors.allErrors} ${subscription}")
+//            redirect(controller : 'logIn',action: 'index')
+//        }
     }
 }
