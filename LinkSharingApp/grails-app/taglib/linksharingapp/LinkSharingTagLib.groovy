@@ -98,5 +98,16 @@ class LinkSharingTagLib {
         out << body() << session.user.topics.size()
     }
 
+    def editResource = {
+        def value
+        if(session.user){
+            value = "Edit"
+        }else{
+            value = null
+        }
+
+        out << value
+    }
+
 }
 

@@ -80,7 +80,7 @@
                     </div>
 
                     <div class="col-lg-2">
-                        <a href="#" class="text-primary" style="text-decoration: underline;">Edit</a>
+                        <a href="#" class="text-primary" style="text-decoration: underline;"><ls:editResource/></a>
                     </div>
 
                     <div class="col-lg-2">
