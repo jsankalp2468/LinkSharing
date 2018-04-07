@@ -94,5 +94,9 @@ class LinkSharingTagLib {
         out << body() << topic.subscriptions.size()
     }
 
+    def topicCount = {attrs,body ->
+        out << body() << session.user.topics.size()
+    }
+
 }
 
