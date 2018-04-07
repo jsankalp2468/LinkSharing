@@ -79,6 +79,15 @@ class User {
         return topicList
     }
 
+    Integer getScore(Resource resource){
+        ResourceRating resourceRating = ResourceRating.findByUserAndResource(this,resource)
+        if (resourceRating){
+            return resourceRating.score
+        }else {
+            return 1
+        }
+    }
+
     @Override
     public String toString() {
         return "User{" +
