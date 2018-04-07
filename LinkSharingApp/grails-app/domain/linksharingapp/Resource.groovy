@@ -100,6 +100,13 @@ abstract class Resource {
         }
     }
 
-
+    Boolean canViewBy(User user){
+        if (this.topic.canViewedBy(user)){
+            return true
+        }
+        else {
+            return false
+        }
+    }
 
 }

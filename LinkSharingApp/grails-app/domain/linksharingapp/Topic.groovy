@@ -89,8 +89,8 @@ class Topic {
         }
     }
 
-    Boolean canViewedBy(User user,Topic topic){
-        if (topic.isPublic() || user.subscriptions.contains(topic) || user.admin) {
+    Boolean canViewedBy(User user){
+        if (this.isPublic() || user.subscriptions.contains(this) || user.admin) {
             return true
         }
         else {
