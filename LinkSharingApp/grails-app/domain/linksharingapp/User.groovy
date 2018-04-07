@@ -88,6 +88,20 @@ class User {
         }
     }
 
+    Boolean isSubscribed(Long topicId){
+        Topic topic = Topic.findById(topicId)
+        Integer count = Subscription.createCriteria().count{
+            eq('user',this)
+            eq('topic',topic)
+        }
+        if(count){
+            return true
+        }
+        else {
+            return false
+        }
+    }
+
     @Override
     public String toString() {
         return "User{" +
