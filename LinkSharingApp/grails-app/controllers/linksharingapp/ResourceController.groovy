@@ -11,8 +11,18 @@ class ResourceController {
 
     def index(Long id) {
         Resource resource = Resource.findById(id)
-        String resourceType = Resource.findTypeOfResource(id)
-        render(view: 'showResources',model: [resource:resource,resourceType : resourceType])
+        if(session.user && resource.canViewBy(session.user)){
+            String resourceType = Resource.findTypeOfResource(id)
+            render(view: 'showResources',model: [resource:resource,resourceType : resourceType])
+        }
+        else if(resource.topic.isPublic()){
+            String resourceType = Resource.findTypeOfResource(id)
+            render(view: 'showResources',model: [resource:resource,resourceType : resourceType])
+        }
+        else {
+            flash.error = "User cannot view this resource"
+            redirect(controller: 'logIn',action: 'index')
+        }
     }
 
     def delete(){
