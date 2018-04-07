@@ -80,7 +80,7 @@ class LinkSharingTagLib {
     }
 
     def subscriptionCount = {attrs,body ->
-        if(session.user && attrs.topicId){
+        if(attrs.topicId){
             Topic topic = Topic.findById(attrs.topicId.toLong())
             out << body() << topic.subscriptions.size()
         }
@@ -91,7 +91,7 @@ class LinkSharingTagLib {
 
     def resourceCount = {attrs,body ->
         Topic topic = Topic.findById(attrs.topicId.toLong())
-        out << body() << topic.subscriptions.size()
+        out << body() << topic.resources.size()
     }
 
     def topicCount = {attrs,body ->

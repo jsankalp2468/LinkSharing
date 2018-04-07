@@ -31,12 +31,12 @@
 
                 <div class="col-lg-4">
                     <span class="text-muted">Subscriptions</span>
-                    <span class="text-primary">${session.user.subscriptions.size()}</span>
+                    <span class="text-primary"><ls:subscriptionCount></ls:subscriptionCount></span>
                 </div>
 
                 <div class="col-lg-3">
                     <span class="text-muted">Topics</span>
-                    <span class="text-primary">${session.user.topics.size()}</span>
+                    <span class="text-primary"><ls:topicCount></ls:topicCount></span>
                 </div>
 
             </div>

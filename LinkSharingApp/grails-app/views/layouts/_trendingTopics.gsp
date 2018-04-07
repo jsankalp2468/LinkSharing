@@ -19,20 +19,20 @@
                 </div>
 
                 <div class="col-lg-4" style="padding-left: 0px">
-                    <span class="text-muted">@${unSubscribedTrendingTopics1.createdBy.userName}</span>
+                    <div class="text-muted">@${unSubscribedTrendingTopics1.createdBy.userName}</div>
                     %{--<g:if test="${session.user.isSubscribed(unSubscribedTrendingTopics1.id)}">--}%
                         <a href="#" class="hyperlink">Subscribe</a>
                     %{--</g:if>--}%
                 </div>
 
                 <div class="col-lg-4">
-                    <span class="text-muted">Subscriptions</span>
-                    <span class="text-primary">${unSubscribedTrendingTopics1.count}</span>
+                    <div class="text-muted">Subscriptions</div>
+                    <div class="text-primary"><ls:subscriptionCount topicId="${unSubscribedTrendingTopics1.id}"></ls:subscriptionCount> </div>
                 </div>
 
                 <div class="col-lg-2">
-                    <span class="text-muted">Topics</span>
-                    <span class="text-primary">50</span>
+                    <div class="text-muted">Posts</div>
+                    <div class="text-primary"><ls:resourceCount topicId="${unSubscribedTrendingTopics1.id}"></ls:resourceCount> </div>
                 </div>
             </div>
         </div>
@@ -70,13 +70,13 @@
                 <div class="col-lg-3">
                     <div class="text-muted">Subscriptions</div>
 
-                    <div class="text-primary">${subscribedTrendingTopics1.count}</div>
+                    <div class="text-primary"><ls:subscriptionCount topicId="${subscribedTrendingTopics1.id}"></ls:subscriptionCount></div>
                 </div>
 
                 <div class="col-lg-2">
-                    <div class="text-muted">Topics</div>
+                    <div class="text-muted">Posts</div>
 
-                    <div class="text-primary">50</div>
+                    <div class="text-primary"><ls:resourceCount topicId="${subscribedTrendingTopics1.id}"></ls:resourceCount> </div>
                 </div>
             </div>
 
