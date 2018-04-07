@@ -7,8 +7,7 @@
 <body>
 <div class="row">
     <div class="col-lg-2">
-        <img class="img-responsive" src="#" alt="sankalp">
-    </div>
+        <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${demo.createdBy.userName}"])}" width="80" height="80">    </div>
 
     <div class="col-lg-10">
         <span class="text">${demo.createdBy.firstName}</span>

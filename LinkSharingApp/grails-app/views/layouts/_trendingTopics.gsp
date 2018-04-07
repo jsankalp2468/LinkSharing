@@ -9,7 +9,7 @@
     <g:if test="${unSubscribedTrendingTopics1}">
         <div class="row" style="padding-bottom:10px">
             <div class="col-lg-2">
-                <img src="#" class="img-responsive">
+                <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${unSubscribedTrendingTopics1.createdBy.userName}"])}" width="80" height="80">
             </div>
 
             <div class="col-lg-10">
@@ -42,8 +42,7 @@
         <div class="row">
 
             <div class="col-lg-2">
-                <img src="#" class="img-responsive">
-            </div>
+                <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${subscribedTrendingTopics1.createdBy.userName}"])}" width="80" height="80">            </div>
 
             <div class="col-lg-10">
                 <g:form url="[controller: 'topic', action: 'show']">

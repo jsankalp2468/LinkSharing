@@ -17,7 +17,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="col-lg-3">
-                <img src="#" class="img-responsive">
+                <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${session.user.userName}"])}" class="img-responsive">
             </div>
 
             <div class="col-lg-9">

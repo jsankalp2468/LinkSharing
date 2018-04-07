@@ -1,7 +1,6 @@
 <div class="row" style="padding-bottom: 10px">
     <div class="col-lg-2">
-        <img class="img-responsive" src="#" alt="sankalp">
-    </div>
+    <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${unReadResource.resource.createdBy.userName}"])}" width="80" height="80">    </div>
 
     <div class="col-lg-10">
         <span class="text">${unReadResource.resource.createdBy.firstName}</span>

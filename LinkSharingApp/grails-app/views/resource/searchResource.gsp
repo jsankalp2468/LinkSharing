@@ -43,7 +43,7 @@
             <g:each in="${resourceList}" var="resource">
                 <div class="row" style="padding-bottom: 10px">
                     <div class="col-lg-2">
-                        <img class="img-responsive" src="#" alt="sankalp">
+                        <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${resource.createdBy.userName}"])}" width="80" height="80">
                     </div>
                     <div class="col-lg-10">
                         <span class="text">${resource.createdBy.firstName}</span>

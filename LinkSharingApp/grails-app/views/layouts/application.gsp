@@ -85,7 +85,8 @@
             <span class="col-lg-3 dropdown">
 
                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <i class="fas fa-user" style="font-size:24px"></i>
+                    <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${session.user.userName}"])}" width="20" height="20">
+                    %{--<i class="fas fa-user" style="font-size:24px"></i>--}%
                     ${session.user.userName}
                     <span class="caret"></span>
                 </button>

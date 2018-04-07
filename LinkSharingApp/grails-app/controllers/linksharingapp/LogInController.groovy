@@ -53,7 +53,8 @@ class LogInController {
         User user = new User(firstName: params.firstName, lastName: params.lastName, email: params.email,
                     userName: params.userName , password: params.password,confirmPassword: params.confirmPassword)
         if(user.validate()){
-            log.info("User registered successfully! ${user.save(flush:true, failOnError : true)}")
+            user.save(flush:true, failOnError : true)
+            log.info("User registered successfully! ${}")
             render("Success")
         }
         else {
