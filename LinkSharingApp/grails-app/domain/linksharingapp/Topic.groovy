@@ -80,9 +80,17 @@ class Topic {
         return userList
     }
 
-    static Boolean isPublic(Long id){
-        Topic topic = Topic.findById(id)
-        if(topic.visibility == Visibility.PUBLIC){
+    Boolean isPublic(){
+        if(this.visibility == Visibility.PUBLIC){
+            return true
+        }
+        else {
+            return false
+        }
+    }
+
+    Boolean canViewedBy(User user,Topic topic){
+        if (topic.isPublic() || user.subscriptions.contains(topic) || user.admin) {
             return true
         }
         else {
