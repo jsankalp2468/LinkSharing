@@ -84,9 +84,12 @@ class LinkSharingTagLib {
             Topic topic = Topic.findById(attrs.topicId.toLong())
             out << body() << topic.subscriptions.size()
         }
-        else if (session.user){
-            out << body() << session.user.subscriptions.size()
+        else if (attrs.user){
+            out << body() << attrs.user.subscriptions.size()
         }
+        else if(session.user){
+                out << body() << session.user.subscriptions.size()
+            }
     }
 
     def resourceCount = {attrs,body ->
@@ -95,7 +98,11 @@ class LinkSharingTagLib {
     }
 
     def topicCount = {attrs,body ->
-        out << body() << session.user.topics.size()
+        if(session.user){
+            out << body() << session.user.topics.size()
+        }else if(attrs.user){
+            out << body() << attrs.user.topics.size()
+        }
     }
 
     def editResource = {
@@ -106,6 +113,27 @@ class LinkSharingTagLib {
             value = null
         }
 
+        out << value
+    }
+
+    def topicShowSubscribe = {attrs->
+        def value
+        Topic topic = new Topic(attrs.topic)
+        if (!session.user){
+            value = "Subscribe"
+        }
+        else{
+            Subscription subscription = Subscription.findByUserAndTopic(session.user,topic)
+            if(topic.createdBy == session.user){
+                value = null
+            }
+            else if(subscription){
+                value = "Unsubscribe"
+            }
+            else {
+                value = "Subscribe"
+            }
+        }
         out << value
     }
 

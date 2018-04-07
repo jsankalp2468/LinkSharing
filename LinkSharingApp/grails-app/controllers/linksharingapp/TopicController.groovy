@@ -44,7 +44,7 @@ class TopicController {
                         render("succcess")
                     }
                     else {
-                        flash.error = "flash error set"
+                        flash.error = "Please LogIn to Continue!!"
                         redirect(controller: 'logIn',action: 'index')
                     }
                 }

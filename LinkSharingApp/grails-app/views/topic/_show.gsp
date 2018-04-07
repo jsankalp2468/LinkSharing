@@ -25,17 +25,17 @@
 
                     <div class="col-lg-5" style="padding-left: 0px">
                         <div class="text-muted">@${resources1[0].topic.createdBy.firstName}</div>
-                        <a href="#" class="hyperlink">Unsubscribe</a>
+                        <a href="#" class="hyperlink"><ls:topicShowSubscribe></ls:topicShowSubscribe></a>
                     </div>
 
                     <div class="col-lg-3">
                         <span class="text-muted">Subscriptions</span>
-                        <span class="text-primary">${subscribedUsers1.size()}</span>
+                        <span class="text-primary"><ls:subscriptionCount topicId="${resources1[0].topic.id}"></ls:subscriptionCount> </span>
                     </div>
 
                     <div class="col-lg-2">
-                        <span class="text-muted">Topics</span>
-                        <span class="text-primary">50</span>
+                        <span class="text-muted">Posts</span>
+                        <span class="text-primary"><ls:resourceCount topicId="${resources1[0].topic.id}"></ls:resourceCount> </span>
                     </div>
                 </div>
 
@@ -76,13 +76,13 @@
                         </div>
 
                         <div class="col-lg-4">
-                            <span class="text-muted">Subscriptions</span>
-                            <span class="text-primary">50</span>
+                            <div class="text-muted">Subscriptions</div>
+                            <div class="text-primary"><ls:subscriptionCount user="${subscriptions}"></ls:subscriptionCount></div>
                         </div>
 
                         <div class="col-lg-3">
-                            <span class="text-muted">Topics</span>
-                            <span class="text-primary">50</span>
+                            <div class="text-muted">Topics</div>
+                            <div class="text-primary"><ls:topicCount user="${subscriptions}"></ls:topicCount> </div>
                         </div>
 
                     </div>
@@ -97,8 +97,11 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <span class="text-primary">Posts : "${resources1[0].topic.name}"</span>
+            <g:form class="pull-right">
+                <g:select name="resources" optionKey="id" optionValue="createdBy" from="${resources1[0].topic.resources}"></g:select>
+                <span class="caret"></span>
+            </g:form>
         </div>
-
         <div class="panel-body">
             <g:each in="${resources1}" var="resource">
                 <div class="row" style="padding-bottom: 10px">
