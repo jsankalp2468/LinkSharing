@@ -198,7 +198,7 @@ class BootStrap {
             User user = it
             user.readingItems.each {
                 Resource resource = it.resource
-                ResourceRating resourceRating = new ResourceRating(user: user,resource: resource,'score':5)
+                ResourceRating resourceRating = new ResourceRating(user: user,resource: resource,'score':3)
                 println(resourceRating.save())
             }
 

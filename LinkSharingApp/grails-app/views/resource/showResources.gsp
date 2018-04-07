@@ -32,6 +32,10 @@
                     <span class="pull-right">${resource.dateCreated}</span>
                     <br>
                     <span class="pull-right">
+                        <g:form url="[controller: 'resourceRating',action: 'save', params: [id: resource.id]]">
+                            <g:select name="resource.rating" from="${1..5}" value="rating"></g:select>
+                            <g:submitButton name="vote"></g:submitButton>
+                        </g:form>
                         <a href="#">
                             <i class="fas fa-heart"></i>
                         </a>
