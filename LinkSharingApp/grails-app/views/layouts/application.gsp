@@ -1,3 +1,4 @@
+<%@ page import="linksharingapp.User" %>
 <!doctype html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 
 <body>
 
-<g:if test="${!session.user}">
+<g:if test="${!session.userId}">
     <div class="container">
         <div class="page-header well">
             <span>
@@ -85,9 +86,9 @@
             <span class="col-lg-3 dropdown">
 
                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${session.user.userName}"])}" width="20" height="20">
-                    %{--<i class="fas fa-user" style="font-size:24px"></i>--}%
-                    ${session.user.userName}
+                    <i class="fas fa-user" style="font-size:24px"></i>
+                    <%         linksharingapp.User user = linksharingapp.User.findById(session.userId.toLong())    %>
+                    ${user.userName}
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">

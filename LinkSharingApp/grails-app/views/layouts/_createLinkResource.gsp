@@ -1,3 +1,4 @@
+<%@ page import="linksharingapp.User" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +6,7 @@
 </head>
 
 <body>
-<g:if test="${session.user}">
+<g:if test="${session.userId}">
     <div id="myModal3" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
@@ -36,7 +37,8 @@
 
                         <div class="dropdown">
                             <label class="control-label col-sm-2" for="topicId">topic:</label>
-                            <g:select name="topicId" optionKey="id" optionValue="name"  from="${session.user.subscriptions.topic}"></g:select>
+                            <%         linksharingapp.User user = User.findById(session.userId.toLong())    %>
+                            <g:select name="topicId" optionKey="id" optionValue="name"  from="${user.subscriptions.topic}"></g:select>
                         </div>
                         <br>
 

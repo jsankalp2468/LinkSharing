@@ -18,12 +18,21 @@
     </div>
 
     <div class="panel-body">
-        <g:form class="form-horizontal" method="post" enctype="multipart/form-data" url="[controller: 'dummy', action:'save']">
+        <g:form class="form-horizontal" method="post" enctype="multipart/form-data"
+                url="[controller: 'dummy', action: 'save']">
             <div class="form-group">
-                <label class="control-label col-lg-4" >First Name</label>
+                <label class="control-label col-lg-4">First Name</label>
 
                 <div class="col-lg-8">
-                    <input type="text" class="form-control" name="name">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-lg-4">Last Name</label>
+
+                <div class="col-lg-8">
+                    <input type="text" class="form-control">
                 </div>
             </div>
 
@@ -31,11 +40,33 @@
                 <label class="control-label col-lg-4">Email</label>
 
                 <div class="col-lg-8">
-                    <input type="text" class="form-control" name="email">
+                    <input type="text" class="form-control">
                 </div>
             </div>
 
+            <div class="form-group">
+                <label class="control-label col-lg-4">Username</label>
 
+                <div class="col-lg-8">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-lg-4">Password</label>
+
+                <div class="col-lg-8">
+                    <input type="password" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-lg-4">Confirm Password</label>
+
+                <div class="col-lg-8">
+                    <input type="password" class="form-control">
+                </div>
+            </div>
 
             <div class="form-group">
                 <label class="control-label col-lg-4" for="document">Photo</label>

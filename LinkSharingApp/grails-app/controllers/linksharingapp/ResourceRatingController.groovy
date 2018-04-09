@@ -10,15 +10,16 @@ class ResourceRatingController {
 
 
     def save() {
-        if (session.user){
+        User user = User.findById(session.userId.toLong())
+        if (user){
             Resource resource = Resource.findById(params.id.toLong())
             Integer score = new Integer(params.rating)
-            if (ResourceRating.findByUserAndResource(session.user,resource)){
-                flash.error = "${session.user.name}, you already voted this resource"
+            if (ResourceRating.findByUserAndResource(user,resource)){
+                flash.error = "${user.name}, you already voted this resource"
                 redirect(controller: 'logIn',action: 'index')
             }
             else {
-                ResourceRating resourceRating = new ResourceRating(user: session.user,resource: resource,score: score)
+                ResourceRating resourceRating = new ResourceRating(user: user,resource: resource,score: score)
                 resourceRating.save()
                 redirect(controller: 'logIn',action: 'index')
             }

@@ -9,22 +9,21 @@ class LinkSharingTagLib {
 //    static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
     static namespace = "ls"
 
-    def checkRead = { attrs,body ->
+    def checkRead = { attrs, body ->
         def value
-        if(session.user){
-            ReadingItem readingItem = ReadingItem.findByUserAndResource(session.user,attrs.resource)
-            if (readingItem){
-                if(readingItem.isRead){
+        if (session.userId) {
+            linksharingapp.User user = User.findById(session.userId.toLong())
+            ReadingItem readingItem = ReadingItem.findByUserAndResource(user, attrs.resource)
+            if (readingItem) {
+                if (readingItem.isRead) {
                     value = "Mark as Read"
-                }else {
+                } else {
                     value = "Mark as UnRead"
                 }
-            }
-            else {
+            } else {
                 value = null
             }
-        }
-        else {
+        } else {
             value = null
         }
 
@@ -35,33 +34,35 @@ class LinkSharingTagLib {
         List<TopPostVO> topPostVOList = Resource.getTopPosts()
 //        out << <g:render template="topPosts" var="demo" collection="${lists}"></g:render>
 //        out << render(template: 'topPosts',collection: topPostVOList,var: 'demo')
-        out << g.render(template: '/logIn/topPosts', collection: topPostVOList,var: 'demo')
+        out << g.render(template: '/logIn/topPosts', collection: topPostVOList, var: 'demo')
     }
 
     def getSubscribedTrendingTopics = {
         List<TopicVO> topicVOList = Topic.getTrendingTopics()
         List<TopicVO> subscribedTopicsList = []
-        if(session.user){
+        if (session.userId) {
+            linksharingapp.User user = User.findById(session.userId.toLong())
             topicVOList.each {
-                if (session.user.subscriptions.topic.name.contains(it.name)){
+                if (user.subscriptions.topic.name.contains(it.name)) {
                     subscribedTopicsList.add(it)
                 }
 
             }
         }
-    out << g.render(template: "/layouts/trendingTopics", var: "subscribedTrendingTopics1", collection: subscribedTopicsList)
+        out << g.render(template: "/layouts/trendingTopics", var: "subscribedTrendingTopics1", collection: subscribedTopicsList)
     }
 
     def getUnsubscribedTrendingTopics = {
         List<TopicVO> topicVOList = Topic.getTrendingTopics()
         List<TopicVO> unSubscribedTopicsList = []
-        if(session.user){
+        if (session.userId) {
+            linksharingapp.User user = User.findById(session.userId.toLong())
             topicVOList.each {
-                if (!session.user.subscriptions.topic.name.contains(it.name)){
+                if (!user.subscriptions.topic.name.contains(it.name)) {
                     unSubscribedTopicsList.add(it)
                 }
             }
-        }else {
+        } else {
             topicVOList.each {
                 unSubscribedTopicsList.add(it)
             }
@@ -69,72 +70,68 @@ class LinkSharingTagLib {
         out << g.render(template: "/layouts/trendingTopics", var: "unSubscribedTrendingTopics1", collection: unSubscribedTopicsList)
     }
 
-    def showSubscribe = {attrs,body ->
+    def showSubscribe = { attrs, body ->
         def value
-        if (attrs.topicId && session.user){
+        if (attrs.topicId && session.userId) {
             value = "delete"
-        }else {
+        } else {
             value = "save"
         }
         out << body() << value
     }
 
-    def subscriptionCount = {attrs,body ->
-        if(attrs.topicId){
+    def subscriptionCount = { attrs, body ->
+        if (attrs.topicId) {
             Topic topic = Topic.findById(attrs.topicId.toLong())
             out << body() << topic.subscriptions.size()
+        } else if (session.userId) {
+            linksharingapp.User user = User.findById(session.userId.toLong())
+            out << body() << user.subscriptions.size()
         }
-        else if (attrs.user){
-            out << body() << attrs.user.subscriptions.size()
-        }
-        else if(session.user){
-                out << body() << session.user.subscriptions.size()
-            }
     }
 
-    def resourceCount = {attrs,body ->
+    def resourceCount = { attrs, body ->
         Topic topic = Topic.findById(attrs.topicId.toLong())
         out << body() << topic.resources.size()
     }
 
-    def topicCount = {attrs,body ->
-        if(session.user){
-            out << body() << session.user.topics.size()
-        }else if(attrs.user){
-            out << body() << attrs.user.topics.size()
-        }
+    def topicCount = { attrs, body ->
+        linksharingapp.User user = User.findById(session.userId.toLong())
+        out << body() << user.topics.size()
     }
 
-    def editResource = {
+    def canDeleteResource = { attrs ->
         def value
-        if(session.user){
-            value = "Edit"
+        if(session.userId){
+            Resource resource = Resource.findById(attrs.resourceId)
+            User user1 = User.findById(session.userId.toLong())
+            if(user1.canDeleteResourceMethod(resource)){
+                value = "delete"
+            }else{
+                value = null
+            }
         }else{
             value = null
         }
-
-        out << value
+        out<< value
     }
 
-    def topicShowSubscribe = {attrs->
+    def checkSubscribed = {attrs->
         def value
-        Topic topic = new Topic(attrs.topic)
-        if (!session.user){
-            value = "Subscribe"
-        }
-        else{
-            Subscription subscription = Subscription.findByUserAndTopic(session.user,topic)
-            if(topic.createdBy == session.user){
+        if(session.userId){
+            Topic topic = Topic.findById(attrs.topicId)
+            User user1 = User.findById(session.userId.toLong())
+            if(user1 == topic.createdBy){
                 value = null
-            }
-            else if(subscription){
+            }else if(user1.isSubscribed(topic.id)){
                 value = "Unsubscribe"
-            }
-            else {
+            }else{
                 value = "Subscribe"
             }
+        }else{
+            value = "Subscribe"
         }
-        out << value
+        out<< value
     }
 
 }

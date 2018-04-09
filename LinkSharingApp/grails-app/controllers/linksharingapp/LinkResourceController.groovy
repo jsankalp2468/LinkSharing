@@ -7,9 +7,10 @@ class LinkResourceController {
     def index() { }
 
     def save(String url,String description,Long topicId){
-        if (session.user){
+        User user = User.findById(session.userId.toLong())
+        if (user){
             Topic topic = Topic.findById(topicId)
-            LinkResource linkResource = new LinkResource(createdBy: session.user,description: description,topic:topic,url: url)
+            LinkResource linkResource = new LinkResource(createdBy: user,description: description,topic:topic,url: url)
             if(linkResource.validate()){
                 linkResource.save()
                 flash.message = "Resource saved successfully"

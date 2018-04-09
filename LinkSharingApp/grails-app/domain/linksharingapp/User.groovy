@@ -102,6 +102,14 @@ class User {
         }
     }
 
+    Boolean canDeleteResourceMethod(Resource resource){
+        if(this.admin || this == resource.createdBy){
+            return true
+        }else {
+            return false
+        }
+    }
+
     @Override
     public String toString() {
         return "User{" +

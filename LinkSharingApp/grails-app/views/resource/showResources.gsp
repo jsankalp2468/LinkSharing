@@ -1,3 +1,4 @@
+<%@ page import="linksharingapp.User" %>
 <%--
   Created by IntelliJ IDEA.
   User: sankalp
@@ -32,14 +33,15 @@
                     <span class="pull-right">${resource.dateCreated}</span>
                     <br>
                     <span class="pull-right">
-                        <g:if test="${!session.user || session.user.getScore(resource)==1}">
+                        <g:if test="${!userId || user.getScore(resource)==1}">
                             <g:form url="[controller: 'resourceRating',action: 'save', params: [id: resource.id]]">
                                 <g:select name="resource.rating" from="${1..5}" value="rating"></g:select>
                                 <g:submitButton name="vote"></g:submitButton>
                             </g:form>
                         </g:if>
                         <g:else>
-                            ${session.user.getScore(resource)}
+                            <%         linksharingapp.User user = linksharingapp.User.findById(session.userId.toLong())    %>
+                            ${user.getScore(resource)}
                         </g:else>
                         <a href="#">
                             <i class="fas fa-heart"></i>
@@ -76,7 +78,7 @@
                     </div>
 
                     <div class="col-lg-2">
-                        <a href="${createLink(controller: 'resource',action: 'delete', id: resource.id)}" class="text-primary" style="text-decoration: underline;">Delete</a>
+                        <a href="${createLink(controller: 'resource',action: 'delete', id: resource.id)}" class="text-primary" style="text-decoration: underline;"><ls:canDeleteResource resourceId="${resource.id}"></ls:canDeleteResource></a>
                     </div>
 
                     <div class="col-lg-2">

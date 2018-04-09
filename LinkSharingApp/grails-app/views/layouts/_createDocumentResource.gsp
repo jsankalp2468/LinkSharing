@@ -5,7 +5,7 @@
 </head>
 
 <body>
-<g:if test="${session.user}">
+<g:if test="${session.userId}">
     <div id="myModal4" class="modal fade" role="dialog">
         <div class="modal-dialog">
 

@@ -8,7 +8,8 @@ class SubscriptionController {
 
     def save() {
         Topic topic = Topic.get(params.id.toLong())
-        Subscription subscription = new Subscription(topic: topic,user: session.user,seriousness: Seriousness.VERY_SERIOUS)
+        User user = User.findById(session.userId.toLong())
+        Subscription subscription = new Subscription(topic: topic,user: user,seriousness: Seriousness.VERY_SERIOUS)
         if(subscription.validate()){
             subscription.save()
             redirect(controller : 'logIn',action: 'index')
@@ -39,21 +40,19 @@ class SubscriptionController {
 
     def delete() {
         Topic topic = Topic.findById(params.id.toLong())
-        Subscription subscription = Subscription.findByUserAndTopic(session.user,topic)
-        println(subscription)
-//        try{
-
-        Subscription.withNewTransaction {
-            if (subscription.delete()) {
-                render("Deleted")
-            } else {
-//            flash.message = "subscription deleted successfully"
-//            redirect(controller : 'logIn',action: 'index')
-//        }catch (RuntimeException ex){
+        User user = User.findById(session.userId.toLong())
+        Subscription subscription = Subscription.findByUserAndTopic(user,topic)
+        if(user.subscriptions.contains(subscription) && user!=topic.createdBy){
+            user.removeFromSubscriptions(subscription)
+            topic.removeFromSubscriptions(subscription)
+            try{
+                subscription.delete(flush:true)
+                flash.message = "subscription deleted successfully"
+                redirect(controller : 'logIn',action: 'index')
+            }catch (RuntimeException ex){
                 flash.error = "error while deleting subscription ${subscription.errors.allErrors} ${subscription}"
                 render("error while deleting subscription ${subscription.errors.allErrors} ${subscription}")
-//            redirect(controller : 'logIn',action: 'index')
-//        }
+                redirect(controller : 'logIn',action: 'index')
             }
         }
     }
