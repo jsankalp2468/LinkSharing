@@ -18,7 +18,8 @@
     </div>
 
     <div class="panel-body">
-        <form class="form-horizontal">
+        <g:form class="form-horizontal" method="post" enctype="multipart/form-data"
+                url="[controller: 'dummy', action: 'save']">
             <div class="form-group">
                 <label class="control-label col-lg-4">First Name</label>
 
@@ -71,13 +72,13 @@
                 <label class="control-label col-lg-4" for="document">Photo</label>
 
                 <div class="col-sm-8">
-                    <input type="file" class="form-control" id="document" name="document">
+                    <input type="file" class="form-control" id="document" name="avatar">
                 </div>
             </div>
 
             <button type="submit" class="btn btn-primary" style="float: right">Register</button>
 
-        </form>
+        </g:form>
     </div>
 </div>
 

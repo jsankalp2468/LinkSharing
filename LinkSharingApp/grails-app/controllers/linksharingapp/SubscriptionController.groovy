@@ -8,7 +8,8 @@ class SubscriptionController {
 
     def save() {
         Topic topic = Topic.get(params.id.toLong())
-        Subscription subscription = new Subscription(topic: topic,user: session.user,seriousness: Seriousness.VERY_SERIOUS)
+        User user = User.findById(session.userId.toLong())
+        Subscription subscription = new Subscription(topic: topic,user: user,seriousness: Seriousness.VERY_SERIOUS)
         if(subscription.validate()){
             subscription.save()
             redirect(controller : 'logIn',action: 'index')
@@ -39,7 +40,8 @@ class SubscriptionController {
 
     def delete() {
         Topic topic = Topic.findById(params.id.toLong())
-        Subscription subscription = Subscription.findByUserAndTopic(session.user,topic)
+        User user = User.findById(session.userId.toLong())
+        Subscription subscription = Subscription.findByUserAndTopic(user,topic)
 //        try{
             subscription.delete(flush:true)
 //            flash.message = "subscription deleted successfully"

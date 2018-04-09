@@ -10,7 +10,7 @@ class LogInController {
 
     def index() {
         HttpSession session = request.getSession()
-        if(session.getAttribute('user')){
+        if(session.getAttribute('userId')){
             forward(controller: 'user',action: 'index')
         }
         else {
@@ -23,14 +23,11 @@ class LogInController {
         String userName = params.userName
         String password = params.password
         User user = User.findByUserNameAndPassword(userName,password)
-        println(user)
-        println(userName)
-        println(password)
         if (user){
-            session.user = user
-//            session.getAttribute('user')
+//            session.user = user.id
+            session.setAttribute('userId',user.id)
             if(user.active){
-                session.setAttribute('user',user)
+//                session.setAttribute('user',user)
                 redirect(controller: "user", action: 'index')
             }
             else {

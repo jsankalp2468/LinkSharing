@@ -5,7 +5,7 @@
   Time: 12:59 PM
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="linksharingapp.User" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title></title>
@@ -19,14 +19,15 @@
             <div class="col-lg-3">
                 <img src="#" class="img-responsive">
             </div>
+            <%         linksharingapp.User user = linksharingapp.User.findById(session.userId.toLong())    %>
 
             <div class="col-lg-9">
                 <div class="text">
-                    <h4>${session.user.name}</h4>
+                    <h4>${user.name}</h4>
                 </div>
 
                 <div class="text-muted">
-                    @${session.user.userName}
+                    @${user.userName}
                 </div>
 
                 <div class="col-lg-4">

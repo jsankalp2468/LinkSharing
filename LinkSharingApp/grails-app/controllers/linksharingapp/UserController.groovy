@@ -6,7 +6,9 @@ import vo.TopicVO
 class UserController {
 
     def index() {
-        Set<ReadingItem> unReadItems = session.user.readingItems
+        println(session.userId)
+        User user = User.findById(session.userId.toLong())
+        Set<ReadingItem> unReadItems = user.readingItems
         render(view: 'index',model: [unReadItems:unReadItems])
     }
 
@@ -25,8 +27,9 @@ class UserController {
     }
 
     def showSubscribedTopics() {
-        if(session.user){
-            render(view: 'showSubscribedTopics',  model: [topicList : session.user.getSubscribedTopics()])
+        if(session.userId){
+            User user = User.findById(session.userId.toLong())
+            render(view: 'showSubscribedTopics',  model: [topicList : user.getSubscribedTopics()])
         }
         else{
             redirect(controller:'logIn',action:'index')

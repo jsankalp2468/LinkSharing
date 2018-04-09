@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="linksharingapp.User" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title></title>
@@ -62,7 +62,8 @@
 
                 <div class="col-lg-7" style="padding-left: 0px">
                     <div class="text-muted">@${subscribedTrendingTopics1.createdBy.userName}</div>
-                    <g:if test="${session.user.isSubscribed(subscribedTrendingTopics1.id)}">
+                    <%         linksharingapp.User user = linksharingapp.User.findById(session.userId.toLong())    %>
+                    <g:if test="${user.isSubscribed(subscribedTrendingTopics1.id)}">
                         <a href="#" class="hyperlink">UnSubscribe</a>
                     </g:if>
                 </div>

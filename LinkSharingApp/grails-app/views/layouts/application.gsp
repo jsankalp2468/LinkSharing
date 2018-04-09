@@ -1,3 +1,4 @@
+<%@ page import="linksharingapp.User" %>
 <!doctype html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 
 <body>
 
-<g:if test="${!session.user}">
+<g:if test="${!session.userId}">
     <div class="container">
         <div class="page-header well">
             <span>
@@ -86,7 +87,8 @@
 
                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                     <i class="fas fa-user" style="font-size:24px"></i>
-                    ${session.user.userName}
+                    <%         linksharingapp.User user = linksharingapp.User.findById(session.userId.toLong())    %>
+                    ${user.userName}
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">

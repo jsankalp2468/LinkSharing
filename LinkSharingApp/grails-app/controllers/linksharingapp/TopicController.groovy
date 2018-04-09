@@ -39,7 +39,8 @@ class TopicController {
                     render(view: 'index',model: [subscribedUsers:topic[0].getSubscribedUsers(),resources:topic[0].resources])
                 }
                 else if(topic[0].visibility == Visibility.PRIVATE){
-                    Subscription subscription = Subscription.findByUserAndTopic(session.user,topic)
+                    User user = User.findById(session.userId.toLong())
+                    Subscription subscription = Subscription.findByUserAndTopic(user,topic)
                     if (subscription){
                         render("succcess")
                     }
@@ -60,9 +61,10 @@ class TopicController {
 
     def save(String topic,String visibility){
 //        User user =User.findByFirstName("sankalp")
-        if(session.user){
+        User user = User.findById(session.userId.toLong())
+        if(user){
             println(visibility)
-            Topic topic1 = new Topic(name: topic,createdBy: session.user,visibility: Visibility.isVisibility(visibility))
+            Topic topic1 = new Topic(name: topic,createdBy: user,visibility: Visibility.isVisibility(visibility))
             if(topic1.validate()){
                 topic1.save(flush:true)
                 flash.message = "Topic is saved ${topic1}"
