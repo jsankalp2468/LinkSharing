@@ -1,4 +1,4 @@
-<%@ page import="linksharingapp.User" contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title></title>
@@ -21,7 +21,7 @@
                 <div class="col-lg-4" style="padding-left: 0px">
                     <div class="text-muted">@${unSubscribedTrendingTopics1.createdBy.userName}</div>
                     %{--<g:if test="${session.user.isSubscribed(unSubscribedTrendingTopics1.id)}">--}%
-                        <a href="#" class="hyperlink">Subscribe</a>
+                        <a href="#" class="hyperlink"><ls:checkSubscribed topicId="${unSubscribedTrendingTopics1.id}"></ls:checkSubscribed> </a>
                     %{--</g:if>--}%
                 </div>
 
@@ -62,10 +62,7 @@
 
                 <div class="col-lg-7" style="padding-left: 0px">
                     <div class="text-muted">@${subscribedTrendingTopics1.createdBy.userName}</div>
-                    <%         linksharingapp.User user = linksharingapp.User.findById(session.userId.toLong())    %>
-                    <g:if test="${user.isSubscribed(subscribedTrendingTopics1.id)}">
-                        <a href="#" class="hyperlink">UnSubscribe</a>
-                    </g:if>
+                        <a href="${createLink(controller: 'subscription',action: 'delete', id: subscribedTrendingTopics1.id)}" class="hyperlink"><ls:checkSubscribed topicId="${subscribedTrendingTopics1.id}"></ls:checkSubscribed> </a>
                 </div>
 
                 <div class="col-lg-3">
@@ -108,7 +105,7 @@
             <a href="#">
                 <i class="far fa-file fa-2x"></i>
             </a>
-            <a href="${createLink(controller: 'subscription',action: 'delete', id: subscribedTrendingTopics1.id)}">
+            <a href="#">
                 <i class="far fa-trash-alt fa-2x"></i>
             </a>
         </div>

@@ -116,5 +116,23 @@ class LinkSharingTagLib {
         out<< value
     }
 
+    def checkSubscribed = {attrs->
+        def value
+        if(session.userId){
+            Topic topic = Topic.findById(attrs.topicId)
+            User user1 = User.findById(session.userId.toLong())
+            if(user1 == topic.createdBy){
+                value = null
+            }else if(user1.isSubscribed(topic.id)){
+                value = "Unsubscribe"
+            }else{
+                value = "Subscribe"
+            }
+        }else{
+            value = "Subscribe"
+        }
+        out<< value
+    }
+
 }
 

@@ -42,14 +42,18 @@ class SubscriptionController {
         Topic topic = Topic.findById(params.id.toLong())
         User user = User.findById(session.userId.toLong())
         Subscription subscription = Subscription.findByUserAndTopic(user,topic)
-//        try{
-            subscription.delete(flush:true)
-//            flash.message = "subscription deleted successfully"
-//            redirect(controller : 'logIn',action: 'index')
-//        }catch (RuntimeException ex){
-            flash.error = "error while deleting subscription ${subscription.errors.allErrors} ${subscription}"
-            render("error while deleting subscription ${subscription.errors.allErrors} ${subscription}")
-//            redirect(controller : 'logIn',action: 'index')
-//        }
+        if(user.subscriptions.contains(subscription) && user!=topic.createdBy){
+            user.removeFromSubscriptions(subscription)
+            topic.removeFromSubscriptions(subscription)
+            try{
+                subscription.delete(flush:true)
+                flash.message = "subscription deleted successfully"
+                redirect(controller : 'logIn',action: 'index')
+            }catch (RuntimeException ex){
+                flash.error = "error while deleting subscription ${subscription.errors.allErrors} ${subscription}"
+                render("error while deleting subscription ${subscription.errors.allErrors} ${subscription}")
+                redirect(controller : 'logIn',action: 'index')
+            }
+        }
     }
 }

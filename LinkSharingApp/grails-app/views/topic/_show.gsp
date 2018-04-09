@@ -25,7 +25,7 @@
 
                     <div class="col-lg-5" style="padding-left: 0px">
                         <div class="text-muted">@${resources1[0].topic.createdBy.firstName}</div>
-                        <a href="#" class="hyperlink">Unsubscribe</a>
+                        <a href="#" class="hyperlink"><ls:checkSubscribed topicId="${resources1[0].topic.id}"></ls:checkSubscribed> </a>
                     </div>
 
                     <div class="col-lg-3">
