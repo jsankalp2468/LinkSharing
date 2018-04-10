@@ -7,9 +7,14 @@ class UserController {
 
     def index() {
         println(session.userId)
-        User user = User.findById(session.userId.toLong())
-        Set<ReadingItem> unReadItems = user.readingItems
-        render(view: 'index',model: [unReadItems:unReadItems])
+        if(session.userId){
+            User user = User.findById(session.userId.toLong())
+            Set<ReadingItem> unReadItems = user.readingItems
+            render(view: 'index',model: [unReadItems:unReadItems])
+        }
+        else{
+            redirect(controller: 'logIn',action: 'index')
+        }
     }
 
     def show() {
@@ -35,4 +40,9 @@ class UserController {
             redirect(controller:'logIn',action:'index')
         }
     }
+
+//    def list(){
+//        User user = User.findById(session.userId.toLong())
+//        [users:User.list(params) , userCount:User.count()]
+//    }
 }

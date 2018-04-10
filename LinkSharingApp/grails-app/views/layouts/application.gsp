@@ -84,10 +84,10 @@
             <g:render template="/layouts/createDocumentResource"></g:render>
 
             <span class="col-lg-3 dropdown">
-
+            <%         linksharingapp.User user = linksharingapp.User.findById(session.userId.toLong())    %>
                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <i class="fas fa-user" style="font-size:24px"></i>
-                    <%         linksharingapp.User user = linksharingapp.User.findById(session.userId.toLong())    %>
+                    <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${user.userName}"])}" width="25" height="25" class="img-circle">
+                    %{--<i class="fas fa-user" style="font-size:24px"></i>--}%
                     ${user.userName}
                     <span class="caret"></span>
                 </button>

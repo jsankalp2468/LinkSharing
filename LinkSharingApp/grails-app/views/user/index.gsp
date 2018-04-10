@@ -16,10 +16,10 @@
 <div class="col-lg-5">
     <div class="panel panel-default">
         <div class="panel-body">
-            <div class="col-lg-3">
-                <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${session.user.userName}"])}" class="img-responsive">
-            </div>
             <%         linksharingapp.User user = linksharingapp.User.findById(session.userId.toLong())    %>
+            <div class="col-lg-3">
+                <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${user.userName}"])}" class="img-responsive">
+            </div>
 
             <div class="col-lg-9">
                 <div class="text">
@@ -37,7 +37,7 @@
 
                 <div class="col-lg-3">
                     <span class="text-muted">Topics</span>
-                    <span class="text-primary"><ls:topicCount></ls:topicCount></span>
+                    <span class="text-primary"><ls:topicCount user="${user}"></ls:topicCount></span>
                 </div>
 
             </div>
@@ -169,6 +169,10 @@
 
         <div class="panel-body">
             <g:render template="inbox" collection="${unReadItems}" var="unReadResource"></g:render>
+        </div>
+
+        <div class="panel-footer">
+            <g:paginate total="2" max="5" prev="Previous" next="Next" offset="0" action="list"></g:paginate>
         </div>
     </div>
 </div>

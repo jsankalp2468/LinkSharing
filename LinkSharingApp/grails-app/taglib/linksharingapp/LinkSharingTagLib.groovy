@@ -84,10 +84,14 @@ class LinkSharingTagLib {
         if (attrs.topicId) {
             Topic topic = Topic.findById(attrs.topicId.toLong())
             out << body() << topic.subscriptions.size()
-        } else if (session.userId) {
+        } else if (!session.userId) {
+//            linksharingapp.User user = User.findById(session.userId.toLong())
+            out << body() << attrs.user.subscriptions.size()
+        }else if (session.userId) {
             linksharingapp.User user = User.findById(session.userId.toLong())
             out << body() << user.subscriptions.size()
         }
+
     }
 
     def resourceCount = { attrs, body ->
@@ -96,8 +100,8 @@ class LinkSharingTagLib {
     }
 
     def topicCount = { attrs, body ->
-        linksharingapp.User user = User.findById(session.userId.toLong())
-        out << body() << user.topics.size()
+//        linksharingapp.User user = User.findById(session.userId.toLong())
+        out << body() << attrs.user.topics.size()
     }
 
     def canDeleteResource = { attrs ->
@@ -133,6 +137,18 @@ class LinkSharingTagLib {
         }
         out<< value
     }
+
+    def editResource = {
+        def value
+        if(session.user){
+            value = "Edit"
+        }else{
+            value = null
+        }
+
+        out << value
+    }
+
 
 }
 

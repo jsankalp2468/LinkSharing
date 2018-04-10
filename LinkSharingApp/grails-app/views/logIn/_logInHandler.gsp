@@ -18,7 +18,7 @@
     </div>
 
     <div class="panel-body">
-        <g:form class="form-horizontal" url="[controller: 'logIn', action: 'logInHandler']">
+        <g:form class="form-horizontal" url="[controller: 'logIn', action: 'logInHandler']" method="post">
             <div class="form-group">
                 <label class="control-label col-lg-4">Name</label>
 

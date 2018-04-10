@@ -30,7 +30,7 @@
 
             <g:else>
                 <div class="col-lg-4">
-                    <a href="#" class="text-primary" style="text-decoration: underline;">View Full Size</a>
+                    <a href="#" class="text-primary" style="text-decoration: underline;">View Full Site</a>
                 </div>
             </g:else>
 

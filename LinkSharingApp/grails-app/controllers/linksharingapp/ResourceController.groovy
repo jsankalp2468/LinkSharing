@@ -72,7 +72,12 @@ class ResourceController {
             }
             println(co.topicId)
             List<Resource> resources = Resource.search(co).list()
-            render(view: 'searchResource', model: [resourceList: resources])
+            if (resources) {
+                render(view: 'searchResource', model: [resourceList: resources])
+            }else {
+                flash.message = "No resource available yet"
+                redirect(controller: 'logIn',action: 'index')
+            }
         }
     }
 

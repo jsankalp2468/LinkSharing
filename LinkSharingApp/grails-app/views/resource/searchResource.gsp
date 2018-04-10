@@ -60,12 +60,17 @@
                                 <i class="fab fa-tumblr fa-2x"> </i>
                                 <i class="fab fa-google-plus-g fa-2x"> </i>
                             </div>
-                            <div class="col-lg-2">
-                                <a href="#" class="text-primary" style="text-decoration: underline;">Download</a>
-                            </div>
-                            <div class="col-lg-3">
-                                <a href="" class="text-primary" style="text-decoration: underline;">View Full Size</a>
-                            </div>
+                            <g:if test="${linksharingapp.Resource.findTypeOfResource(resource.id) == "DocumentResource"}">
+                                <div class="col-lg-4">
+                                    <a href="#" class="text-primary" style="text-decoration: underline;">Download</a>
+                                </div>
+                            </g:if>
+
+                            <g:else>
+                                <div class="col-lg-4">
+                                    <a href="#" class="text-primary" style="text-decoration: underline;">View Full Size</a>
+                                </div>
+                            </g:else>
                             <div class="col-lg-3">
                                 <a href="#" class="text-primary" style="text-decoration: underline;"><ls:checkRead resource="${resource}"></ls:checkRead></a>
                             </div>

@@ -10,8 +10,8 @@ class ResourceRatingController {
 
 
     def save() {
-        User user = User.findById(session.userId.toLong())
-        if (user){
+        if (session.userId){
+            User user = User.findById(session.userId.toLong())
             Resource resource = Resource.findById(params.id.toLong())
             Integer score = new Integer(params.rating)
             if (ResourceRating.findByUserAndResource(user,resource)){

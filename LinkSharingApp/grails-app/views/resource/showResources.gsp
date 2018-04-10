@@ -33,16 +33,25 @@
                     <span class="pull-right">${resource.dateCreated}</span>
                     <br>
                     <span class="pull-right">
-                        <g:if test="${!userId || user.getScore(resource)==1}">
+                        <g:if test="${!session.userId}">
                             <g:form url="[controller: 'resourceRating',action: 'save', params: [id: resource.id]]">
                                 <g:select name="resource.rating" from="${1..5}" value="rating"></g:select>
                                 <g:submitButton name="vote"></g:submitButton>
                             </g:form>
                         </g:if>
-                        <g:else>
+                        <g:elseif test="${session.userId}">
                             <%         linksharingapp.User user = linksharingapp.User.findById(session.userId.toLong())    %>
-                            ${user.getScore(resource)}
-                        </g:else>
+                            <g:if test="${user.getScore(resource)==1}">
+                                <g:form url="[controller: 'resourceRating',action: 'save', params: [id: resource.id]]">
+                                    <g:select name="resource.rating" from="${1..5}" value="rating"></g:select>
+                                    <g:submitButton name="vote"></g:submitButton>
+                                </g:form>
+                            </g:if>
+                            <g:else>
+                                ${user.getScore(resource)}
+                            </g:else>
+                        </g:elseif>
+
                         <a href="#">
                             <i class="fas fa-heart"></i>
                         </a>

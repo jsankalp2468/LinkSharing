@@ -68,12 +68,13 @@ class TopicController {
             if(topic1.validate()){
                 topic1.save(flush:true)
                 flash.message = "Topic is saved ${topic1}"
-                render("Topic saved Successfully")
+//                render("Topic saved Successfully")
+                redirect(controller: 'logIn',action: 'index')
             }
             else {
                 flash.error = "topic not saved"
 //            render("Error while saving topic ${topic1} ${topic1.errors.allErrors}")
-                redirect(controller: 'user',action: 'index')
+                redirect(controller: 'logIn',action: 'index')
             }
         }
         else {

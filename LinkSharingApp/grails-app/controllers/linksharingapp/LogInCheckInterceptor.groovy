@@ -5,17 +5,18 @@ import javax.servlet.http.HttpSession
 
 class LogInCheckInterceptor {
 
-    public LogInController(){
+    public LogInCheckInterceptor(){
         matchAll().excludes(controller : 'logIn')
     }
 
     boolean before() {
-        HttpSession session = request.getSession()
-        log.info(" from logincheckinterceptor")
-        if(!session.user){
-            redirect(controller: 'logIn', action: 'index')
-        }
-        false
+//        HttpSession session = request.getSession()
+//        log.info(" from logincheckinterceptor")
+//        if(!session.userId){
+//            redirect(controller: 'logIn', action: 'index')
+//            false
+//        }
+        true
     }
 
     boolean after() { true }

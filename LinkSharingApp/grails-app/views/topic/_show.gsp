@@ -25,7 +25,7 @@
 
                     <div class="col-lg-5" style="padding-left: 0px">
                         <div class="text-muted">@${resources1[0].topic.createdBy.firstName}</div>
-                        <a href="#" class="hyperlink"><ls:topicShowSubscribe></ls:topicShowSubscribe></a>
+                        <a href="#" class="hyperlink"><ls:checkSubscribed topicId="${resources1[0].topic.id}"></ls:checkSubscribed> </a>
                     </div>
 
                     <div class="col-lg-3">
@@ -97,10 +97,10 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <span class="text-primary">Posts : "${resources1[0].topic.name}"</span>
-            <g:form class="pull-right">
-                <g:select name="resources" optionKey="id" optionValue="createdBy" from="${resources1[0].topic.resources}"></g:select>
-                <span class="caret"></span>
-            </g:form>
+            %{--<g:form class="pull-right">--}%
+                %{--<g:select name="resources" optionKey="id" optionValue="createdBy" from="${resources1[0].topic.resources}"></g:select>--}%
+                %{--<span class="caret"></span>--}%
+            %{--</g:form>--}%
         </div>
         <div class="panel-body">
             <g:each in="${resources1}" var="resource">
@@ -123,13 +123,17 @@
                                 <i class="fab fa-google-plus-g fa-2x"></i>
                             </div>
 
-                            <div class="col-lg-2">
-                                <a href="#" class="text-primary" style="text-decoration: underline;">Download</a>
-                            </div>
+                            <g:if test="${linksharingapp.Resource.findTypeOfResource(resource.id) == "DocumentResource"}">
+                                <div class="col-lg-4">
+                                    <a href="#" class="text-primary" style="text-decoration: underline;">Download</a>
+                                </div>
+                            </g:if>
 
-                            <div class="col-lg-3">
-                                <a href="#" class="text-primary" style="text-decoration: underline;">View Full Size</a>
-                            </div>
+                            <g:else>
+                                <div class="col-lg-4">
+                                    <a href="#" class="text-primary" style="text-decoration: underline;">View Full Size</a>
+                                </div>
+                            </g:else>
 
                             <div class="col-lg-3">
                                 <a href="#" class="text-primary" style="text-decoration: underline;">
