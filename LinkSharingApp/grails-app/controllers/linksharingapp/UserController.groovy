@@ -9,8 +9,13 @@ class UserController {
         println(session.userId)
         if(session.userId){
             User user = User.findById(session.userId.toLong())
-            Set<ReadingItem> unReadItems = user.readingItems
-            render(view: 'index',model: [unReadItems:unReadItems])
+            def max = params.max?:5
+            def offset = params.offset?:0
+//            Set<ReadingItem> unReadItems = ReadingItem.findAllByUser(user,[max:max,offset:offset])
+            def unReadItems = ReadingItem.createCriteria().list(max: max,offset: offset){
+                eq("user",user)
+            }
+            render(view: 'index',model: [unReadItems:unReadItems,total:unReadItems.getTotalCount()])
         }
         else{
             redirect(controller: 'logIn',action: 'index')

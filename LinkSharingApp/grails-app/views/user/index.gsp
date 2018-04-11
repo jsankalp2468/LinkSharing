@@ -172,7 +172,8 @@
         </div>
 
         <div class="panel-footer">
-            <g:paginate total="2" max="5" prev="Previous" next="Next" offset="0" action="list"></g:paginate>
+            <br/>
+            <g:paginate total="${total}" prev="Previous" next="Next" controller="user" action="index" max="5"/><br/>
         </div>
     </div>
 </div>

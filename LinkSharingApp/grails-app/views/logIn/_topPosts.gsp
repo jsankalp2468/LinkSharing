@@ -6,19 +6,18 @@
 
 <body>
 <div class="row">
+    <% linksharingapp.Resource resource = linksharingapp.Resource.findById(demo.id)%>
     <div class="col-lg-2">
         <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${demo.createdBy.userName}"])}" width="80" height="80">    </div>
 
     <div class="col-lg-10">
         <span class="text">${demo.createdBy.firstName}</span>
-        <span class="text-muted">@"${demo.createdBy.userName}" 5min</span>
+        <span class="text-muted">@"${demo.createdBy.userName}" "${resource.lastUpdated}"</span>
         <a href="${createLink(controller:'topic', ation:'index' ,id:demo.id)}" class="text-primary pull-right">"${demo.topicName}"</a>
 
         <div class="text">
             <p>
-                Wikiversity Free course materials · Wikiquote Free quote compendium ·
-                MediaWiki Free & open wiki application · Wikisource Free library ·
-                Wikispecies Free species directory · Meta-Wiki Community coordination & documentation.
+                ${resource.description}
             </p>
         </div>
 
