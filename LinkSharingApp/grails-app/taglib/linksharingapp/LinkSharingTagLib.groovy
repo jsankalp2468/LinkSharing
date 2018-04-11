@@ -149,6 +149,13 @@ class LinkSharingTagLib {
         out << value
     }
 
+    def recentShare = {
+        List<Resource> recentShares = Resource.createCriteria().list([max:2]) {
+            order 'id','desc'
+        }
+        out << g.render(template: "/logIn/recentShares", collection: recentShares, var: "recentSharePost")
+    }
+
 
 }
 

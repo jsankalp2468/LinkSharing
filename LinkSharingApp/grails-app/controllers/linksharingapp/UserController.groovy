@@ -5,6 +5,8 @@ import vo.TopicVO
 
 class UserController {
 
+    def readingItemService
+
     def index() {
         println(session.userId)
         if(session.userId){
@@ -12,9 +14,7 @@ class UserController {
             def max = params.max?:5
             def offset = params.offset?:0
 //            Set<ReadingItem> unReadItems = ReadingItem.findAllByUser(user,[max:max,offset:offset])
-            def unReadItems = ReadingItem.createCriteria().list(max: max,offset: offset){
-                eq("user",user)
-            }
+            def unReadItems = readingItemService.findReadingItemsForAUser(user,max,offset)
             render(view: 'index',model: [unReadItems:unReadItems,total:unReadItems.getTotalCount()])
         }
         else{
