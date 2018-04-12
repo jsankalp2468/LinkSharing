@@ -24,7 +24,7 @@
 
             <g:if test="${linksharingapp.Resource.findTypeOfResource(unReadResource.resource.id) == "DocumentResource"}">
                 <div class="col-lg-4">
-                    <a href="#" class="text-primary" style="text-decoration: underline;">Download</a>
+                    <a href="${createLink(controller: "documentResource",action: "show", id: "${unReadResource.resource.id}")}" class="text-primary" style="text-decoration: underline;" target="_blank">Download</a>
                 </div>
             </g:if>
 

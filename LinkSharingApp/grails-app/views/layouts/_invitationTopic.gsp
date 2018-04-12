@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" action="#">
+                    <g:form class="form-horizontal" controller="topic" action="invite">
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="email1">email</label>
 
@@ -40,7 +40,7 @@
 
                             </div>
                         </div>
-                    </form>
+                    </g:form>
 
                 </div>
 

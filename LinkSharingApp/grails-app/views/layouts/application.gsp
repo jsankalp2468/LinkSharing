@@ -21,7 +21,7 @@
                 <a class="text-primary" href="#" style="text-decoration: underline">Link Sharing</a>
 
             </span>
-            <g:form class="search" url="[controller:'resource',action:'searchResource']">
+            <g:form class="search" url="[controller: 'resource', action: 'searchResource']">
 
                 <span><i class="fa fa-search"></i></span>
                 <input id="inputSearch" placeholder="Search term" name="searchKey" for="aLink">
@@ -43,7 +43,7 @@
 
         <div class="col-lg-8">
             <div class="col-lg-5">
-                <g:form class="search" url="[controller:'resource',action:'searchResource']">
+                <g:form class="search" url="[controller: 'resource', action: 'searchResource']">
 
                     <span><i class="fa fa-search"></i></span>
                     <input id="inputSearch" placeholder="Search term" name="searchKey" for="aLink">
@@ -84,18 +84,19 @@
             <g:render template="/layouts/createDocumentResource"></g:render>
 
             <span class="col-lg-3 dropdown">
-            <%         linksharingapp.User user = linksharingapp.User.findById(session.userId.toLong())    %>
+                <% linksharingapp.User user = linksharingapp.User.findById(session.userId.toLong()) %>
                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <img src="${createLink(controller: 'logIn',action: 'show', params: ["name":"${user.userName}"])}" width="25" height="25" class="img-circle">
+                    <img src="${createLink(controller: 'logIn', action: 'show', params: ["name": "${user.userName}"])}"
+                         width="25" height="25" class="img-circle">
                     %{--<i class="fas fa-user" style="font-size:24px"></i>--}%
                     ${user.userName}
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="${createLink(controller: 'user',action: 'editProfile')}">profile</a></li>
-                    <g:if test="${user.admin}"><li><a href="#">users</a></li></g:if>
-                    <li><a href="#">Topic</a></li>
-                    <li><a href="#">post</a></li>
+                    <li><a href="${createLink(controller: 'user', action: 'editProfile')}">profile</a></li>
+                    <g:if test="${user.admin}"><li><a href="#">users</a></li>
+                        <li><a href="#">Topic</a></li>
+                        <li><a href="#">post</a></li></g:if>
                     <li><a href="${createLink(controller: 'logIn', action: 'logOut')}">logout</a></li>
                 </ul>
             </span>

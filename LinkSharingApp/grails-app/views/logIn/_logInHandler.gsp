@@ -41,11 +41,10 @@
                     forgot Password
                 </a>
 
-                <g:render template="forgotPassword"></g:render>
-
                 <button type="submit" class="btn btn-primary pull-right">Login</button>
             </div>
         </g:form>
+        <g:render template="forgotPassword"></g:render>
     </div>
 </div>
 </body>

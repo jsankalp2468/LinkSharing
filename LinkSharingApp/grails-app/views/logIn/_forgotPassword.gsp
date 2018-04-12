@@ -15,12 +15,12 @@
             </div>
 
             <div class="modal-body">
-                <form class="form-horizontal">
+                <g:form class="form-horizontal" controller="logIn" action="sendMailWhenForgotPassword">
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="userName1">UserName :</label>
 
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="userName1" name="userName1">
+                            <input type="text" class="form-control" id="userName1" name="userName1">
                         </div>
                     </div>
 
@@ -32,23 +32,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-sm-4" for="password">New Password :</label>
-
-                        <div class="col-sm-8">
-                            <input type="password" class="form-control password-field" id="password" name="email1">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-sm-4" for="confirmPassword">Confirm Password</label>
-
-                        <div class="col-sm-8">
-                            <input type="password" class="form-control password-field" id="confirmPassword"
-                                   name="email1">
-                        </div>
-                    </div>
-
                     <br>
 
                     <div class="form-group">
@@ -57,7 +40,7 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
-                </form>
+                </g:form>
 
             </div>
 

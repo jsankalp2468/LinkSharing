@@ -7,6 +7,7 @@ class DocumentResource extends Resource {
     Date lastUpdated
     //filePath already exists
     static constraints = {
+        filePath(nullable: true)
     }
 
     @Override

@@ -1,3 +1,4 @@
+<%@ page import="linksharingapp.User" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" action="#">
+                    <g:form class="form-horizontal" controller="documentResource" action="save" enctype="multipart/form-data">
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="document">document</label>
 
@@ -29,23 +30,12 @@
                             <label class="control-label col-sm-2" for="descrip1">description:</label>
 
                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="5" id="descrip1"></textarea>
+                                <textarea class="form-control" rows="5" id="descrip1" name="description"></textarea>
                             </div>
                         </div>
-
-                        <div class="dropdown">
-                            <label class="control-label col-sm-2" for="topic1">topic:</label>
-
-                            <button class="btn btn-default dropdown-toggle" type="button"
-                                    data-toggle="dropdown" id="topic1">topic
-                                <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">topictype1</a></li>
-                                <li><a href="#">topictype2</a></li>
-                                <li><a href="#">topictype3</a></li>
-
-                            </ul>
-                        </div>
+                        <label class="control-label col-sm-2" for="topicId">topic:</label>
+                        <%         linksharingapp.User user = linksharingapp.User.findById(session.userId.toLong())    %>
+                        <g:select name="topicId" optionKey="id" optionValue="name"  from="${user.subscriptions.topic}"></g:select>
 
                         <div class="form-group">
                             <br>
@@ -56,7 +46,7 @@
 
                             </div>
                         </div>
-                    </form>
+                    </g:form>
                 </div>
 
             </div>

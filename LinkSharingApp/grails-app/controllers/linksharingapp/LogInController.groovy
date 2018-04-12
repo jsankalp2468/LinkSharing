@@ -1,13 +1,14 @@
 package linksharingapp
 
+import dto.EmailDTO
 import grails.artefact.Controller
+import password.GeneratePassword
 import vo.TopPostVO
 
 import javax.servlet.http.HttpSession
 
 class LogInController {
-
-
+    def sendMailService
     def index() {
         HttpSession session = request.getSession()
         if(session.getAttribute('userId')){
@@ -32,12 +33,12 @@ class LogInController {
             }
             else {
                 flash.error = "User is not active"
-                render("User not active")
+                redirect(controller: 'logIn',action: 'index')
             }
         }
         else {
             flash.error ="User not found"
-            render("${flash.error}")
+            redirect(controller: 'logIn',action: 'index')
         }
     }
 
@@ -59,18 +60,10 @@ class LogInController {
             redirect(controller: 'logIn',action: 'index')
         }else {
 //            redirect(controller: 'logIn',action: 'index')
+            flash.error = "User not registered"
             render(view: 'index',model: [user:user])
         }
-//        if(user.validate()){
-//            user.save(flush:true, failOnError : true)
-//            log.info("User registered successfully! ${}")
-//            render("Success")
-//        }
-//        else {
-//            flash.message = "flash message is set"
-//            def msg = message(code: 'usernotsaved',null)
-//            render(msg)
-//        }
+//
     }
 
     def showTopTopics() {
@@ -84,5 +77,31 @@ class LogInController {
         response.contentType = '*' // or the appropriate image content type
         response.outputStream << img
         response.outputStream.flush()
+    }
+
+    def sendMailWhenForgotPassword(){
+
+        User user = User.findByEmailAndUserName(params.email1, params.userName1)
+        println(user)
+        if (user) {
+            def newPassword = GeneratePassword.randomPassword
+            String pass=newPassword
+            println(pass)
+
+
+
+
+            EmailDTO emailDTO = new EmailDTO(to: params.email1, subject: "Password Reset", from: "linksharing1@gmail.com", content: "Your new password is : ${newPassword}")
+            sendMailService.sendMail1(emailDTO)
+
+
+            User.executeUpdate("update User set password=:password where id=:id", [password: pass, id: user.id])
+            println("Inside password changing mode 3")
+            flash.message = "Mail sent successlly"
+            redirect(action: 'index')
+        } else {
+            flash.error = "Mail not sent please check username and email"
+            redirect(action: 'index')
+        }
     }
 }

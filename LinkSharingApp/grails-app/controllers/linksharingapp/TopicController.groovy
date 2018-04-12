@@ -1,12 +1,14 @@
 package linksharingapp
 
 import co.ResourceSearchCO
+import dto.EmailDTO
 import enumeration.Visibility
 
 import javax.servlet.http.HttpSession
 
 
 class TopicController {
+    def sendMailService
 
     def index() {
             Resource resource = Resource.findById(params.id)
@@ -79,6 +81,28 @@ class TopicController {
         }
         else {
             redirect(controller: 'logIn',action: 'index')
+        }
+    }
+
+    def invite()
+    {
+        Topic topic1 = Topic.findById(params.topicId)
+
+        if (topic1 && User.findByEmail(params.email1))
+        {
+
+            EmailDTO emailDTO = new EmailDTO(to: params.email1, subject:"INVITATION" ,from:"linksharing1@gmail.com" , linkId: topic1.id , content: "Please subscribe for the Topic")
+
+            sendMailService.sendInvitation(emailDTO)
+            flash.message = "Invitation Send"
+            redirect(controller: 'user', action: 'index')
+
+
+        }
+        else
+        {
+            flash.error= "Error while inviting user"
+            redirect(controller: 'user', action: 'index')
         }
     }
 
