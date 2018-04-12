@@ -51,7 +51,7 @@ class UserController {
     def changePassword() {
         User user = User.findByIdAndPassword(session.userId.toLong(), params.oldPassword)
         if (user) {
-            user.password = params.password
+            user.password = params.newPassword
             user.confirmPassword = params.confirmPassword
             if (user.validate()) {
                 user.save(flush: true)

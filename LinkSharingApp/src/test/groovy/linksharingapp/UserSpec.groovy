@@ -15,7 +15,7 @@ class UserSpec extends Specification implements DomainUnitTest<User> {
 
     void "validating user with every possible constraints"(){
         setup:
-        User user = new User(firstName: fname,lastName: lname,email: email,userName: uname,password: pswd,photo: photo,admin: admin,active: active)
+        User user = new User(firstName: fname,lastName: lname,email: email,userName: uname,password: pswd,photo: photo,admin: admin,active: active,confirmPassword: pswd)
         when:
         Boolean result = user.validate()
         then:
@@ -51,14 +51,14 @@ class UserSpec extends Specification implements DomainUnitTest<User> {
         String email = "sankalp.jain@tothenew.com"
 
         when:
-        User user1 = new User(firstName: "sankalp",lastName: "jain",email: email,userName: "jsank",password: "abcdef",photo: 1,admin: true,active: null)
+        User user1 = new User(firstName: "sankalp",lastName: "jain",email: email,userName: "jsank",password: "abcdef",photo: 1,admin: true,active: null,confirmPassword: "abcdef")
         user1.save()
 
         then:
         user1.count() == 1
 
         when:
-        User user2 = new User(firstName: "neelesh",lastName: "bansal",email: email,userName: "neelesh",password: "abcdef",photo: 1,admin: true,active: null)
+        User user2 = new User(firstName: "neelesh",lastName: "bansal",email: email,userName: "neelesh",password: "abcdef",photo: 1,admin: true,active: null,confirmPassword: "abcdef")
         user2.save()
 
         then:
@@ -72,18 +72,18 @@ class UserSpec extends Specification implements DomainUnitTest<User> {
         String uname = "jsankalp"
 
         when:
-        User user1 = new User(firstName: "sankalp",lastName: "jain",email: "sankalp.jain@ttn.com",userName: uname,password: "abcdef",photo: 1,admin: true,active: null)
-        user1.save()
+        User user1 = new User(firstName: "sankalp",lastName: "jain",email: "sankalp.jain@ttn.com",userName: uname,password: "abcdef",confirmPassword: "abcdef")
+        user1.save(flush:true)
 
         then:
-        user1.count() == 1
+        User.count() == 1
 
         when:
-        User user2 = new User(firstName: "neelesh",lastName: "bansal",email: "neelesh.bansal@ttn.com",userName: uname,password: "abcdef",photo: 1,admin: true,active: null)
+        User user2 = new User(firstName: "neelesh",lastName: "bansal",email: "neelesh.bansal@ttn.com",userName: uname,password: "abcdef",confirmPassword: "abcdef")
         user2.save()
 
         then:
-        user2.count() == 1
+        User.count() == 1
         user2.errors.allErrors.size() == 1
         user2.errors.getFieldErrorCount('userName') == 1
     }

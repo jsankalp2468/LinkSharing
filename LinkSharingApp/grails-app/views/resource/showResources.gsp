@@ -43,7 +43,7 @@
                             <%         linksharingapp.User user = linksharingapp.User.findById(session.userId.toLong())    %>
                             <g:if test="${user.getScore(resource)==1}">
                                 <g:form url="[controller: 'resourceRating',action: 'save', params: [id: resource.id]]">
-                                    <g:select name="resource.rating" from="${1..5}" value="rating"></g:select>
+                                    <g:select name="rating" from="${1..5}"></g:select>
                                     <g:submitButton name="vote"></g:submitButton>
                                 </g:form>
                             </g:if>

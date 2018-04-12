@@ -16,11 +16,11 @@ class LogInControllerSpec extends Specification implements ControllerUnitTest<Lo
         controller.index()
 
         then:
-        response.text == 'User not exists'
+        view == '/logIn/index'
     }
     def "testing false session.user case of index"(){
         when:
-        session.user = "sankalp"
+        session.userId = 1
         controller.index()
 
         then:
@@ -40,7 +40,7 @@ class LogInControllerSpec extends Specification implements ControllerUnitTest<Lo
 
 //    def "testing logInHandler when user is found "(){
 //        setup:
-//        User user = new User();
+//        User user = Mock(User)
 //
 //        when:
 //        controller.logInHandler()

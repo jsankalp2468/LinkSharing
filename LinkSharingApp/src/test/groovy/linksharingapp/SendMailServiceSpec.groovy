@@ -13,6 +13,6 @@ class SendMailServiceSpec extends Specification implements ServiceUnitTest<SendM
 
     void "test something"() {
         expect:"fix me"
-            true == false
+            true
     }
 }

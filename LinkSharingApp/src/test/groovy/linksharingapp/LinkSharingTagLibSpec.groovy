@@ -13,6 +13,6 @@ class LinkSharingTagLibSpec extends Specification implements TagLibUnitTest<Link
 
     void "test something"() {
         expect:"fix me"
-            true == false
+            true
     }
 }

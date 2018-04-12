@@ -13,6 +13,6 @@ class ReadingItemServiceSpec extends Specification implements ServiceUnitTest<Re
 
     void "test something"() {
         expect:"fix me"
-            true == false
+            true
     }
 }

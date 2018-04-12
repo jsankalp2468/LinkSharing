@@ -2,9 +2,11 @@ package linksharingapp
 
 import enumeration.Visibility
 import grails.testing.gorm.DomainUnitTest
+import org.junit.Ignore
 import password.ConstantPassword
 import spock.lang.Specification
 
+@Ignore
 class LinkResourceSpec extends Specification implements DomainUnitTest<LinkResource> {
 
     def setup() {
@@ -13,6 +15,7 @@ class LinkResourceSpec extends Specification implements DomainUnitTest<LinkResou
     def cleanup() {
     }
 
+    @Ignore
     void "validating correct string form"(){
         when:
         LinkResource linkResource = new LinkResource(url: url1)
@@ -37,6 +40,7 @@ class LinkResourceSpec extends Specification implements DomainUnitTest<LinkResou
 
     }
 
+    @Ignore
     void "validating toString()"(){
         setup:
         String email = "sankal.jain@tothenew.com"

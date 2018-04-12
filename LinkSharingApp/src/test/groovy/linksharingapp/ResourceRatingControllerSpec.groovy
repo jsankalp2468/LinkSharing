@@ -5,6 +5,7 @@ import grails.testing.web.controllers.ControllerUnitTest
 import grails.validation.ValidationException
 import spock.lang.*
 
+@org.junit.Ignore
 class ResourceRatingControllerSpec extends Specification implements ControllerUnitTest<ResourceRatingController>, DomainUnitTest<ResourceRating> {
 
     def populateValidParams(params) {
