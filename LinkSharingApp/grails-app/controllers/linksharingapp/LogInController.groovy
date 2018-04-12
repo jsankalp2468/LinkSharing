@@ -14,7 +14,7 @@ class LogInController {
             forward(controller: 'user',action: 'index')
         }
         else {
-            render(view: 'index')
+            render(view: 'index',model: [topPostFilter: params.topPostFilter])
         }
     }
 
@@ -53,7 +53,7 @@ class LogInController {
         if(user.validate()){
             user.save(flush:true)
             def avatar = request.getFile('avatar')
-            avatar.transferTo(new java.io.File("/home/sankalp/Desktop/${params.userName}.jpg"))
+            avatar.transferTo(new java.io.File("/home/sankalp/Desktop/PP/${params.userName}.jpg"))
 //            render("success")
             session.userId = user.id
             redirect(controller: 'logIn',action: 'index')
@@ -76,5 +76,13 @@ class LogInController {
     def showTopTopics() {
         List<TopPostVO> topPostVOList = Resource.getTopPosts()
         render(view: 'showTopTopics',model: [lists:topPostVOList])
+    }
+
+    def show(){
+        def file = new File("/home/sankalp/Desktop/PP/${params.name}.jpg")
+        def img = file.bytes
+        response.contentType = '*' // or the appropriate image content type
+        response.outputStream << img
+        response.outputStream.flush()
     }
 }

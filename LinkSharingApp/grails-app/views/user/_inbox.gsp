@@ -1,6 +1,6 @@
 <div class="row" style="padding-bottom: 10px">
     <div class="col-lg-2">
-    <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${unReadResource.resource.createdBy.userName}"])}" width="80" height="80">    </div>
+    <img src="${createLink(controller: 'logIn',action: 'show', params: ["name":"${unReadResource.resource.createdBy.userName}"])}" width="80" height="80">    </div>
 
     <div class="col-lg-10">
         <span class="text">${unReadResource.resource.createdBy.firstName}</span>
@@ -30,7 +30,7 @@
 
             <g:else>
                 <div class="col-lg-4">
-                    <a href="#" class="text-primary" style="text-decoration: underline;">View Full Site</a>
+                    <a href="${unReadResource.resource.url}" target="_blank" class="text-primary" style="text-decoration: underline;">View Full Site</a>
                 </div>
             </g:else>
 

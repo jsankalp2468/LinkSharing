@@ -9,16 +9,15 @@ class UserController {
 
     def index() {
         println(session.userId)
-        if(session.userId){
+        if (session.userId) {
             User user = User.findById(session.userId.toLong())
-            def max = params.max?:5
-            def offset = params.offset?:0
+            def max = params.max ?: 5
+            def offset = params.offset ?: 0
 //            Set<ReadingItem> unReadItems = ReadingItem.findAllByUser(user,[max:max,offset:offset])
-            def unReadItems = readingItemService.findReadingItemsForAUser(user,max,offset)
-            render(view: 'index',model: [unReadItems:unReadItems,total:unReadItems.getTotalCount()])
-        }
-        else{
-            redirect(controller: 'logIn',action: 'index')
+            def unReadItems = readingItemService.findReadingItemsForAUser(user, max, offset)
+            render(view: 'index', model: [unReadItems: unReadItems, total: unReadItems.totalCount])
+        } else {
+            redirect(controller: 'logIn', action: 'index')
         }
     }
 
@@ -37,13 +36,60 @@ class UserController {
     }
 
     def showSubscribedTopics() {
-        if(session.userId){
+        if (session.userId) {
             User user = User.findById(session.userId.toLong())
-            render(view: 'showSubscribedTopics',  model: [topicList : user.getSubscribedTopics()])
+            render(view: 'showSubscribedTopics', model: [topicList: user.getSubscribedTopics()])
+        } else {
+            redirect(controller: 'logIn', action: 'index')
         }
-        else{
-            redirect(controller:'logIn',action:'index')
+    }
+
+    def editProfile() {
+        render(view: 'editProfile')
+    }
+
+    def changePassword() {
+        User user = User.findByIdAndPassword(session.userId.toLong(), params.oldPassword)
+        if (user) {
+            user.password = params.password
+            user.confirmPassword = params.confirmPassword
+            if (user.validate()) {
+                user.save(flush: true)
+                flash.message = "Password changed successfully!!"
+                redirect(controller: 'user', action: 'index')
+            } else {
+                flash.error = "Error while saving password"
+                render(view: 'editProfile')
+            }
+        } else {
+            flash.error = "Password not matched"
+            render(view: 'editProfile')
         }
+    }
+
+
+    def updateProfile() {
+        User user = User.findById(session.userId.toLong())
+        println(user)
+        def file = new File("/home/sankalp/Desktop/PP/${user.userName}.jpg")
+        user.firstName = params.firstName
+        user.lastName = params.lastName
+        user.userName = params.userName
+        user.confirmPassword = user.password
+        println(user)
+        if (user.validate()){
+            user.save(flush:true)
+            if (file) {
+                file.delete()
+            }
+            def avatar = request.getFile('avatar')
+            avatar.transferTo(new java.io.File("/home/sankalp/Desktop/PP/${params.userName}.jpg"))
+            flash.message = "Profile Pic changed Successfully"
+        }else{
+            flash.error = "Error while updating profile"
+            println(user.errors.allErrors)
+        }
+        redirect(controller: 'user', action: 'index')
     }
 
 //    def list(){

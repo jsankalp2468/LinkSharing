@@ -9,7 +9,7 @@
     <g:if test="${unSubscribedTrendingTopics1}">
         <div class="row" style="padding-bottom:10px">
             <div class="col-lg-2">
-                <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${unSubscribedTrendingTopics1.createdBy.userName}"])}" width="80" height="80">
+                <img src="${createLink(controller: 'logIn',action: 'show', params: ["name":"${unSubscribedTrendingTopics1.createdBy.userName}"])}" width="80" height="80">
             </div>
 
             <div class="col-lg-10">
@@ -21,7 +21,7 @@
                 <div class="col-lg-4" style="padding-left: 0px">
                     <div class="text-muted">@${unSubscribedTrendingTopics1.createdBy.userName}</div>
                     %{--<g:if test="${session.user.isSubscribed(unSubscribedTrendingTopics1.id)}">--}%
-                        <a href="#" class="hyperlink"><ls:checkSubscribed topicId="${unSubscribedTrendingTopics1.id}"></ls:checkSubscribed> </a>
+                        <ls:checkSubscribed topicId="${unSubscribedTrendingTopics1.id}"></ls:checkSubscribed>
                     %{--</g:if>--}%
                 </div>
 
@@ -42,7 +42,7 @@
         <div class="row">
 
             <div class="col-lg-2">
-                <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${subscribedTrendingTopics1.createdBy.userName}"])}" width="80" height="80">            </div>
+                <img src="${createLink(controller: 'logIn',action: 'show', params: ["name":"${subscribedTrendingTopics1.createdBy.userName}"])}" width="80" height="80">            </div>
 
             <div class="col-lg-10">
                 <g:form url="[controller: 'topic', action: 'show']">
@@ -61,7 +61,8 @@
 
                 <div class="col-lg-7" style="padding-left: 0px">
                     <div class="text-muted">@${subscribedTrendingTopics1.createdBy.userName}</div>
-                        <a href="${createLink(controller: 'subscription',action: 'delete', id: subscribedTrendingTopics1.id)}" class="hyperlink"><ls:checkSubscribed topicId="${subscribedTrendingTopics1.id}"></ls:checkSubscribed> </a>
+                        %{--<a href="${createLink(controller: 'subscription',action: 'delete', id: subscribedTrendingTopics1.id)}" class="hyperlink"><ls:checkSubscribed topicId="${subscribedTrendingTopics1.id}"></ls:checkSubscribed> </a>--}%
+                        <ls:checkSubscribed topicId="${subscribedTrendingTopics1.id}"></ls:checkSubscribed>
                 </div>
 
                 <div class="col-lg-3">

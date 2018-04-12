@@ -43,7 +43,7 @@
             <g:each in="${resourceList}" var="resource">
                 <div class="row" style="padding-bottom: 10px">
                     <div class="col-lg-2">
-                        <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${resource.createdBy.userName}"])}" width="80" height="80">
+                        <img src="${createLink(controller: 'logIn',action: 'show', params: ["name":"${resource.createdBy.userName}"])}" width="80" height="80">
                     </div>
                     <div class="col-lg-10">
                         <span class="text">${resource.createdBy.firstName}</span>
@@ -68,7 +68,7 @@
 
                             <g:else>
                                 <div class="col-lg-4">
-                                    <a href="#" class="text-primary" style="text-decoration: underline;">View Full Size</a>
+                                    <a href="${resource.url}" class="text-primary" style="text-decoration: underline;" target="_blank">View Full Site</a>
                                 </div>
                             </g:else>
                             <div class="col-lg-3">

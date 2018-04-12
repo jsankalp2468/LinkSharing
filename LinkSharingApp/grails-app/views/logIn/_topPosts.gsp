@@ -8,7 +8,7 @@
 <div class="row">
     <% linksharingapp.Resource resource = linksharingapp.Resource.findById(demo.id)%>
     <div class="col-lg-2">
-        <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${demo.createdBy.userName}"])}" width="80" height="80">    </div>
+        <img src="${createLink(controller: 'logIn',action: 'show', params: ["name":"${demo.createdBy.userName}"])}" width="80" height="80">    </div>
 
     <div class="col-lg-10">
         <span class="text">${demo.createdBy.firstName}</span>
@@ -25,8 +25,7 @@
             <i class="fab fa-facebook fa-2x"></i>
             <i class="fab fa-tumblr fa-2x"></i>
             <i class="fab fa-google-plus-g fa-2x"></i>
-            <a href="${createLink(controller: 'resource',action: 'index',id:demo.id)}" class="text-primary pull-right"
-               style="text-decoration: underline">view post</a>
+            <a href="${createLink(controller: 'resource',action: 'index',id:demo.id)}" class="text-primary pull-right" style="text-decoration: underline">view post</a>
         </div>
     </div>
 </div>

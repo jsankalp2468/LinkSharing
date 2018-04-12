@@ -18,7 +18,7 @@
         <div class="panel-body">
             <%         linksharingapp.User user = linksharingapp.User.findById(session.userId.toLong())    %>
             <div class="col-lg-3">
-                <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${user.userName}"])}" class="img-responsive">
+                <img src="${createLink(controller: 'logIn',action: 'show', params: ["name":"${user.userName}"])}" class="img-responsive">
             </div>
 
             <div class="col-lg-9">
@@ -31,12 +31,12 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <span class="text-muted">Subscriptions</span>
+                    <div class="text-muted">Subscriptions</div>
                     <span class="text-primary"><ls:subscriptionCount></ls:subscriptionCount></span>
                 </div>
 
                 <div class="col-lg-3">
-                    <span class="text-muted">Topics</span>
+                    <div class="text-muted">Topics</div>
                     <span class="text-primary"><ls:topicCount user="${user}"></ls:topicCount></span>
                 </div>
 
@@ -47,108 +47,10 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <span class="text-primary">Subscriptions</span>
-            <span style="float: right">
-                <a href="#" class="hyperlink">View All</a>
-            </span>
         </div>
 
         <div class="panel-body">
-            <div class="row">
-
-                <div class="col-lg-2">
-                    <img src="#" class="img-responsive">
-                </div>
-
-                <div class="col-lg-10">
-                    <div class="text-primary">
-                        <a class="hyperlink" href="#">Grails</a>
-                    </div>
-
-                    <div class="col-lg-4" style="padding-left: 0px">
-                        <span class="text-muted">@sankalp</span>
-                        <a href="#" class="hyperlink">Unsubscribe</a>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <span class="text-muted">Subscriptions</span>
-                        <span class="text-primary">50</span>
-                    </div>
-
-                    <div class="col-lg-2">
-                        <span class="text-muted">Topics</span>
-                        <span class="text-primary">50</span>
-                    </div>
-                </div>
-
-
-                <span class="dropdown col-lg-offset-2">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Seriousness
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Very Serious</a></li>
-                        <li><a href="#">Serious</a></li>
-                        <li><a href="#">Less Serious</a></li>
-                    </ul>
-                </span>
-
-                <span class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Scope
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Private</a></li>
-                        <li><a href="#">Public</a></li>
-                    </ul>
-                </span>
-                <i class="far fa-envelope fa-2x"></i>
-                <i class="far fa-file fa-2x"></i>
-                <i class="far fa-trash-alt fa-2x"></i>
-
-            </div>
-
-            <div class="row">
-                <div class="col-lg-2">
-                    <img src="#" class="img-responsive">
-                </div>
-
-                <div class="col-lg-10">
-                    <div class="text-primary">
-                        <a class="hyperlink" href="#">Grails</a>
-                    </div>
-
-                    <div class="col-lg-4" style="padding-left: 0px">
-                        <span class="text-muted">@sankalp</span>
-                        <a href="#" class="hyperlink">Unsubscribe</a>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <span class="text-muted">Subscriptions</span>
-                        <span class="text-primary">50</span>
-                    </div>
-
-                    <div class="col-lg-2">
-                        <span class="text-muted">Topics</span>
-                        <span class="text-primary">50</span>
-                    </div>
-                </div>
-
-
-                <div style="float:right; padding-right: 15px">
-                    <span class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Seriousness
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Very Serious</a></li>
-                            <li><a href="#">Serious</a></li>
-                            <li><a href="#">Less Serious</a></li>
-                        </ul>
-                    </span>
-                    <i class="far fa-envelope fa-2x"></i>
-                </div>
-
-            </div>
+            <g:render template="userSubscriptions" collection="${user.subscriptions}" var="userSubscribedTopics"></g:render>
         </div>
     </div>
 

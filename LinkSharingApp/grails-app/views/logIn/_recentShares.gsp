@@ -1,12 +1,16 @@
 <div class="row" style="padding-bottom: 10px">
     <div class="col-lg-2">
-        <img class="img-responsive" src="#" alt="sankalp">
+        <img src="${createLink(controller: 'logIn', action: 'show', params: ["name": "${recentSharePost.createdBy.userName}"])}"
+             class="img-responsive">
     </div>
 
     <div class="col-lg-10">
         <span class="text">${recentSharePost.createdBy.name}</span>
         <span class="text-muted">${recentSharePost.createdBy.userName} ${recentSharePost.dateCreated}</span>
-        <span class="text-primary" style="float: right">${recentSharePost.topic.name}</span>
+        <span class="text-primary" style="float: right">
+            <a href="${createLink(controller: 'topic', ation: 'index', id: recentSharePost.id)}"
+                class="text-primary pull-right">${recentSharePost.topic.name}</a>
+        </span>
 
         <div class="text">
             <p>

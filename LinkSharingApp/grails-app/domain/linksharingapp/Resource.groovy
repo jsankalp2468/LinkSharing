@@ -1,8 +1,10 @@
 package linksharingapp
 
 import co.ResourceSearchCO
+import enumeration.TopPostFilter
 import vo.RatingInfoVO
 import vo.TopPostVO
+import groovy.time.TimeCategory
 
 abstract class Resource {
 
@@ -64,8 +66,9 @@ abstract class Resource {
         return vo
     }
 
-    static List<TopPostVO> getTopPosts(){
+    static List<TopPostVO> getTopPosts(TopPostFilter topPostFilter){
         List<TopPostVO> topPostVOList = ResourceRating.createCriteria().list {
+            gt('dateCreated',topPostFilter.fromDate)
             projections{
                 createAlias('resource','res')
                 groupProperty('res.id')

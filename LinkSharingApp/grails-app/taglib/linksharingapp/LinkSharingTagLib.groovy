@@ -1,5 +1,6 @@
 package linksharingapp
 
+import enumeration.TopPostFilter
 import vo.TopPostVO
 import vo.TopicVO
 
@@ -30,8 +31,11 @@ class LinkSharingTagLib {
         out << body() << value
     }
 
-    def getTopPosts = {
-        List<TopPostVO> topPostVOList = Resource.getTopPosts()
+    def getTopPosts = {attrs->
+        println(attrs.topPostFilter)
+        List<TopPostVO> topPostVOList = Resource.getTopPosts(attrs.topPostFilter ?: TopPostFilter.TODAY)
+        println(topPostVOList.id)
+
 //        out << <g:render template="topPosts" var="demo" collection="${lists}"></g:render>
 //        out << render(template: 'topPosts',collection: topPostVOList,var: 'demo')
         out << g.render(template: '/logIn/topPosts', collection: topPostVOList, var: 'demo')
@@ -120,20 +124,26 @@ class LinkSharingTagLib {
         out<< value
     }
 
-    def checkSubscribed = {attrs->
+    def checkSubscribed = {attrs,body->
         def value
         if(session.userId){
+            println(attrs.topicId)
             Topic topic = Topic.findById(attrs.topicId)
             User user1 = User.findById(session.userId.toLong())
-            if(user1 == topic.createdBy){
+            println(user1)
+            println(topic.createdBy)
+            if(user1.id == topic.createdBy.id){
                 value = null
             }else if(user1.isSubscribed(topic.id)){
-                value = "Unsubscribe"
+                out<<"<a href=\"${createLink(controller: 'subscription', action: 'delete', id: topic.id)}\" class=\"hyperlink\">Unsubscribe</a>"
+//                out<<body()<<g.createLink(controller: 'subscription',action: 'delete',id: topic.id)<<value
+//                out<<body()<<g.link(controller: 'subscription',action: 'delete',id: topic.id)
+//                value = "Unsubscribe"
             }else{
-                value = "Subscribe"
+                out<<"<a href=\"#\" class=\"hyperlink\">Subscribe</a>"
             }
         }else{
-            value = "Subscribe"
+            out<<"<a href=\"#\" class=\"hyperlink\">Subscribe</a>"
         }
         out<< value
     }

@@ -22,7 +22,7 @@ class User {
         return name
     }
 
-    static hasMany = [topics:Topic , subscriptions:Subscription , readingItems:ReadingItem, resources:Resource]
+    static hasMany = [topics: Topic, subscriptions: Subscription, readingItems: ReadingItem, resources: Resource]
 
     User(String firstName, String lastName, String email, String userName, String password, byte photo, Boolean admin, Boolean active) {
         this.firstName = firstName
@@ -35,20 +35,23 @@ class User {
         this.active = active
     }
     static constraints = {
-        email(email: true,nullable: false,blank: false,unique: true)//Nullable : Allows a property to be set to null - defaults to false.
-        password(nullable: false,blank: false,minSize: 5 ,validator: { password, obj ->
-                        def password2 = obj.confirmPassword
-                        password == password2 ? true : ['invalid.matchingpasswords']
+        email(email: true, nullable: false, blank: false, unique: true)
+//Nullable : Allows a property to be set to null - defaults to false.
+        password(nullable: false, blank: false, minSize: 5, validator: { password, obj ->
+//            if (isDirty('password')) {
+                def password2 = obj.confirmPassword
+                password == password2 ? true : ['invalid.matchingpasswords']
+//            }
         })
-        firstName(nullable: false,blank: false)
-        lastName(nullable: false,blank: false)
+        firstName(nullable: false, blank: false)
+        lastName(nullable: false, blank: false)
         userName(unique: true)
-        photo(nullable: true,sqlType: 'longBlob')
+        photo(nullable: true, sqlType: 'longBlob')
         admin(nullable: true)
         active(nullable: true)
         confirmPassword(nullable: false, blank: false)
     }
-    static transients = ['name','confirmPassword']
+    static transients = ['name', 'confirmPassword']
 
     static mapping = {
         sort id: 'desc'
@@ -58,20 +61,20 @@ class User {
         topics fetch: 'join'
     }
 
-    static List<ReadingItem> getUnReadResources(SearchCO searchCO){
-        List<ReadingItem> readingItems=[]
-        if(!searchCO.q.equals(null)){
-            readingItems = ReadingItem.createCriteria().list(max:searchCO.max,offset:searchCO.offset) {
-                resource{
-                    ilike('description',"%${searchCO.q}%")
+    static List<ReadingItem> getUnReadResources(SearchCO searchCO) {
+        List<ReadingItem> readingItems = []
+        if (!searchCO.q.equals(null)) {
+            readingItems = ReadingItem.createCriteria().list(max: searchCO.max, offset: searchCO.offset) {
+                resource {
+                    ilike('description', "%${searchCO.q}%")
                 }
-                eq('isRead',true)
+                eq('isRead', true)
             }
         }
         return readingItems
     }
 
-    List<Topic> getSubscribedTopics(){
+    List<Topic> getSubscribedTopics() {
         List<Topic> topicList = []
         subscriptions.each {
             topicList.add(it.topic)
@@ -79,33 +82,32 @@ class User {
         return topicList
     }
 
-    Integer getScore(Resource resource){
-        ResourceRating resourceRating = ResourceRating.findByUserAndResource(this,resource)
-        if (resourceRating){
+    Integer getScore(Resource resource) {
+        ResourceRating resourceRating = ResourceRating.findByUserAndResource(this, resource)
+        if (resourceRating) {
             return resourceRating.score
-        }else {
+        } else {
             return 1
         }
     }
 
-    Boolean isSubscribed(Long topicId){
+    Boolean isSubscribed(Long topicId) {
         Topic topic = Topic.findById(topicId)
-        Integer count = Subscription.createCriteria().count{
-            eq('user',this)
-            eq('topic',topic)
+        Integer count = Subscription.createCriteria().count {
+            eq('user', this)
+            eq('topic', topic)
         }
-        if(count){
+        if (count) {
             return true
-        }
-        else {
+        } else {
             return false
         }
     }
 
-    Boolean canDeleteResourceMethod(Resource resource){
-        if(this.admin || this == resource.createdBy){
+    Boolean canDeleteResourceMethod(Resource resource) {
+        if (this.admin || this == resource.createdBy) {
             return true
-        }else {
+        } else {
             return false
         }
     }

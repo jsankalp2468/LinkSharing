@@ -28,7 +28,7 @@
                         <div class="dropdown">
                             <label class="control-label col-sm-2" for="topicId">topic:</label>
                             <%         linksharingapp.User user = linksharingapp.User.findById(session.userId.toLong())    %>
-                            <g:select name="topicId" optionKey="id" optionValue="name"  from="${user.subscriptions.topic}"></g:select>
+                            <g:select name="topicId" optionKey="id" optionValue="name"  from="${user.getSubscribedTopics()}"></g:select>
                         </div>
 
                         <br>

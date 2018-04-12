@@ -20,7 +20,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-2">
-                    <img src="${createLink(controller: 'dummy',action: 'show', params: ["name":"${resource.createdBy.userName}"])}" width="80" height="80">
+                    <img src="${createLink(controller: 'logIn',action: 'show', params: ["name":"${resource.createdBy.userName}"])}" width="80" height="80">
                 </div>
 
                 <div class="col-lg-10">

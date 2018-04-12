@@ -22,8 +22,7 @@
                             <label class="control-label col-sm-2" for="link">link:</label>
 
                             <div class="col-sm-10">
-                                <input type="url" class="form-control" id="link" placeholder="Enter link"
-                                       name="url">
+                                <input type="url" class="form-control" id="link" placeholder="Enter link" name="url">
                             </div>
                         </div>
 

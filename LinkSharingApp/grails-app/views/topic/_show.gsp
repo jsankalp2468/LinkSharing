@@ -15,27 +15,30 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-2">
-                    <img src="#" class="img-responsive">
+                    <img src="${createLink(controller: 'logIn', action: 'show', params: ["name": "${resources1[0].topic.createdBy.userName}"])}"
+                         class="img-responsive">
                 </div>
 
                 <div class="col-lg-10">
                     <div class="text-primary">
-                        <a class="hyperlink" href="#">${resources1[0].topic.name}</a>
+                        <span class="text-primary">${resources1[0].topic.name}</span>
                     </div>
 
                     <div class="col-lg-5" style="padding-left: 0px">
                         <div class="text-muted">@${resources1[0].topic.createdBy.firstName}</div>
-                        <a href="#" class="hyperlink"><ls:checkSubscribed topicId="${resources1[0].topic.id}"></ls:checkSubscribed> </a>
+                        <ls:checkSubscribed topicId="${resources1[0].topic.id}"></ls:checkSubscribed>
                     </div>
 
                     <div class="col-lg-3">
                         <span class="text-muted">Subscriptions</span>
-                        <span class="text-primary"><ls:subscriptionCount topicId="${resources1[0].topic.id}"></ls:subscriptionCount> </span>
+                        <span class="text-primary"><ls:subscriptionCount
+                                topicId="${resources1[0].topic.id}"></ls:subscriptionCount></span>
                     </div>
 
                     <div class="col-lg-2">
                         <span class="text-muted">Posts</span>
-                        <span class="text-primary"><ls:resourceCount topicId="${resources1[0].topic.id}"></ls:resourceCount> </span>
+                        <span class="text-primary"><ls:resourceCount
+                                topicId="${resources1[0].topic.id}"></ls:resourceCount></span>
                     </div>
                 </div>
 
@@ -60,34 +63,7 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <g:each in="${subscribedUsers1}" var="subscriptions">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <img src="#" class="img-responsive">
-                    </div>
-
-                    <div class="col-lg-9">
-                        <div class="text">
-                            <h4>${subscriptions.firstName}</h4>
-                        </div>
-
-                        <div class="text-muted">
-                            @${subscriptions.userName}
-                        </div>
-
-                        <div class="col-lg-4">
-                            <div class="text-muted">Subscriptions</div>
-                            <div class="text-primary"><ls:subscriptionCount user="${subscriptions}"></ls:subscriptionCount></div>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <div class="text-muted">Topics</div>
-                            <div class="text-primary"><ls:topicCount user="${subscriptions}"></ls:topicCount> </div>
-                        </div>
-
-                    </div>
-                </div>
-            </g:each>
+            <g:render template="/layouts/userBlock" collection="${subscribedUsers1}" var="subscriptions"></g:render>
         </div>
     </div>
 
@@ -98,15 +74,16 @@
         <div class="panel-heading">
             <span class="text-primary">Posts : "${resources1[0].topic.name}"</span>
             %{--<g:form class="pull-right">--}%
-                %{--<g:select name="resources" optionKey="id" optionValue="createdBy" from="${resources1[0].topic.resources}"></g:select>--}%
-                %{--<span class="caret"></span>--}%
+            %{--<g:select name="resources" optionKey="id" optionValue="createdBy" from="${resources1[0].topic.resources}"></g:select>--}%
+            %{--<span class="caret"></span>--}%
             %{--</g:form>--}%
         </div>
+
         <div class="panel-body">
             <g:each in="${resources1}" var="resource">
                 <div class="row" style="padding-bottom: 10px">
                     <div class="col-lg-2">
-                        <img class="img-responsive" src="#" alt="sankalp">
+                        <img src="${createLink(controller: 'logIn', action: 'show', params: ["name": "${resource.createdBy.userName}"])}" class="img-responsive">
                     </div>
 
                     <div class="col-lg-10">
@@ -131,7 +108,7 @@
 
                             <g:else>
                                 <div class="col-lg-4">
-                                    <a href="#" class="text-primary" style="text-decoration: underline;">View Full Size</a>
+                                    <a href="${resource.url}" class="text-primary" style="text-decoration: underline;" target="_blank">View Full Site</a>
                                 </div>
                             </g:else>
 
@@ -142,7 +119,7 @@
                             </div>
 
                             <div class="col-lg-2">
-                                <a href="#" class="text-primary" style="text-decoration: underline;">View Post</a>
+                                <a href="${createLink(controller: 'resource',action: 'index',id:resource.id)}" class="text-primary pull-right" style="text-decoration: underline">view post</a>
                             </div>
                         </div>
                     </div>

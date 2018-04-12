@@ -43,6 +43,19 @@ class SubscriptionController {
         User user = User.findById(session.userId.toLong())
         Subscription subscription = Subscription.findByUserAndTopic(user,topic)
         if(user.subscriptions.contains(subscription) && user!=topic.createdBy){
+            List<Resource> resource = Resource.findAllByTopic(topic)
+            println(resource)
+            resource.each {
+                ReadingItem readingItem = ReadingItem.findByUserAndResource(user,it)
+                println(readingItem)
+                println(user.readingItems.size())
+                if(user.readingItems.contains(readingItem)){
+                    user.removeFromReadingItems(readingItem)
+                    readingItem.delete(flush: true)
+                    println("removed")
+                }
+                println(user.readingItems.size())
+            }
             user.removeFromSubscriptions(subscription)
             topic.removeFromSubscriptions(subscription)
             try{

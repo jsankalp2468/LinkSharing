@@ -1,7 +1,19 @@
 package enumeration
 
 enum Seriousness {
-    SERIOUS,VERY_SERIOUS,CASUAL
+    SERIOUS("Serious")
+    ,VERY_SERIOUS("Very Serious")
+    ,CASUAL("casual")
+
+    private final String displayName
+
+    String getDisplayName() {
+        return displayName
+    }
+
+    Seriousness(String displayName) {
+        this.displayName = displayName
+    }
 
     static Seriousness isSeriousness(String s){
         if (s.equalsIgnoreCase("SERIOUS")){

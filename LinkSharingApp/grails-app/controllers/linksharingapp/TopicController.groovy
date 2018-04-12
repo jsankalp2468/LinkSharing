@@ -12,7 +12,7 @@ class TopicController {
             Resource resource = Resource.findById(params.id)
             Topic topic = Topic.findById(resource.topic.id)
             println("id")
-            render(view: 'index',model: [subscribedUsers:topic.getSubscribedUsers(),resources:topic.resources])
+            render(view: 'index',model: [subscribedUsers:topic.getSubscribedUsers(),resources:topic.resources,topic:topic])
     }
 
 

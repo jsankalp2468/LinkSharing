@@ -13,6 +13,8 @@ class LinkResourceController {
             LinkResource linkResource = new LinkResource(createdBy: user,description: description,topic:topic,url: url)
             if(linkResource.validate()){
                 linkResource.save()
+                topic.addToResources(linkResource)
+                user.addToResources(linkResource)
                 flash.message = "Resource saved successfully"
 //                render("successful")
                 redirect(controller:'user',action : 'index')
@@ -23,6 +25,7 @@ class LinkResourceController {
             }
         }
         else {
+            flash.message = "Please LogIn to continue"
             redirect(controller: 'logIn',action: 'index')
         }
     }
