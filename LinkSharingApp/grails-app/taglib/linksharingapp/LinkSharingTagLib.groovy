@@ -127,11 +127,11 @@ class LinkSharingTagLib {
     def checkSubscribed = {attrs,body->
         def value
         if(session.userId){
-            println(attrs.topicId)
+//            println(attrs.topicId)
             Topic topic = Topic.findById(attrs.topicId)
             User user1 = User.findById(session.userId.toLong())
-            println(user1)
-            println(topic.createdBy)
+//            println(user1)
+//            println(topic.createdBy)
             if(user1.id == topic.createdBy.id){
                 value = null
             }else if(user1.isSubscribed(topic.id)){

@@ -1,5 +1,6 @@
 package linksharingapp
 
+import co.ForgotPasswordCO
 import co.SearchCO
 import vo.TopicVO
 
@@ -48,11 +49,11 @@ class UserController {
         render(view: 'editProfile')
     }
 
-    def changePassword() {
-        User user = User.findByIdAndPassword(session.userId.toLong(), params.oldPassword)
+    def changePassword(ForgotPasswordCO co) {
+        User user = User.findByIdAndPassword(session.userId.toLong(), co.oldPassword)
         if (user) {
-            user.password = params.newPassword
-            user.confirmPassword = params.confirmPassword
+            user.password = co.newPassword
+            user.confirmPassword = co.confirmPassword
             if (user.validate()) {
                 user.save(flush: true)
                 flash.message = "Password changed successfully!!"
@@ -70,13 +71,13 @@ class UserController {
 
     def updateProfile() {
         User user = User.findById(session.userId.toLong())
-        println(user)
+//        println(user)
         def file = new File("/home/sankalp/Desktop/PP/${user.userName}.jpg")
         user.firstName = params.firstName
         user.lastName = params.lastName
         user.userName = params.userName
         user.confirmPassword = user.password
-        println(user)
+//        println(user)
         if (user.validate()){
             user.save(flush:true)
             if (file) {
