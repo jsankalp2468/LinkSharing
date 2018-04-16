@@ -34,7 +34,7 @@ class DocumentResourceController {
 
 
     def show(){
-        def file = new File("/home/sankalp/Desktop/Documents/42.pdf")
+        def file = new File("/home/sankalp/Desktop/Documents/46.pdf")
         def img = file.bytes
         response.contentType = '*' // or the appropriate image content type
         response.outputStream << img

@@ -1,5 +1,6 @@
 package linksharingapp
 
+import co.LogInCO
 import dto.EmailDTO
 import grails.artefact.Controller
 import password.GeneratePassword
@@ -19,10 +20,10 @@ class LogInController {
         }
     }
 
-    def logInHandler() {
+    def logInHandler(LogInCO co) {
         HttpSession session = request.getSession()
-        String userName = params.userName
-        String password = params.password
+        String userName = co.userName
+        String password = co.password
         User user = User.findByUserNameAndPassword(userName,password)
         if (user){
 //            session.user = user.id
