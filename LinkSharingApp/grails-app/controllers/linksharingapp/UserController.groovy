@@ -8,11 +8,12 @@ import vo.TopicVO
 class UserController {
 
     def readingItemService
+    def userService
 
     def index() {
         println(session.userId)
         if (session.userId) {
-            User user = User.findById(session.userId.toLong())
+            User user = userService.findUserFromUserId(session.userId)
             def max = params.max ?: 5
             def offset = params.offset ?: 0
 //            Set<ReadingItem> unReadItems = ReadingItem.findAllByUser(user,[max:max,offset:offset])
@@ -39,7 +40,7 @@ class UserController {
 
     def showSubscribedTopics() {
         if (session.userId) {
-            User user = User.findById(session.userId.toLong())
+            User user = userService.findUserFromUserId(session.userId)
             render(view: 'showSubscribedTopics', model: [topicList: user.getSubscribedTopics()])
         } else {
             redirect(controller: 'logIn', action: 'index')
@@ -71,7 +72,7 @@ class UserController {
 
 
     def updateProfile(UpdateProfileCO co) {
-        User user = User.findById(session.userId.toLong())
+        User user = userService.findUserFromUserId(session.userId)
 //        println(user)
         def file = new File("/home/sankalp/Desktop/PP/${user.userName}.jpg")
         user.firstName = co.firstName
