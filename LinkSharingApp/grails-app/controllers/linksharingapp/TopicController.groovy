@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession
 
 
 class TopicController {
+
+    def userService
     def sendMailService
 
     def index() {
@@ -63,7 +65,7 @@ class TopicController {
 
     def save(String topic,String visibility){
 //        User user =User.findByFirstName("sankalp")
-        User user = User.findById(session.userId.toLong())
+        User user = userService.findUserFromUserId(session.userId)
         if(user){
             println(visibility)
             Topic topic1 = new Topic(name: topic,createdBy: user,visibility: Visibility.isVisibility(visibility))

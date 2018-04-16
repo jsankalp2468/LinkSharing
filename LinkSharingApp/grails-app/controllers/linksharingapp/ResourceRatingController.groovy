@@ -5,13 +5,14 @@ import static org.springframework.http.HttpStatus.*
 
 class ResourceRatingController {
 
+    def userService
 
     def index() { }
 
 
     def save() {
         if (session.userId){
-            User user = User.findById(session.userId.toLong())
+            User user = userService.findUserFromUserId(session.userId)
             Resource resource = Resource.findById(params.id.toLong())
             user.confirmPassword = user.password
             println(user.name)

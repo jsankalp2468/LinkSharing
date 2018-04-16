@@ -9,10 +9,12 @@ import vo.TopicVO
 
 class ResourceController {
 
+    def userService
+
     def index(Long id) {
         Resource resource = Resource.findById(id)
         if (session.userId) {
-            User user = User.findById(session.userId.toLong())
+            User user = userService.findUserFromUserId(session.userId)
             if (resource.canViewBy(user)) {
                 String resourceType = Resource.findTypeOfResource(id)
                 render(view: 'showResources', model: [resource: resource, resourceType: resourceType])

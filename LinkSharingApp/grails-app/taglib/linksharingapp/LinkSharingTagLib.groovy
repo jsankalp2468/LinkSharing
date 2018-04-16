@@ -140,10 +140,11 @@ class LinkSharingTagLib {
 //                out<<body()<<g.link(controller: 'subscription',action: 'delete',id: topic.id)
 //                value = "Unsubscribe"
             }else{
-                out<<"<a href=\"#\" class=\"hyperlink\">Subscribe</a>"
+                out<<"<a href=\"${createLink(controller: 'subscription', action: 'subscribe', id: topic.id)}\" class=\"hyperlink\">Subscribe</a>"
             }
         }else{
-            out<<"<a href=\"#\" class=\"hyperlink\">Subscribe</a>"
+            flash.message = "Please login to subscribe"
+            out<<"<a href=\"${createLink(controller: 'logIn', action: 'index')}\" class=\"hyperlink\">Subscribe</a>"
         }
         out<< value
     }

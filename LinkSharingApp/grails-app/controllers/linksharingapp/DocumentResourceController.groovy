@@ -2,10 +2,12 @@ package linksharingapp
 
 class DocumentResourceController {
 
+    def userService
+
     def index() { }
 
     def save() {
-        User user = User.findById(session.userId.toLong())
+        User user = userService.findUserFromUserId(session.userId)
         if (user){
             Topic topic = Topic.findById(params.topicId)
             DocumentResource documentResource = new DocumentResource(createdBy: user,description: params.description,topic:topic)

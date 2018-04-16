@@ -4,11 +4,13 @@ import enumeration.Seriousness
 
 class SubscriptionController {
 
+    def userService
+
     def index() { }
 
     def save() {
         Topic topic = Topic.get(params.id.toLong())
-        User user = User.findById(session.userId.toLong())
+        User user = userService.findUserFromUserId(session.userId)
         Subscription subscription = new Subscription(topic: topic,user: user,seriousness: Seriousness.VERY_SERIOUS)
         if(subscription.validate()){
             subscription.save()
@@ -40,7 +42,7 @@ class SubscriptionController {
 
     def delete() {
         Topic topic = Topic.findById(params.id.toLong())
-        User user = User.findById(session.userId.toLong())
+        User user = userService.findUserFromUserId(session.userId)
         Subscription subscription = Subscription.findByUserAndTopic(user,topic)
         if(user.subscriptions.contains(subscription) && user!=topic.createdBy){
             List<Resource> resource = Resource.findAllByTopic(topic)
@@ -68,5 +70,27 @@ class SubscriptionController {
                 redirect(controller : 'logIn',action: 'index')
             }
         }
+    }
+
+    def subscribe(){
+        Topic topic = Topic.findById(params.id.toLong())
+        User user = userService.findUserFromUserId(session.userId)
+        user.confirmPassword = user.password
+        Subscription subscription = new Subscription(topic: topic,user: user,seriousness: Seriousness.VERY_SERIOUS)
+        subscription.save(flush : true)
+        List<Resource> resource = Resource.findAllByTopic(topic)
+        println(resource)
+        resource.each {
+            ReadingItem readingItem = new ReadingItem(resource: it,user: user,isRead: false)
+            readingItem.save(flush:true,failOnError:true)
+            user.addToReadingItems(readingItem)
+            println(user.readingItems.size())
+        }
+        println(user.subscriptions.size()+" "+topic.subscriptions.size()+" "+user.readingItems.size())
+        user.addToSubscriptions(subscription)
+        topic.addToSubscriptions(subscription)
+        println(user.subscriptions.size()+" "+topic.subscriptions.size()+" "+user.readingItems.size())
+        flash.message = "subscribed successfully!!"
+        redirect(controller : 'logIn',action: 'index')
     }
 }

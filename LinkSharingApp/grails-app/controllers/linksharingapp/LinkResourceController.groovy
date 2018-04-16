@@ -4,10 +4,12 @@ import vo.TopicVO
 
 class LinkResourceController {
 
+    def userService
+
     def index() { }
 
     def save(String url,String description,Long topicId){
-        User user = User.findById(session.userId.toLong())
+        User user = userService.findUserFromUserId(session.userId)
         if (user){
             Topic topic = Topic.findById(topicId)
             LinkResource linkResource = new LinkResource(createdBy: user,description: description,topic:topic,url: url)
