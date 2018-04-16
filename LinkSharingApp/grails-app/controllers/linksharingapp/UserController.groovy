@@ -2,6 +2,7 @@ package linksharingapp
 
 import co.ForgotPasswordCO
 import co.SearchCO
+import co.UpdateProfileCO
 import vo.TopicVO
 
 class UserController {
@@ -69,13 +70,13 @@ class UserController {
     }
 
 
-    def updateProfile() {
+    def updateProfile(UpdateProfileCO co) {
         User user = User.findById(session.userId.toLong())
 //        println(user)
         def file = new File("/home/sankalp/Desktop/PP/${user.userName}.jpg")
-        user.firstName = params.firstName
-        user.lastName = params.lastName
-        user.userName = params.userName
+        user.firstName = co.firstName
+        user.lastName = co.lastName
+        user.userName = co.userName
         user.confirmPassword = user.password
 //        println(user)
         if (user.validate()){
