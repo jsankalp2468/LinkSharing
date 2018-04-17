@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession
 class ApplicationInterceptor {
 
     public ApplicationInterceptor(){
-        matchAll()
+        matchAll().excludes(controller: SubscriptionController)
     }
 
 

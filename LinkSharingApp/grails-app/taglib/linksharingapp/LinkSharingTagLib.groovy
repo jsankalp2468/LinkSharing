@@ -18,8 +18,10 @@ class LinkSharingTagLib {
             if (readingItem) {
                 if (readingItem.isRead) {
                     value = "Mark as Read"
+                    out << "<a href=\"${createLink(controller: 'topic', action: 'changeIsReadToFalse', id: attrs.resource.id)}\" class=\"text-primary\" style=\"text-decoration: underline\">Mark as Read</a>"
                 } else {
                     value = "Mark as UnRead"
+                    out << "<a href=\"${createLink(controller: 'topic', action: 'changeIsReadToTrue', id: attrs.resource.id)}\" class=\"text-primary\" style=\"text-decoration: underline\">Mark as UnRead</a>"
                 }
             } else {
                 value = null
@@ -28,7 +30,7 @@ class LinkSharingTagLib {
             value = null
         }
 
-        out << body() << value
+//        out << body() << value
     }
 
     def getTopPosts = {attrs->
@@ -143,7 +145,7 @@ class LinkSharingTagLib {
                 out<<"<a href=\"${createLink(controller: 'subscription', action: 'subscribe', id: topic.id)}\" class=\"hyperlink\">Subscribe</a>"
             }
         }else{
-            flash.message = "Please login to subscribe"
+//            flash.message = "Please login to subscribe"
             out<<"<a href=\"${createLink(controller: 'logIn', action: 'index')}\" class=\"hyperlink\">Subscribe</a>"
         }
         out<< value

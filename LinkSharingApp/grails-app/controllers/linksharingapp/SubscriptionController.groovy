@@ -5,7 +5,6 @@ import enumeration.Seriousness
 class SubscriptionController {
 
     def userService
-    def subscriptionService
 
     def index() { }
 
@@ -25,19 +24,25 @@ class SubscriptionController {
     }
 
     def update(Long id,String seriousness) {
-        Subscription subscription = Subscription.findByIdAndSeriousness(id,Seriousness.isSeriousness(seriousness))
-
+        Subscription subscription = Subscription.findById(id)
         if (subscription){
+            subscription.seriousness = Seriousness.isSeriousness(seriousness)
             if(subscription.validate()){
                 subscription.save(flush:true)
-                render("Subscription saved successfully")
+                flash.message = "Subscription saved successfully"
+//                render("Subscription saved successfully")
+                redirect(controller: 'user',action: 'index')
             }
             else {
-                render("Subscription not saved ${subscription.errors.allErrors}")
+                flash.error = "Subscription not saved ${subscription.errors.allErrors}"
+//                render("Subscription not saved ${subscription.errors.allErrors}")
+                redirect(controller: 'user',action: 'index')
             }
 
         }else {
-            render("Subscription not found")
+            flash.error = "Subscription not found"
+//            render("Subscription not found")
+            redirect(controller: 'user',action: 'index')
         }
     }
 
@@ -74,8 +79,20 @@ class SubscriptionController {
     }
 
     def subscribe(){
-        subscriptionService.subscribe(params.id.toLong(),session.userId)
-        flash.message = "subscribed successfully!!"
-        redirect(controller : 'logIn',action: 'index')
+        Topic topic = Topic.findById(params.id.toLong())
+        User user = userService.findUserFromUserId(session.userId)
+        Subscription subscription = new Subscription(topic: topic,user: user,seriousness: Seriousness.VERY_SERIOUS)
+        List<Resource> resource = Resource.findAllByTopic(topic)
+        println(resource)
+        resource.each {
+            ReadingItem readingItem = new ReadingItem(resource: it,user: user,isRead: false)
+            user.addToReadingItems(rea)
+            println(user.readingItems.size())
+        }
+        println(user.subscriptions.size()+" "+topic.subscriptions.size())
+        user.addToSubscriptions(subscription)
+        topic.addToSubscriptions(subscription)
+        println(user.subscriptions.size()+" "+topic.subscriptions.size())
+
     }
 }

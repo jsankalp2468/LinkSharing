@@ -35,9 +35,7 @@
             </g:else>
 
             <div class="col-lg-4">
-                <a href="#" class="text-primary" style="text-decoration: underline;">
-                    <ls:checkRead resource="${unReadResource.resource}"></ls:checkRead>
-                </a>
+                <ls:checkRead resource="${unReadResource.resource}"></ls:checkRead>
             </div>
 
             <div class="col-lg-2">

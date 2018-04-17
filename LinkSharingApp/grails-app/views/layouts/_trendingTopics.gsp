@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="linksharingapp.Topic" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title></title>
@@ -9,7 +9,8 @@
     <g:if test="${unSubscribedTrendingTopics1}">
         <div class="row" style="padding-bottom:10px">
             <div class="col-lg-2">
-                <img src="${createLink(controller: 'logIn',action: 'show', params: ["name":"${unSubscribedTrendingTopics1.createdBy.userName}"])}" width="80" height="80">
+                <img src="${createLink(controller: 'logIn', action: 'show', params: ["name": "${unSubscribedTrendingTopics1.createdBy.userName}"])}"
+                     width="80" height="80">
             </div>
 
             <div class="col-lg-10">
@@ -21,18 +22,22 @@
                 <div class="col-lg-4" style="padding-left: 0px">
                     <div class="text-muted">@${unSubscribedTrendingTopics1.createdBy.userName}</div>
                     %{--<g:if test="${session.user.isSubscribed(unSubscribedTrendingTopics1.id)}">--}%
-                        <ls:checkSubscribed topicId="${unSubscribedTrendingTopics1.id}"></ls:checkSubscribed>
+                    <ls:checkSubscribed topicId="${unSubscribedTrendingTopics1.id}"></ls:checkSubscribed>
                     %{--</g:if>--}%
                 </div>
 
                 <div class="col-lg-4">
                     <div class="text-muted">Subscriptions</div>
-                    <div class="text-primary"><ls:subscriptionCount topicId="${unSubscribedTrendingTopics1.id}"></ls:subscriptionCount> </div>
+
+                    <div class="text-primary"><ls:subscriptionCount
+                            topicId="${unSubscribedTrendingTopics1.id}"></ls:subscriptionCount></div>
                 </div>
 
                 <div class="col-lg-2">
                     <div class="text-muted">Posts</div>
-                    <div class="text-primary"><ls:resourceCount topicId="${unSubscribedTrendingTopics1.id}"></ls:resourceCount> </div>
+
+                    <div class="text-primary"><ls:resourceCount
+                            topicId="${unSubscribedTrendingTopics1.id}"></ls:resourceCount></div>
                 </div>
             </div>
         </div>
@@ -42,7 +47,8 @@
         <div class="row">
 
             <div class="col-lg-2">
-                <img src="${createLink(controller: 'logIn',action: 'show', params: ["name":"${subscribedTrendingTopics1.createdBy.userName}"])}" width="80" height="80">            </div>
+                <img src="${createLink(controller: 'logIn', action: 'show', params: ["name": "${subscribedTrendingTopics1.createdBy.userName}"])}"
+                     width="80" height="80"></div>
 
             <div class="col-lg-10">
                 <g:form url="[controller: 'topic', action: 'show']">
@@ -61,55 +67,87 @@
 
                 <div class="col-lg-7" style="padding-left: 0px">
                     <div class="text-muted">@${subscribedTrendingTopics1.createdBy.userName}</div>
-                        %{--<a href="${createLink(controller: 'subscription',action: 'delete', id: subscribedTrendingTopics1.id)}" class="hyperlink"><ls:checkSubscribed topicId="${subscribedTrendingTopics1.id}"></ls:checkSubscribed> </a>--}%
-                        <ls:checkSubscribed topicId="${subscribedTrendingTopics1.id}"></ls:checkSubscribed>
+                    %{--<a href="${createLink(controller: 'subscription',action: 'delete', id: subscribedTrendingTopics1.id)}" class="hyperlink"><ls:checkSubscribed topicId="${subscribedTrendingTopics1.id}"></ls:checkSubscribed> </a>--}%
+                    <ls:checkSubscribed topicId="${subscribedTrendingTopics1.id}"></ls:checkSubscribed>
                 </div>
 
                 <div class="col-lg-3">
                     <div class="text-muted">Subscriptions</div>
 
-                    <div class="text-primary"><ls:subscriptionCount topicId="${subscribedTrendingTopics1.id}"></ls:subscriptionCount></div>
+                    <div class="text-primary"><ls:subscriptionCount
+                            topicId="${subscribedTrendingTopics1.id}"></ls:subscriptionCount></div>
                 </div>
 
                 <div class="col-lg-2">
                     <div class="text-muted">Posts</div>
 
-                    <div class="text-primary"><ls:resourceCount topicId="${subscribedTrendingTopics1.id}"></ls:resourceCount> </div>
+                    <div class="text-primary"><ls:resourceCount
+                            topicId="${subscribedTrendingTopics1.id}"></ls:resourceCount></div>
+                </div>
+
+                <div class="row">
+                    <span class="dropdown col-lg-3">
+                        %{--<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Seriousness--}%
+                            %{--<span class="caret"></span>--}%
+                        %{--</button>--}%
+                        %{--<ul class="dropdown-menu">--}%
+                            %{--<li><a href="#">Very Serious</a></li>--}%
+                            %{--<li><a href="#">Serious</a></li>--}%
+                            %{--<li><a href="#">Less Serious</a></li>--}%
+                        %{--</ul>--}%
+                        <% linksharingapp.Topic topic = Topic.findById(subscribedTrendingTopics1.id)
+                            linksharingapp.Subscription subscription = linksharingapp.Subscription.findByTopic(topic)%>
+                        <g:select id="seriousnessSelect" name="seriousness" from="${enumeration.Seriousness.values()}" optionValue="displayName"
+                                  optionKey="name" onchange="changeSeriousness(${subscription.id},this.value)"></g:select>
+                    </span>
+
+                    <span class="dropdown col-lg-3">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Scope
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Private</a></li>
+                            <li><a href="#">Public</a></li>
+                        </ul>
+                    </span>
+                    <span class="col-lg-2">
+                        <a href="#">
+                            <i class="far fa-envelope fa-2x"></i>
+                        </a>
+                    </span>
+                    <span class="col-lg-2">
+                        <a href="#">
+                            <i class="far fa-file fa-2x"></i>
+                        </a>
+                    </span>
+                    <span class="col-lg-1">
+                        <a href="#">
+                            <i class="far fa-trash-alt fa-2x"></i>
+                        </a>
+                    </span>
                 </div>
             </div>
-
-
-            <span class="dropdown col-lg-offset-2">
-                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Seriousness
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Very Serious</a></li>
-                    <li><a href="#">Serious</a></li>
-                    <li><a href="#">Less Serious</a></li>
-                </ul>
-            </span>
-
-            <span class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Scope
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Private</a></li>
-                    <li><a href="#">Public</a></li>
-                </ul>
-            </span>
-            <a href="#">
-                <i class="far fa-envelope fa-2x"></i>
-            </a>
-            <a href="#">
-                <i class="far fa-file fa-2x"></i>
-            </a>
-            <a href="#">
-                <i class="far fa-trash-alt fa-2x"></i>
-            </a>
         </div>
     </g:if>
 </div>
 </body>
 </html>
+
+<script>
+    function changeSeriousness(id,value) {
+        console.log("Hiiiii")
+        $.ajax({
+            type: 'post',
+            data: {'id': id, 'seriousness': value},
+            url: 'http://localhost:8080/grails-app/subscription/update',
+            dataType: 'json',
+            success: function (res) {
+                alert(res);
+            },
+            error: function (res) {
+                $('#message').text('Error!');
+                $('.dvLoading').hide();
+            }
+        });
+    }
+</script>

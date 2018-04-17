@@ -15,6 +15,10 @@ enum Seriousness {
         this.displayName = displayName
     }
 
+    String getName() {
+        return name()
+    }
+
     static Seriousness isSeriousness(String s){
         if (s.equalsIgnoreCase("SERIOUS")){
             return Seriousness.SERIOUS

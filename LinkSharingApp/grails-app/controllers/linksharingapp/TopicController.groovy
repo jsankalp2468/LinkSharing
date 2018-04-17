@@ -11,10 +11,13 @@ class TopicController {
 
     def userService
     def sendMailService
+    def topicService
 
     def index() {
-            Resource resource = Resource.findById(params.id)
-            Topic topic = Topic.findById(resource.topic.id)
+//            Resource resource = Resource.findById(params.id)
+//            Topic topic = Topic.findById(resource.topic.id)
+        Topic topic = Topic.findById(params.id.toLong())
+        Resource resources = Resource.findByTopic(topic)
             println("id")
             render(view: 'index',model: [subscribedUsers:topic.getSubscribedUsers(),resources:topic.resources,topic:topic])
     }
@@ -120,5 +123,19 @@ class TopicController {
     def showSubscribedUsers(){
         Topic topic = Topic.findById(1)
         render(view: 'showSubscribedUsers' , model: [userList : topic.getSubscribedUsers()])
+    }
+
+    def changeIsReadToFalse(){
+        User user = userService.findUserFromUserId(session.userId)
+        topicService.changeIsReadToFalse(user,params.id.toLong())
+        flash.message = "Resource removed from inbox successfully!!"
+        redirect(controller: 'user',action: 'index')
+    }
+
+    def changeIsReadToTrue(){
+        User user = userService.findUserFromUserId(session.userId)
+        topicService.changeIsReadToTrue(user,params.id.toLong())
+        flash.message = "Resource added to inbox successfully!!"
+        redirect(controller: 'user',action: 'index')
     }
 }
