@@ -9,7 +9,7 @@
     <div class="col-lg-10">
         <div class="text-primary">
             %{--<a href="${createLink(controller:'topic', ation:'index' ,id:demo.id)}" class="text-primary pull-right">"${demo.topicName}"</a>--}%
-            <a class="hyperlink" href="${createLink(controller:'topic', ation:'index' ,id:userSubscribedTopics.id)}">${userSubscribedTopics.topic.name}</a>
+            <a class="hyperlink" href="${createLink(controller:'topic', ation:'index' ,id:userSubscribedTopics.topic.id)}">${userSubscribedTopics.topic.name}</a>
         </div>
 
         <div class="col-lg-4" style="padding-left: 0px">
