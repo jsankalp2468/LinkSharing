@@ -13,7 +13,7 @@
     <div class="col-lg-10">
         <span class="text">${demo.createdBy.firstName}</span>
         <span class="text-muted">@"${demo.createdBy.userName}" "${resource.lastUpdated}"</span>
-        <a href="${createLink(controller:'topic', ation:'index' ,id:demo.id)}" class="text-primary pull-right">"${demo.topicName}"</a>
+        <a href="${createLink(controller:'topic', action:'index' ,id:demo.id)}" class="text-primary pull-right">"${demo.topicName}"</a>
 
         <div class="text">
             <p>

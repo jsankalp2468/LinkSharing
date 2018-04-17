@@ -31,6 +31,8 @@ class Topic {
 
     static mapping = {
         sort name: 'asc'
+        subscriptions cascade: 'all,delete-orphan'
+        resources cascade: 'all,delete-orphan'
     }
 
     static namedQueries = {

@@ -120,11 +120,14 @@
                             <i class="far fa-file fa-2x"></i>
                         </a>
                     </span>
-                    <span class="col-lg-1">
-                        <a href="#">
-                            <i class="far fa-trash-alt fa-2x"></i>
-                        </a>
-                    </span>
+                    <%linksharingapp.User user = linksharingapp.User.findById(session.userId)%>
+                    <g:if test="${user.admin || subscribedTrendingTopics1.createdBy == user}">
+                        <span class="col-lg-1">
+                            <a href="${createLink(controller: 'topic',action: 'delete',id:subscribedTrendingTopics1.id)}">
+                                <i class="far fa-trash-alt fa-2x"></i>
+                            </a>
+                        </span>
+                    </g:if>
                 </div>
             </div>
         </div>
